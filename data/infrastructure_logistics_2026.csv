@@ -1,0 +1,13 @@
+state_id,state,capability_id,capability,lpi_2023,transport_infrastructure,digital_connectivity,network_redundancy,logistics_resilience,Q,P,U,D,R,confidence,notes
+1,United States,9,Infrastructure and Logistics,3.8,0.98,0.99,0.97,0.97,0.98,0.98,0.98,0.98,4,0.93,"Large diversified transport, logistics, energy and digital networks; provisional score."
+2,Russia,9,Infrastructure and Logistics,2.8,0.86,0.88,0.78,0.82,0.88,0.96,0.90,0.86,3,0.82,"Very large territorial network with substantial redundancy but geographic and infrastructure constraints."
+3,United Kingdom,9,Infrastructure and Logistics,3.7,0.91,0.98,0.91,0.93,0.94,0.98,0.91,0.92,3,0.90,"Highly developed transport, port, aviation, communications and logistics system."
+4,France,9,Infrastructure and Logistics,3.9,0.92,0.97,0.92,0.93,0.94,0.98,0.92,0.92,3,0.90,"Dense multimodal network with strong European connectivity."
+5,China,9,Infrastructure and Logistics,3.8,0.98,0.98,0.95,0.96,0.98,0.99,0.96,0.96,4,0.91,"Very large integrated transport and logistics system; exceptional infrastructure scale."
+6,India,9,Infrastructure and Logistics,3.4,0.82,0.90,0.80,0.83,0.86,0.97,0.82,0.84,3,0.83,"Rapidly expanding multimodal and digital infrastructure with persistent bottlenecks."
+7,Pakistan,9,Infrastructure and Logistics,2.5,0.58,0.70,0.55,0.58,0.63,0.95,0.55,0.58,2,0.67,"Important corridor infrastructure but material network and resilience constraints."
+8,North Korea,9,Infrastructure and Logistics,,0.42,0.35,0.38,0.40,0.46,0.95,0.45,0.38,1,0.45,"LPI observation unavailable; infrastructure assessment is evidence-constrained."
+9,Israel,9,Infrastructure and Logistics,3.4,0.83,0.95,0.78,0.84,0.86,0.99,0.82,0.82,3,0.80,"High-quality infrastructure and digital systems; small geography and concentration create distinct resilience trade-offs."
+10,Switzerland,9,Infrastructure and Logistics,4.1,0.95,0.99,0.96,0.96,0.97,0.99,0.95,0.95,3,0.93,"Exceptionally strong logistics and infrastructure despite limited territorial scale."
+11,Belgium,9,Infrastructure and Logistics,4.0,0.94,0.97,0.92,0.94,0.96,0.98,0.92,0.93,3,0.91,"Highly connected European logistics hub; major port and dense transport network."
+12,Taiwan,9,Infrastructure and Logistics,3.9,0.90,0.97,0.78,0.85,0.91,0.99,0.80,0.86,3,0.84,"High-quality infrastructure and digital connectivity with island dependence and concentration risks."
