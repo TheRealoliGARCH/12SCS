@@ -1,0 +1,82 @@
+name: 12SCSM V2 Gap Priority
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gap-priority:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install runtime dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: python -m unittest tests.test_capability_gap_priority
+
+      - name: Run gap and priority model
+        run: python results/run_gap_priority.py
+
+      - name: Validate output dimensions and finite values
+        run: |
+          python - <<'PY'
+          import csv
+          import math
+          from pathlib import Path
+          from model.convergence_analysis import CAPABILITIES, STATES
+
+          matrix_files = [
+              'results/capability_gap_signed_v2.csv',
+              'results/capability_gap_positive_v2.csv',
+              'results/capability_priority_v2.csv',
+          ]
+          vector_files = [
+              'results/capability_benchmark_v2.csv',
+              'results/capability_dispersion_weights_v2.csv',
+              'results/state_convergence_priority_v2.csv',
+              'results/capability_convergence_priority_v2.csv',
+          ]
+          for name in matrix_files:
+              rows = list(csv.reader(Path(name).open(encoding='utf-8')))
+              assert len(rows) == 13, name
+              assert rows[0][1:] == CAPABILITIES, name
+              assert [r[0] for r in rows[1:]] == STATES, name
+              for row in rows[1:]:
+                  assert all(math.isfinite(float(x)) for x in row[1:]), name
+          for name in vector_files:
+              rows = list(csv.reader(Path(name).open(encoding='utf-8')))
+              assert len(rows) == 13, name
+              for row in rows[1:]:
+                  assert math.isfinite(float(row[1])), name
+          weights = [float(r[1]) for r in csv.reader(Path(vector_files[1]).open(encoding='utf-8'))][1:]
+          assert all(w >= 0 for w in weights)
+          assert abs(sum(weights) - 1.0) < 1e-12
+          print('Gap/priority validation passed.')
+          PY
+
+      - name: Publish gap-priority artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 12scsm-v2-gap-priority-${{ github.sha }}
+          path: |
+            results/capability_benchmark_v2.csv
+            results/capability_gap_signed_v2.csv
+            results/capability_gap_positive_v2.csv
+            results/capability_dispersion_weights_v2.csv
+            results/capability_priority_v2.csv
+            results/state_convergence_priority_v2.csv
+            results/capability_convergence_priority_v2.csv
