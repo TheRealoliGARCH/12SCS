@@ -1,0 +1,15 @@
+path,role
+model/convergence_analysis.py,model specification dependency
+model/evidence_adjusted_convergence.py,v2 estimator
+data/nuclear_strategic_deterrence_2026.csv,capability N input
+data/conventional_military_2025.csv,capability M input
+data/economic_production_2025.csv,capability E input
+data/financial_monetary_power_2026.csv,capability F input
+data/science_technology_2025.csv,capability T input
+data/advanced_industrial_capacity_2025.csv,capability I input
+data/energy_resource_security_2026.csv,capability R input
+data/food_water_humanitarian_resilience_2026.csv,capability H input
+data/infrastructure_logistics_2026.csv,capability L input
+data/diplomatic_institutional_power_2026.csv,capability D input
+data/information_cyber_ai_2026.csv,capability A input
+data/civilizational_social_resilience_2026.csv,capability S input
