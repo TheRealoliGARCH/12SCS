@@ -1,0 +1,13 @@
+state_id,state,capability_id,capability,network_posts_2024,multilateral_power,foreign_policy_capacity,strategic_convening,provisional_Q,provisional_P,provisional_U,provisional_D,recognition_level,evidence_confidence,measurement_status
+1,United States,10,Diplomatic and Institutional Power,271,1.00,1.00,1.00,0.99,0.99,0.99,0.99,4,0.97,provisional
+2,Russia,10,Diplomatic and Institutional Power,230,0.92,0.94,0.86,0.92,0.98,0.92,0.90,3,0.88,provisional
+3,United Kingdom,10,Diplomatic and Institutional Power,225,0.98,0.98,0.95,0.96,0.99,0.96,0.97,4,0.94,provisional
+4,France,10,Diplomatic and Institutional Power,249,0.99,0.98,0.97,0.97,0.99,0.97,0.97,4,0.94,provisional
+5,China,10,Diplomatic and Institutional Power,274,0.99,0.99,0.98,0.99,0.99,0.98,0.98,4,0.97,provisional
+6,India,10,Diplomatic and Institutional Power,194,0.88,0.92,0.87,0.89,0.99,0.88,0.88,3,0.91,provisional
+7,Pakistan,10,Diplomatic and Institutional Power,121,0.62,0.70,0.61,0.64,0.98,0.63,0.64,2,0.82,provisional
+8,North Korea,10,Diplomatic and Institutional Power,42,0.35,0.40,0.35,0.38,0.99,0.40,0.33,1,0.68,provisional
+9,Israel,10,Diplomatic and Institutional Power,107,0.74,0.86,0.76,0.78,0.99,0.79,0.76,2,0.84,provisional
+10,Switzerland,10,Diplomatic and Institutional Power,141,0.80,0.88,0.90,0.85,0.99,0.84,0.84,3,0.89,provisional
+11,Belgium,10,Diplomatic and Institutional Power,113,0.76,0.83,0.82,0.80,0.99,0.80,0.79,3,0.87,provisional
+12,Taiwan,10,Diplomatic and Institutional Power,110,0.48,0.72,0.64,0.58,0.99,0.60,0.58,2,0.80,provisional
