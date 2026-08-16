@@ -1,4 +1,12 @@
 from pathlib import Path
+import sys
+
+# Make the repository root importable when this script is invoked directly,
+# e.g. ``python results/run_v2.py``.  Python otherwise places only the
+# ``results/`` directory on sys.path.
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from model.evidence_adjusted_convergence import (
     convergence_index,
@@ -9,7 +17,6 @@ from model.evidence_adjusted_convergence import (
     write_matrix_csv,
 )
 
-ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 OUT = ROOT / "results"
 
