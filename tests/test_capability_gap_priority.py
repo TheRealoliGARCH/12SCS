@@ -19,6 +19,11 @@ class CapabilityGapPriorityTests(unittest.TestCase):
             for a, e in zip(arow, erow):
                 self.assertAlmostEqual(a, e, places=places)
 
+    def assertVectorAlmostEqual(self, actual, expected, places=12):
+        self.assertEqual(len(actual), len(expected))
+        for a, e in zip(actual, expected):
+            self.assertAlmostEqual(a, e, places=places)
+
     def test_weighted_benchmark_and_gaps(self):
         scores = ((0.2, 0.8), (0.6, 0.4))
         confidence = ((1.0, 2.0), (1.0, 1.0))
@@ -39,8 +44,8 @@ class CapabilityGapPriorityTests(unittest.TestCase):
         feasibility = ((1.0, 0.5), (0.25, 0.5))
         priorities = convergence_priority(gaps, weights, feasibility)
         self.assertMatrixAlmostEqual(priorities, ((0.15, 0.0), (0.0, 0.05)))
-        self.assertEqual(state_priorities(priorities), (0.15, 0.05))
-        self.assertEqual(capability_priorities(priorities), (0.15, 0.05))
+        self.assertVectorAlmostEqual(state_priorities(priorities), (0.15, 0.05))
+        self.assertVectorAlmostEqual(capability_priorities(priorities), (0.15, 0.05))
 
     def test_invalid_feasibility(self):
         with self.assertRaises(ValueError):
