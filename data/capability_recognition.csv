@@ -107,7 +107,7 @@ state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,dat
 9,Israel,10,Diplomatic and Institutional Power,,,,,,,,,
 9,Israel,11,"Information, Cyber and Artificial Intelligence Capacity",,,,,,,,,
 9,Israel,12,Civilizational and Social Resilience,,,,,,,,,
-10,Switzerland,1,Nuclear and Strategic Deterrence,,,,,,,,,"Pending non-nuclear strategic-deterrence measurement protocol."
+10,Switzerland,1,Nuclear and Strategic Deterrence,2,0.78,0.97,0.70,0.65,0.88,Swiss Federal Council; NATO Partnership for Peace,2026-08-16,"Provisional Level 2 non-nuclear strategic-deterrence recognition. Armed permanent neutrality, independent territorial defence, civil protection and continuity capacity, and structured NATO Partnership for Peace cooperation contribute to deterrence. No nuclear weapons capability or latent weapons programme is inferred."
 10,Switzerland,2,Conventional Military Power,,,,,,,,,
 10,Switzerland,3,Economic Production,,,,,,,,,
 10,Switzerland,4,Financial and Monetary Power,,,,,,,,,
@@ -119,7 +119,7 @@ state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,dat
 10,Switzerland,10,Diplomatic and Institutional Power,,,,,,,,,
 10,Switzerland,11,"Information, Cyber and Artificial Intelligence Capacity",,,,,,,,,
 10,Switzerland,12,Civilizational and Social Resilience,,,,,,,,,
-11,Belgium,1,Nuclear and Strategic Deterrence,,,,,,,,,"Pending non-nuclear strategic-deterrence measurement protocol."
+11,Belgium,1,Nuclear and Strategic Deterrence,2,0.82,0.98,0.72,0.75,0.91,Belgian Foreign Affairs; NATO,2026-08-16,"Provisional Level 2 non-nuclear strategic-deterrence recognition. NATO collective defence and Belgium's participation in the Alliance's nuclear/conventional deterrence architecture are recognized as alliance-enabled deterrence, not as an independent Belgian nuclear arsenal."
 11,Belgium,2,Conventional Military Power,,,,,,,,,
 11,Belgium,3,Economic Production,,,,,,,,,
 11,Belgium,4,Financial and Monetary Power,,,,,,,,,
@@ -131,7 +131,7 @@ state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,dat
 11,Belgium,10,Diplomatic and Institutional Power,,,,,,,,,
 11,Belgium,11,"Information, Cyber and Artificial Intelligence Capacity",,,,,,,,,
 11,Belgium,12,Civilizational and Social Resilience,,,,,,,,,
-12,Taiwan,1,Nuclear and Strategic Deterrence,,,,,,,,,"Pending non-nuclear strategic-deterrence measurement protocol."
+12,Taiwan,1,Nuclear and Strategic Deterrence,3,0.92,0.99,0.90,0.82,0.85,Taiwan Ministry of National Defense; Presidential Office,2026-08-16,"Provisional Level 3 non-nuclear strategic-deterrence recognition. Publicly documented multi-domain denial, resilient defence, geographic advantages, strategic communications, whole-of-society resilience, reserve-force preparation and civil-military integration support substantial strategic deterrence. No nuclear weapons capability or latent weapons programme is inferred."
 12,Taiwan,2,Conventional Military Power,,,,,,,,,
 12,Taiwan,3,Economic Production,,,,,,,,,
 12,Taiwan,4,Financial and Monetary Power,,,,,,,,,
