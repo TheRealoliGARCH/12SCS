@@ -16,7 +16,7 @@ class EvidenceAdjustedConvergenceTests(unittest.TestCase):
         factor, coverage = _latent_factor(row, strict=True)
         self.assertEqual(coverage, 5)
         self.assertAlmostEqual(
-            factor, (0.81 * 0.64 * 0.49 * 0.81) ** 0.25, places=12
+            factor, (1.0 * 0.81 * 0.64 * 0.49 * 0.81) ** 0.2, places=12
         )
         self.assertAlmostEqual(_confidence(row), 0.25, places=12)
 
