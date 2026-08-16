@@ -1,0 +1,13 @@
+state_id,state,evidence_domain,source_family,reference_period,evidence_confidence,verification_status,notes
+1,United States,food and nutrition,FAO/IFAD/UNICEF/WFP/WHO SOFI; national statistics,2024-2026,0.94,provisional,"Food system scale, health capacity and emergency response supported by multiple public sources; water risk requires subnational treatment."
+2,Russia,food and water,FAO; national statistics; WRI Aqueduct,2024-2026,0.86,provisional,"Large agricultural and freshwater base; regional distribution and infrastructure resilience require further verification."
+3,United Kingdom,food water health,FAO/WHO; WRI Aqueduct; national statistics,2024-2026,0.89,provisional,"High institutional and health capacity; food and water systems remain externally connected."
+4,France,food water health,FAO/WHO; WRI Aqueduct; national statistics,2024-2026,0.90,provisional,"Major agricultural producer and high health/infrastructure capacity."
+5,China,food water health,FAO/WHO; WRI Aqueduct; national statistics,2024-2026,0.88,provisional,"Very large food and response capacity but substantial regional water heterogeneity."
+6,India,food water health,FAO/WHO; WRI Aqueduct; national statistics,2024-2026,0.82,provisional,"Large food system and public-distribution capacity offset by substantial regional water stress and uneven health capacity."
+7,Pakistan,food water health,FAO/WHO; WRI Aqueduct; national statistics,2024-2026,0.69,provisional,"Material agricultural base but high water/climate exposure and constrained resilience."
+8,North Korea,food water health,humanitarian agencies; FAO/WHO where available; secondary corroboration,2024-2026,0.48,evidence-limited,"Public evidence is substantially less complete; score should remain uncertainty-sensitive."
+9,Israel,food water health,FAO/WHO; WRI Aqueduct; national statistics,2024-2026,0.84,provisional,"Strong water-management, desalination, health and emergency capabilities."
+10,Switzerland,food water health,FAO/WHO; WRI Aqueduct; national statistics,2024-2026,0.91,provisional,"High institutional resilience and infrastructure; food imports remain part of system exposure."
+11,Belgium,food water health,FAO/WHO; WRI Aqueduct; national statistics,2024-2026,0.88,provisional,"High health and institutional capacity with trade and flood exposure."
+12,Taiwan,food water health,FAO/WHO; WRI Aqueduct; national statistics,2024-2026,0.80,provisional,"Strong health and disaster response capacity; water and import exposure remain important."
