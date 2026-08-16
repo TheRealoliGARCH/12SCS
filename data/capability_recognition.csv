@@ -1,5 +1,5 @@
 state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,date,notes
-1,United States,1,Nuclear and Strategic Deterrence,,,,,,,,,
+1,United States,1,Nuclear and Strategic Deterrence,4,0.99,0.99,1.00,0.98,0.98,SIPRI Yearbook 2026,2026-01-01,"Provisional Level 4 recognition. SIPRI estimates a 3,700-warhead military stockpile and 5,042 total inventory. The recognition score is an analytical classification, not a direct conversion from warhead count."
 1,United States,2,Conventional Military Power,,,,,,,,,
 1,United States,3,Economic Production,,,,,,,,,
 1,United States,4,Financial and Monetary Power,,,,,,,,,
@@ -11,7 +11,7 @@ state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,dat
 1,United States,10,Diplomatic and Institutional Power,,,,,,,,,
 1,United States,11,"Information, Cyber and Artificial Intelligence Capacity",,,,,,,,,
 1,United States,12,Civilizational and Social Resilience,,,,,,,,,
-2,Russia,1,Nuclear and Strategic Deterrence,,,,,,,,,
+2,Russia,1,Nuclear and Strategic Deterrence,4,0.99,0.99,1.00,0.95,0.90,SIPRI Yearbook 2026,2026-01-01,"Provisional Level 4 recognition. SIPRI estimates a 4,400-warhead military stockpile and 5,420 total inventory. Public uncertainty remains substantial."
 2,Russia,2,Conventional Military Power,,,,,,,,,
 2,Russia,3,Economic Production,,,,,,,,,
 2,Russia,4,Financial and Monetary Power,,,,,,,,,
@@ -23,7 +23,7 @@ state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,dat
 2,Russia,10,Diplomatic and Institutional Power,,,,,,,,,
 2,Russia,11,"Information, Cyber and Artificial Intelligence Capacity",,,,,,,,,
 2,Russia,12,Civilizational and Social Resilience,,,,,,,,,
-3,United Kingdom,1,Nuclear and Strategic Deterrence,,,,,,,,,
+3,United Kingdom,1,Nuclear and Strategic Deterrence,3,0.96,0.98,0.90,0.95,0.94,SIPRI Yearbook 2026,2026-01-01,"Provisional Level 3 recognition. SIPRI estimates a 225-warhead military stockpile, including 120 deployed warheads."
 3,United Kingdom,2,Conventional Military Power,,,,,,,,,
 3,United Kingdom,3,Economic Production,,,,,,,,,
 3,United Kingdom,4,Financial and Monetary Power,,,,,,,,,
@@ -35,7 +35,7 @@ state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,dat
 3,United Kingdom,10,Diplomatic and Institutional Power,,,,,,,,,
 3,United Kingdom,11,"Information, Cyber and Artificial Intelligence Capacity",,,,,,,,,
 3,United Kingdom,12,Civilizational and Social Resilience,,,,,,,,,
-4,France,1,Nuclear and Strategic Deterrence,,,,,,,,,
+4,France,1,Nuclear and Strategic Deterrence,3,0.96,0.98,0.90,0.95,0.94,SIPRI Yearbook 2026,2026-01-01,"Provisional Level 3 recognition. SIPRI estimates a 290-warhead military stockpile and 370 total inventory; France maintains sea- and air-based nuclear forces."
 4,France,2,Conventional Military Power,,,,,,,,,
 4,France,3,Economic Production,,,,,,,,,
 4,France,4,Financial and Monetary Power,,,,,,,,,
@@ -47,7 +47,7 @@ state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,dat
 4,France,10,Diplomatic and Institutional Power,,,,,,,,,
 4,France,11,"Information, Cyber and Artificial Intelligence Capacity",,,,,,,,,
 4,France,12,Civilizational and Social Resilience,,,,,,,,,
-5,China,1,Nuclear and Strategic Deterrence,,,,,,,,,
+5,China,1,Nuclear and Strategic Deterrence,4,0.96,0.97,0.95,0.76,0.74,SIPRI Yearbook 2026,2026-01-01,"Provisional Level 4 recognition. SIPRI estimates a 620-warhead military stockpile. Recognition reflects strategic significance and modernization as well as arsenal size; exact force details remain uncertain."
 5,China,2,Conventional Military Power,,,,,,,,,
 5,China,3,Economic Production,,,,,,,,,
 5,China,4,Financial and Monetary Power,,,,,,,,,
@@ -59,7 +59,7 @@ state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,dat
 5,China,10,Diplomatic and Institutional Power,,,,,,,,,
 5,China,11,"Information, Cyber and Artificial Intelligence Capacity",,,,,,,,,
 5,China,12,Civilizational and Social Resilience,,,,,,,,,
-6,India,1,Nuclear and Strategic Deterrence,,,,,,,,,
+6,India,1,Nuclear and Strategic Deterrence,3,0.92,0.97,0.82,0.75,0.72,SIPRI Yearbook 2026,2026-01-01,"Provisional Level 3 recognition. SIPRI estimates a 190-warhead military stockpile. Recognition is deliberately separated from simple warhead-count ranking."
 6,India,2,Conventional Military Power,,,,,,,,,
 6,India,3,Economic Production,,,,,,,,,
 6,India,4,Financial and Monetary Power,,,,,,,,,
@@ -71,7 +71,7 @@ state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,dat
 6,India,10,Diplomatic and Institutional Power,,,,,,,,,
 6,India,11,"Information, Cyber and Artificial Intelligence Capacity",,,,,,,,,
 6,India,12,Civilizational and Social Resilience,,,,,,,,,
-7,Pakistan,1,Nuclear and Strategic Deterrence,,,,,,,,,
+7,Pakistan,1,Nuclear and Strategic Deterrence,3,0.90,0.97,0.80,0.65,0.62,SIPRI Yearbook 2026,2026-01-01,"Provisional Level 3 recognition. SIPRI estimates a 170-warhead military stockpile. Exact force structure and readiness remain comparatively opaque."
 7,Pakistan,2,Conventional Military Power,,,,,,,,,
 7,Pakistan,3,Economic Production,,,,,,,,,
 7,Pakistan,4,Financial and Monetary Power,,,,,,,,,
@@ -83,7 +83,7 @@ state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,dat
 7,Pakistan,10,Diplomatic and Institutional Power,,,,,,,,,
 7,Pakistan,11,"Information, Cyber and Artificial Intelligence Capacity",,,,,,,,,
 7,Pakistan,12,Civilizational and Social Resilience,,,,,,,,,
-8,North Korea,1,Nuclear and Strategic Deterrence,,,,,,,,,
+8,North Korea,1,Nuclear and Strategic Deterrence,2,0.78,0.90,0.72,0.48,0.45,SIPRI Yearbook 2026,2026-01-01,"Provisional Level 2 recognition. SIPRI estimates a 60-warhead total inventory, with substantial uncertainty about assembled warheads and force status."
 8,North Korea,2,Conventional Military Power,,,,,,,,,
 8,North Korea,3,Economic Production,,,,,,,,,
 8,North Korea,4,Financial and Monetary Power,,,,,,,,,
@@ -95,7 +95,7 @@ state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,dat
 8,North Korea,10,Diplomatic and Institutional Power,,,,,,,,,
 8,North Korea,11,"Information, Cyber and Artificial Intelligence Capacity",,,,,,,,,
 8,North Korea,12,Civilizational and Social Resilience,,,,,,,,,
-9,Israel,1,Nuclear and Strategic Deterrence,,,,,,,,,
+9,Israel,1,Nuclear and Strategic Deterrence,3,0.78,0.97,0.82,0.35,0.35,SIPRI Yearbook 2026,2026-01-01,"Provisional Level 3 recognition. SIPRI estimates a 90-warhead military stockpile, while Israel maintains nuclear opacity; evidence confidence is consequently deliberately low."
 9,Israel,2,Conventional Military Power,,,,,,,,,
 9,Israel,3,Economic Production,,,,,,,,,
 9,Israel,4,Financial and Monetary Power,,,,,,,,,
@@ -107,7 +107,7 @@ state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,dat
 9,Israel,10,Diplomatic and Institutional Power,,,,,,,,,
 9,Israel,11,"Information, Cyber and Artificial Intelligence Capacity",,,,,,,,,
 9,Israel,12,Civilizational and Social Resilience,,,,,,,,,
-10,Switzerland,1,Nuclear and Strategic Deterrence,,,,,,,,,
+10,Switzerland,1,Nuclear and Strategic Deterrence,,,,,,,,,"Pending non-nuclear strategic-deterrence measurement protocol."
 10,Switzerland,2,Conventional Military Power,,,,,,,,,
 10,Switzerland,3,Economic Production,,,,,,,,,
 10,Switzerland,4,Financial and Monetary Power,,,,,,,,,
@@ -119,7 +119,7 @@ state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,dat
 10,Switzerland,10,Diplomatic and Institutional Power,,,,,,,,,
 10,Switzerland,11,"Information, Cyber and Artificial Intelligence Capacity",,,,,,,,,
 10,Switzerland,12,Civilizational and Social Resilience,,,,,,,,,
-11,Belgium,1,Nuclear and Strategic Deterrence,,,,,,,,,
+11,Belgium,1,Nuclear and Strategic Deterrence,,,,,,,,,"Pending non-nuclear strategic-deterrence measurement protocol."
 11,Belgium,2,Conventional Military Power,,,,,,,,,
 11,Belgium,3,Economic Production,,,,,,,,,
 11,Belgium,4,Financial and Monetary Power,,,,,,,,,
@@ -131,7 +131,7 @@ state_id,state,capability_id,capability,R,Q,P,U,D,evidence_confidence,source,dat
 11,Belgium,10,Diplomatic and Institutional Power,,,,,,,,,
 11,Belgium,11,"Information, Cyber and Artificial Intelligence Capacity",,,,,,,,,
 11,Belgium,12,Civilizational and Social Resilience,,,,,,,,,
-12,Taiwan,1,Nuclear and Strategic Deterrence,,,,,,,,,
+12,Taiwan,1,Nuclear and Strategic Deterrence,,,,,,,,,"Pending non-nuclear strategic-deterrence measurement protocol."
 12,Taiwan,2,Conventional Military Power,,,,,,,,,
 12,Taiwan,3,Economic Production,,,,,,,,,
 12,Taiwan,4,Financial and Monetary Power,,,,,,,,,
