@@ -42,4 +42,4 @@ $$
 
 Any change to $\mathcal K$ creates a new run identity.
 
-GitHub's current supply-chain guidance likewise emphasizes repeatable build steps, fresh execution environments and provenance/attestation for produced artifacts. urlGitHub build security guidancehttps://docs.github.com/en/enterprise-cloud@latest/code-security/tutorials/implement-security/supply-chain-security/secure-your-builds
+The package follows standard reproducible-build principles: repeatable build steps, fresh execution environments and provenance records for generated artifacts.
