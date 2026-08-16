@@ -1,10 +1,7 @@
-"""Run a transparent baseline constrained-convergence allocation on V2 outputs.
+"""Run a transparent unit-feasibility constrained-convergence baseline on V2 outputs.
 
-This scenario is deliberately diagnostic rather than a policy prescription:
-all feasibility coefficients are set to one, all intervention costs are set
-to one, and the budget is one normalized cost unit. It therefore measures the
-allocator's upper-bound ranking behavior without asserting that any particular
-real-world transfer is safe, feasible, or desirable.
+The baseline is diagnostic only: kappa_ij = 1, c_ij = 1, and B = 1.
+It does not prescribe or encode any real-world capability-transfer mechanism.
 """
 from __future__ import annotations
 
@@ -24,14 +21,22 @@ BUDGET = 1.0
 
 
 def read_vector(path: Path):
+    if not path.exists():
+        raise FileNotFoundError(f"Required input not found: {path}")
     with path.open("r", encoding="utf-8", newline="") as fh:
         rows = list(csv.reader(fh))
+    if len(rows) != len(CAPABILITIES) + 1:
+        raise ValueError(f"Expected {len(CAPABILITIES)} data rows in {path}")
     return tuple(float(row[1]) for row in rows[1:])
 
 
 def read_matrix(path: Path):
+    if not path.exists():
+        raise FileNotFoundError(f"Required input not found: {path}")
     with path.open("r", encoding="utf-8", newline="") as fh:
         rows = list(csv.reader(fh))
+    if len(rows) != len(STATES) + 1:
+        raise ValueError(f"Expected {len(STATES)} data rows in {path}")
     return tuple(tuple(float(x) for x in row[1:]) for row in rows[1:])
 
 
@@ -61,9 +66,7 @@ def main() -> None:
                 raise AssertionError("baseline allocation violates feasibility cap")
 
     write_matrix(RESULTS / "convergence_allocation_baseline_v2.csv", allocation)
-    with (RESULTS / "convergence_baseline_summary_v2.csv").open(
-        "w", encoding="utf-8", newline=""
-    ) as fh:
+    with (RESULTS / "convergence_baseline_summary_v2.csv").open("w", encoding="utf-8", newline="") as fh:
         writer = csv.writer(fh)
         writer.writerow(["metric", "value"])
         writer.writerow(["budget", BUDGET])
