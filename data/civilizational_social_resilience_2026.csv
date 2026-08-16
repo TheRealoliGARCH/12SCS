@@ -1,0 +1,13 @@
+state_id,state,capability_id,capability,Q,P,U,D,R,evidence_confidence,notes
+1,United States,12,Civilizational and Social Resilience,0.86,0.91,0.88,0.86,3,0.86,"High adaptive and institutional capacity alongside measurable polarization and inequality risks."
+2,Russia,12,Civilizational and Social Resilience,0.72,0.95,0.78,0.70,2,0.72,"Strong state continuity and adaptive capacity; demographic and social constraints reduce resilience."
+3,United Kingdom,12,Civilizational and Social Resilience,0.84,0.93,0.83,0.83,3,0.86,"High human-development and institutional continuity with social-cohesion pressures."
+4,France,12,Civilizational and Social Resilience,0.84,0.93,0.83,0.84,3,0.86,"Strong human-development and state capacity with social and demographic pressures."
+5,China,12,Civilizational and Social Resilience,0.82,0.96,0.90,0.80,3,0.82,"High adaptive and infrastructural capacity; demographic and institutional risks remain relevant."
+6,India,12,Civilizational and Social Resilience,0.68,0.97,0.86,0.70,2,0.78,"Large human capital and social adaptive capacity with substantial heterogeneity and development constraints."
+7,Pakistan,12,Civilizational and Social Resilience,0.55,0.93,0.73,0.57,2,0.68,"Strong social adaptive capacity but significant human-development, demographic and institutional constraints."
+8,North Korea,12,Civilizational and Social Resilience,0.35,0.96,0.65,0.32,1,0.42,"Highly uncertain public evidence; state continuity should not be conflated with broad social resilience."
+9,Israel,12,Civilizational and Social Resilience,0.83,0.98,0.91,0.82,3,0.82,"High human capital and crisis mobilization capacity with acute social and geopolitical pressures."
+10,Switzerland,12,Civilizational and Social Resilience,0.95,0.98,0.88,0.94,4,0.92,"Very high human development, institutional capacity and adaptive resilience; small-system external dependence remains."
+11,Belgium,12,Civilizational and Social Resilience,0.91,0.96,0.82,0.88,3,0.90,"Very high human development and institutional capacity with social and demographic pressures."
+12,Taiwan,12,Civilizational and Social Resilience,0.88,0.98,0.90,0.87,3,0.87,"High human capital, disaster adaptation and social resilience with demographic and geopolitical exposure."
