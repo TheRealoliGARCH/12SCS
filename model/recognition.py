@@ -16,11 +16,11 @@ def recognition_intensity(Q, P, U, D):
     return np.prod(arrays, axis=0)
 
 
-def recognition_level(rho, thresholds=(0.0, 0.2, 0.4, 0.7)):
+def recognition_level(rho, thresholds=(0.2, 0.4, 0.7, 0.9)):
     """Map latent recognition intensity to Charter levels 0--4.
 
-    Thresholds are deliberately explicit and replaceable; they are calibration
-    parameters, not claims about observed States.
+    Thresholds are explicit calibration parameters, not country observations.
+    Level 0 is below the first threshold; Levels 1--4 occupy successive bands.
     """
     rho = np.asarray(rho, dtype=float)
     if np.any((rho < 0) | (rho > 1)):
@@ -28,7 +28,11 @@ def recognition_level(rho, thresholds=(0.0, 0.2, 0.4, 0.7)):
     t = tuple(float(x) for x in thresholds)
     if len(t) != 4 or not (0 <= t[0] < t[1] < t[2] < t[3] <= 1):
         raise ValueError("thresholds must satisfy 0 <= t0 < t1 < t2 < t3 <= 1")
-    return np.digitize(rho, t, right=False).clip(0, 4).astype(int)
+    return np.select(
+        [rho < t[0], rho < t[1], rho < t[2], rho < t[3]],
+        [0, 1, 2, 3],
+        default=4,
+    ).astype(int)
 
 
 def demonstrated_capability(evidence):
