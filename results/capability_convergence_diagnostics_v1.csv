@@ -1,0 +1,15 @@
+metric,value,interpretation
+n_states,12,Complete twelve-State system
+n_capabilities,12,Complete twelve-dimension system
+normalized_scale,0_to_1,Recognition R divided by 4
+global_cross_sectional_dispersion,0.2116062359,Root mean square of dimension-wise cross-State standard deviations
+convergence_index,0.5767875282,One minus global dispersion divided by 0.5; 1 denotes perfect convergence under this normalization
+mean_capability,0.6840277778,Mean of all normalized State-capability observations
+mean_recognition_level,2.7361111111,Mean recognition level on the 0--4 Charter scale
+min_dimension_mean,F=0.520833,Lowest cross-State mean normalized capability
+max_dimension_mean,A=0.791667,Highest cross-State mean normalized capability
+most_dispersion_dimension,R=0.259373,Highest cross-State standard deviation
+least_dispersion_dimension,S=0.148780,Lowest cross-State standard deviation
+closest_pair,United Kingdom--France=0.000000,Identical provisional recognition vectors in the current first-pass matrix
+next_closest_pair,United States--China=0.353553,Smallest positive multidimensional distance
+farthest_pair,United States--North Korea=2.397916,Greatest Euclidean capability distance
