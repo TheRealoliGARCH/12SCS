@@ -2,38 +2,46 @@
 
 ## Current repository state
 
-The repository currently contains scored dimension-specific datasets for capabilities:
+The repository now contains dimension-specific datasets for all twelve capability dimensions:
 
 $$
-N,M,E,T,I,H,L,D,A,S.
+N,M,E,F,T,I,R,H,L,D,A,S.
 $$
 
-The financial/monetary dimension $F$ and energy/resource-security dimension $R$ do not currently have corresponding dimension-specific CSV datasets in `data/`. They therefore remain missing from the executable empirical matrix.
+The newly added dimensions are:
 
-The master recognition ledger also contains the initial $N$ observations, while unpopulated cells remain blank. The implementation must not infer missing observations from prose descriptions or from earlier provisional tables.
+- `data/financial_monetary_power_2026.csv`
+- `data/energy_resource_security_2026.csv`
 
-## Consequence
+with corresponding evidence ledgers.
 
-The empirical object currently available to the software is **not yet a complete $12\times12$ matrix**. In particular, a full-vector convergence distance cannot be reported for any State until all twelve dimensions have observations for that State.
+The master recognition ledger still contains the initial nuclear observations and should not be treated as the sole empirical source. Dimension-specific datasets are the authoritative source for the empirical matrix assembly layer.
 
-This is intentional. The model follows:
+## Important qualification
+
+The 12-dimensional matrix is **not yet fully complete at the State-vector level** because the nuclear dimension currently has explicit observations for the nine nuclear-armed States in the master ledger, while Switzerland, Belgium and Taiwan remain pending a non-nuclear strategic-deterrence measurement protocol.
+
+Therefore the repository now has all twelve *dimension schemas/datasets*, but it does not yet have twelve fully observed State vectors.
+
+The model must continue to distinguish:
 
 $$
-\mathrm{missing}\neq0,
+\mathrm{missing}\neq0.
 $$
 
-and does not perform silent imputation.
+No missing nuclear observation may be silently converted into a zero.
 
 ## Current next-stage procedure
 
-1. Consolidate all dimension-specific datasets into a normalized matrix.
+1. Assemble the twelve dimension-specific datasets into one normalized matrix.
 2. Verify that each State--capability pair occurs at most once.
 3. Normalize $R\in\{0,1,2,3,4\}$ to $r=R/4\in[0,1]$.
 4. Retain evidence confidence separately from capability magnitude.
-5. Calculate dimension-wise dispersion using available observations.
-6. Calculate full State-vector distances only for complete vectors.
-7. Calculate corridor gaps against an explicitly declared target vector and tolerance vector.
-8. Add $F$ and $R$ datasets before publishing a twelve-dimensional convergence statistic.
+5. Identify incomplete State vectors explicitly.
+6. Calculate dimension-wise dispersion using all available observations.
+7. Calculate complete State-vector distances only for States with all twelve observations.
+8. Complete the non-nuclear strategic-deterrence protocol for Switzerland, Belgium and Taiwan.
+9. Publish the first complete $12\times12$ capability matrix only after that protocol is independently reviewed.
 
 ## Anti-circularity rule
 
