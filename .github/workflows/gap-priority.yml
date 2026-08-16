@@ -124,6 +124,29 @@ jobs:
           print('Heterogeneous convergence validation passed.')
           PY
 
+      - name: Run convergence sensitivity analysis
+        run: python results/run_convergence_sensitivity.py
+
+      - name: Validate convergence sensitivity analysis
+        run: |
+          python - <<'PY'
+          import csv
+          import math
+          from pathlib import Path
+
+          path = Path('results/convergence_sensitivity_summary_v2.csv')
+          rows = list(csv.reader(path.open(encoding='utf-8')))
+          assert len(rows) == 6
+          assert rows[0] == ['heterogeneity_level', 'total_cost', 'weighted_progress']
+          levels = [float(row[0]) for row in rows[1:]]
+          progress = [float(row[2]) for row in rows[1:]]
+          assert levels == [0.0, 0.25, 0.5, 0.75, 1.0]
+          assert all(math.isfinite(x) for x in progress)
+          assert all(float(row[1]) <= 1.0 + 1e-12 for row in rows[1:])
+          assert abs(progress[0] - 0.1220059357126264) < 1e-12
+          print('Convergence sensitivity validation passed.')
+          PY
+
       - name: Publish gap-priority artifact
         uses: actions/upload-artifact@v4
         with:
@@ -142,3 +165,4 @@ jobs:
             results/convergence_feasibility_heterogeneous_v2.csv
             results/convergence_cost_heterogeneous_v2.csv
             results/convergence_heterogeneous_summary_v2.csv
+            results/convergence_sensitivity_summary_v2.csv
