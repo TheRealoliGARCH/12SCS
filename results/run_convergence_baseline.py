@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from model.capability_gap_priority import CAPABILITIES, STATES
+from model.convergence_analysis import CAPABILITIES, STATES
 from model.convergence_optimization import allocate_budget, total_cost, weighted_progress
 
 RESULTS = ROOT / "results"
