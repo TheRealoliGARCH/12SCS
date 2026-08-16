@@ -1,0 +1,1 @@
+The fine-grid experiment evaluates lambda = 0, 0.05, ..., 1.0 and reports H(lambda)=Pi(lambda)/Pi(0), first differences, second differences, and empirical curvature. These statistics characterize this deterministic benchmark only.
