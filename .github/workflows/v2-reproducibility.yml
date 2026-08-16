@@ -1,0 +1,73 @@
+name: 12SCCM v2 Reproducibility
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproducibility:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out immutable source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Record execution identity
+        run: |
+          python --version
+          python -c "import platform; print(platform.platform()); print(platform.machine())"
+          git rev-parse HEAD
+
+      - name: Verify input files and generate input hashes
+        run: python reproducibility/HASH_MANIFEST.py > /tmp/input_hashes.csv
+
+      - name: Execute strict v2 estimator
+        run: python results/run_v2.py
+
+      - name: Verify 144-cell result structure
+        run: python reproducibility/VERIFY_RESULTS.py
+
+      - name: Generate output hashes
+        run: |
+          python - <<'PY' > /tmp/output_hashes.csv
+          import hashlib
+          from pathlib import Path
+          files = [
+              'results/capability_latent_matrix_v2.csv',
+              'results/capability_distance_matrix_v2.csv',
+              'results/capability_convergence_diagnostics_v2.csv',
+              'results/capability_confidence_matrix_v2.csv',
+              'results/capability_coverage_v2.csv',
+          ]
+          print('path,sha256,size_bytes')
+          for name in files:
+              p = Path(name)
+              h = hashlib.sha256(p.read_bytes()).hexdigest()
+              print(f'{name},{h},{p.stat().st_size}')
+          PY
+
+      - name: Publish reproducibility artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: 12sccm-v2-reproducibility-${{ github.sha }}
+          path: |
+            results/capability_latent_matrix_v2.csv
+            results/capability_distance_matrix_v2.csv
+            results/capability_convergence_diagnostics_v2.csv
+            results/capability_confidence_matrix_v2.csv
+            results/capability_coverage_v2.csv
+            /tmp/input_hashes.csv
+            /tmp/output_hashes.csv
