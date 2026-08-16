@@ -1,0 +1,13 @@
+state_id,state,capability_id,capability,Q,P,U,D,R,evidence_confidence,notes
+1,United States,11,"Information, Cyber and Artificial Intelligence Capacity",0.99,0.99,0.99,0.99,4,0.97,"Frontier AI research, compute, deployment, cyber capacity and digital infrastructure; provisional score." 
+2,Russia,11,"Information, Cyber and Artificial Intelligence Capacity",0.84,0.98,0.91,0.84,3,0.83,"Strong cyber and information capabilities with substantial AI/research capacity; evidence confidence moderated by opacity."
+3,United Kingdom,11,"Information, Cyber and Artificial Intelligence Capacity",0.92,0.98,0.88,0.91,3,0.92,"Strong AI research, digital infrastructure, cyber institutions and deployment capacity."
+4,France,11,"Information, Cyber and Artificial Intelligence Capacity",0.88,0.98,0.87,0.88,3,0.90,"Advanced AI research, state cyber capacity and digital infrastructure."
+5,China,11,"Information, Cyber and Artificial Intelligence Capacity",0.98,0.99,0.98,0.97,4,0.94,"Systemic AI, compute, semiconductor ecosystem, cyber and digital-platform capacity."
+6,India,11,"Information, Cyber and Artificial Intelligence Capacity",0.84,0.98,0.83,0.82,3,0.86,"Large digital population and infrastructure, expanding AI ecosystem and substantial technical workforce."
+7,Pakistan,11,"Information, Cyber and Artificial Intelligence Capacity",0.61,0.96,0.58,0.58,2,0.70,"Material cyber and technical capability with a smaller frontier AI ecosystem."
+8,North Korea,11,"Information, Cyber and Artificial Intelligence Capacity",0.64,0.97,0.79,0.51,2,0.62,"Distinctive cyber capability and technical specialization; civilian digital and frontier AI evidence is limited."
+9,Israel,11,"Information, Cyber and Artificial Intelligence Capacity",0.93,0.99,0.94,0.92,3,0.91,"Exceptional cyber, AI, security technology and research ecosystem relative to national scale."
+10,Switzerland,11,"Information, Cyber and Artificial Intelligence Capacity",0.86,0.98,0.82,0.84,3,0.90,"Strong research, digital infrastructure and AI governance capacity; smaller absolute scale."
+11,Belgium,11,"Information, Cyber and Artificial Intelligence Capacity",0.75,0.97,0.69,0.72,2,0.84,"Advanced digital infrastructure and research ecosystem with smaller absolute scale."
+12,Taiwan,11,"Information, Cyber and Artificial Intelligence Capacity",0.96,0.99,0.97,0.94,4,0.90,"Systemically important semiconductor/compute ecosystem, advanced ICT industry and strong cyber capability; score reflects uniqueness as well as scale." 
