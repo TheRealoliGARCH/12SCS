@@ -2,7 +2,12 @@
 from __future__ import annotations
 
 import csv
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from model.capability_gap_priority import (
     capability_priorities,
@@ -16,7 +21,6 @@ from model.capability_gap_priority import (
 from model.convergence_analysis import CAPABILITIES, STATES
 from model.evidence_adjusted_convergence import weighted_dimension_dispersion
 
-ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results"
 
 
