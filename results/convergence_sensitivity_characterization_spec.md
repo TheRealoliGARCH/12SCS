@@ -1,0 +1,1 @@
+The fine-grid sensitivity characterization evaluates lambda = 0, 0.05, ..., 1.0. It reports normalized progress H(lambda)=Pi(lambda)/Pi(0), finite differences, second differences, and an empirical curvature classification. This classification is descriptive for the benchmark and is not asserted as a general theorem.
