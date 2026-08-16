@@ -1,0 +1,13 @@
+state_id,state,capability_id,claim_id,evidence_type,source,reference_year,independence,confidence,verification_status,notes
+1,United States,10,D-US-01,diplomatic_network,Lowy Global Diplomacy Index 2024,2024,high,0.97,verified,"271 total diplomatic posts; broad global network."
+2,Russia,10,D-RU-01,diplomatic_network,Lowy Global Diplomacy Index 2024,2024,high,0.88,verified,"230 posts; network contraction associated with war-related diplomatic disruption."
+3,United Kingdom,10,D-UK-01,diplomatic_network,Lowy Global Diplomacy Index 2024,2024,high,0.94,verified,"225 posts; extensive global network."
+4,France,10,D-FR-01,diplomatic_network,Lowy Global Diplomacy Index 2024,2024,high,0.94,verified,"249 posts; one of the largest global networks."
+5,China,10,D-CN-01,diplomatic_network,Lowy Global Diplomacy Index 2024,2024,high,0.97,verified,"274 posts; largest network in the index."
+6,India,10,D-IN-01,diplomatic_network,Lowy Global Diplomacy Index 2024,2024,high,0.91,verified,"194 posts; major and expanding diplomatic network."
+7,Pakistan,10,D-PK-01,diplomatic_network,Lowy Global Diplomacy Index 2024,2024,high,0.82,verified,"121 posts; substantial regional diplomatic reach."
+8,North Korea,10,D-KP-01,diplomatic_network,Lowy Global Diplomacy Index 2024,2024,high,0.68,verified,"42 posts; network size is observable but institutional influence is difficult to infer from footprint alone."
+9,Israel,10,D-IL-01,diplomatic_network,Lowy Global Diplomacy Index 2024,2024,high,0.84,verified,"107 posts; network supplemented by substantial bilateral and strategic relationships."
+10,Switzerland,10,D-CH-01,diplomatic_network,Lowy Global Diplomacy Index 2024,2024,high,0.89,verified,"141 posts; disproportionate diplomatic and convening relevance relative to population."
+11,Belgium,10,D-BE-01,diplomatic_network,Lowy Global Diplomacy Index 2024,2024,high,0.87,verified,"113 posts; Brussels-based EU/NATO institutional environment increases convening relevance beyond post count."
+12,Taiwan,10,D-TW-01,diplomatic_network,Lowy Global Diplomacy Index 2024,2024,high,0.80,verified,"110 posts in the Lowy index's diplomatic footprint measure, but formal recognition constraints materially affect multilateral participation."
