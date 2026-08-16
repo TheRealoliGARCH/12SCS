@@ -1,0 +1,10 @@
+state_id,capability_id,claim_id,evidence_type,source,reference_date,independence,quality,confidence,summary,verification_status
+1,1,N-US-2026-01,SIPRI assessment,SIPRI Yearbook 2026,2026-01-01,high,0.99,0.98,"Estimated US military stockpile 3700; total inventory 5042.",corroborated
+2,1,N-RU-2026-01,SIPRI assessment,SIPRI Yearbook 2026,2026-01-01,high,0.98,0.90,"Estimated Russian military stockpile 4400; total inventory 5420.",corroborated
+3,1,N-UK-2026-01,SIPRI assessment,SIPRI Yearbook 2026,2026-01-01,high,0.96,0.94,"Estimated UK military stockpile 225; 120 deployed.",corroborated
+4,1,N-FR-2026-01,SIPRI assessment,SIPRI Yearbook 2026,2026-01-01,high,0.96,0.94,"Estimated French military stockpile 290; 280 deployed.",corroborated
+5,1,N-CN-2026-01,SIPRI assessment,SIPRI Yearbook 2026,2026-01-01,high,0.96,0.74,"Estimated Chinese military stockpile 620; public force-structure uncertainty remains material.",corroborated
+6,1,N-IN-2026-01,SIPRI assessment,SIPRI Yearbook 2026,2026-01-01,high,0.92,0.72,"Estimated Indian military stockpile 190; public operational detail is limited.",corroborated
+7,1,N-PK-2026-01,SIPRI assessment,SIPRI Yearbook 2026,2026-01-01,high,0.90,0.62,"Estimated Pakistani military stockpile 170; public operational detail is limited.",corroborated
+8,1,N-KP-2026-01,SIPRI assessment,SIPRI Yearbook 2026,2026-01-01,high,0.78,0.45,"Estimated North Korean total inventory 60; assembled warheads and operational status are highly uncertain.",corroborated
+9,1,N-IL-2026-01,SIPRI assessment,SIPRI Yearbook 2026,2026-01-01,high,0.78,0.35,"Estimated Israeli military stockpile 90; nuclear opacity materially limits independent verification.",corroborated
