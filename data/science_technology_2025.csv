@@ -1,0 +1,13 @@
+state_id,state,capability_id,capability,Q,P,U,D,evidence_confidence,R,notes
+1,United States,5,Science and Technology,0.99,0.99,0.99,0.99,0.99,4,"Systemic frontier science and technology capability; exceptional research depth and breadth."
+2,Russia,5,Science and Technology,0.82,0.98,0.88,0.78,0.78,3,"Strong scientific and strategic-technology base with narrower global breadth than US/China."
+3,United Kingdom,5,Science and Technology,0.94,0.98,0.92,0.93,0.94,3,"High-end scientific ecosystem with strong frontier research and technology institutions."
+4,France,5,Science and Technology,0.90,0.98,0.88,0.89,0.89,3,"Major research system with strong physical, engineering, space and strategic science capabilities."
+5,China,5,Science and Technology,0.98,0.99,0.98,0.98,0.98,4,"Systemic capability; leading global research output and very strong frontier and applied science base."
+6,India,5,Science and Technology,0.80,0.97,0.82,0.78,0.84,3,"Large and rapidly expanding science and engineering base with major strategic technology capabilities."
+7,Pakistan,5,Science and Technology,0.58,0.94,0.60,0.55,0.68,2,"Meaningful scientific and engineering capacity, particularly in strategic and applied fields, but limited global breadth."
+8,North Korea,5,Science and Technology,0.45,0.96,0.70,0.45,0.55,1,"Evidence-constrained; specialized strategic technology capabilities coexist with limited broad scientific ecosystem."
+9,Israel,5,Science and Technology,0.94,0.99,0.95,0.94,0.92,3,"Exceptional high-tech, defence, computing and scientific capability relative to economic scale."
+10,Switzerland,5,Science and Technology,0.96,0.99,0.94,0.95,0.96,3,"Very high research quality and innovation capability; unusually strong science relative to population and economic scale."
+11,Belgium,5,Science and Technology,0.78,0.97,0.72,0.76,0.85,2,"Strong specialized research and innovation ecosystem with substantial international scientific integration."
+12,Taiwan,5,Science and Technology,0.93,0.99,0.96,0.93,0.92,3,"Highly specialized frontier technology capability, especially in semiconductor and electronics ecosystems."
