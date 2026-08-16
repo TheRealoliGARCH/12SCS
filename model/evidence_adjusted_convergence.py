@@ -1,13 +1,6 @@
 """Evidence-adjusted Twelve-State Capability Convergence estimator v2.
 
-The v2 estimator separates two concepts that must not be conflated:
-
-1. latent capability, constructed from R/4 and the available Q, P, U, D fields;
-2. evidence confidence, used as an observation weight in convergence statistics.
-
-Confidence therefore cannot mechanically turn an uncertain capability into a
-low capability. This prevents epistemic uncertainty from becoming a substantive
-capability penalty.
+The v2 estimator separates latent capability from evidence confidence.
 """
 from __future__ import annotations
 
@@ -50,17 +43,22 @@ def _confidence(row: dict[str, str]) -> float:
 
 
 def _latent_factor(row: dict[str, str], strict: bool) -> tuple[float, int]:
-    """Geometric mean of R/4 plus supplied Q/P/U/D latent components."""
+    """Geometric mean of R/4 plus the four latent evidence dimensions.
+
+    The canonical fields are Q, P, U and D. The industrial-capacity dataset
+    uses the semantically equivalent names quality, persistence, uniqueness
+    and demonstrated_capability, so those aliases are accepted explicitly.
+    """
     fields = [
         _recognition(row),
-        _float(row, "Q", "provisional_Q"),
-        _float(row, "P", "provisional_P"),
-        _float(row, "U", "provisional_U"),
-        _float(row, "D", "provisional_D"),
+        _float(row, "Q", "provisional_Q", "quality"),
+        _float(row, "P", "provisional_P", "persistence"),
+        _float(row, "U", "provisional_U", "uniqueness"),
+        _float(row, "D", "provisional_D", "demonstrated_capability"),
     ]
     available = [x for x in fields if x is not None]
     if strict and len(available) != 5:
-        raise ValueError("Strict v2 estimation requires R, Q, P, U and D")
+        raise ValueError("Strict v2 estimation requires R, Q, P, U and D (or documented aliases)")
     if not available:
         raise ValueError("No capability fields available")
     return math.prod(available) ** (1.0 / len(available)), len(available)
