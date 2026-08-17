@@ -13,8 +13,8 @@ class ActiveSetRegimeMechanicsTests(unittest.TestCase):
         self.assertGreater(len(rows), 0)
         expected = {
             "regime", "lambda_start", "lambda_end", "active_cell_count",
-            "marginal_cells", "binding_feasibility_cells",
-            "progress_start", "progress_mid", "progress_end",
+            "active_cells", "marginal_cell", "binding_feasibility_cells",
+            "budget_residual", "progress_start", "progress_mid", "progress_end",
         }
         self.assertEqual(set(rows[0]), expected)
 
@@ -29,9 +29,11 @@ class ActiveSetRegimeMechanicsTests(unittest.TestCase):
         for left, right in zip(rows[:-1], rows[1:]):
             self.assertAlmostEqual(float(left["lambda_end"]), float(right["lambda_start"]), places=12)
         for row in rows:
-            for key in ("lambda_start", "lambda_end", "progress_start", "progress_mid", "progress_end"):
+            for key in ("lambda_start", "lambda_end", "budget_residual", "progress_start", "progress_mid", "progress_end"):
                 self.assertTrue(math.isfinite(float(row[key])))
             self.assertGreater(int(row["active_cell_count"]), 0)
+            self.assertLessEqual(len([x for x in row["marginal_cell"].split(";") if x]), 1)
+            self.assertGreaterEqual(float(row["budget_residual"]), -1e-10)
 
 
 if __name__ == "__main__":
