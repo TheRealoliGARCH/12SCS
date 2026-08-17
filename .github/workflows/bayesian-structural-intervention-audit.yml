@@ -1,0 +1,67 @@
+name: 12SCSM Bayesian Structural Intervention Audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'results/run_bayesian_structural_intervention_audit.py'
+      - 'results/run_bayesian_cell_level_causal_dataset.py'
+      - 'tests/test_bayesian_structural_intervention_audit.py'
+      - '.github/workflows/bayesian-structural-intervention-audit.yml'
+      - 'requirements.txt'
+      - 'model/**'
+
+permissions:
+  contents: read
+
+jobs:
+  structural-intervention-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install declared dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run unit tests
+        run: python -m unittest tests.test_bayesian_structural_intervention_audit -v
+      - name: Reconstruct V6 cell-level data
+        run: |
+          python results/run_gap_priority.py
+          python results/run_active_set_breakpoints.py
+          python results/run_active_set_regimes.py
+          python results/run_active_set_regime_formulas.py
+          python results/run_primitive_coefficient_map.py
+          python results/run_bayesian_cell_level_causal_dataset.py
+      - name: Run structural intervention audit
+        run: python results/run_bayesian_structural_intervention_audit.py
+      - name: Validate intervention identification result
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p = Path('results/bayesian_structural_intervention_audit_v1.csv')
+          row = next(csv.DictReader(p.open(encoding='utf-8')))
+          assert row['intervention_is_well_defined'] == 'True'
+          assert row['outcome_is_pre_treatment'] == 'True'
+          assert row['positivity'] == 'True'
+          assert row['exchangeability_empirically_testable'] == 'False'
+          assert row['empirical_ate_identified'] == 'False'
+          assert row['structural_ate_identified'] == 'True'
+          assert row['identification_status'] == 'STRUCTURAL_INTERVENTION_IDENTIFIED_BUT_EMPIRICAL_ATE_NOT_IDENTIFIED'
+          print('Structural intervention identification audit: PASS')
+          PY
+      - name: Verify deterministic reconstruction
+        run: |
+          cp results/bayesian_structural_intervention_audit_v1.csv /tmp/intervention-first.csv
+          python results/run_bayesian_structural_intervention_audit.py
+          cmp /tmp/intervention-first.csv results/bayesian_structural_intervention_audit_v1.csv
+          echo 'Structural intervention audit reproducibility: PASS'
+      - name: Publish intervention audit
+        uses: actions/upload-artifact@v6
+        with:
+          name: bayesian-structural-intervention-audit-v1
+          path: results/bayesian_structural_intervention_audit_v1.csv
