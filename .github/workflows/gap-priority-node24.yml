@@ -1,0 +1,169 @@
+name: 12SCSM V2 Gap Priority Node24 Compatibility
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gap-priority:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install runtime dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -p 'test_*.py'
+
+      - name: Run gap and priority model
+        run: python results/run_gap_priority.py
+
+      - name: Validate output dimensions and finite values
+        run: python - <<'PY'
+          import csv
+          import math
+          from pathlib import Path
+          from model.convergence_analysis import CAPABILITIES, STATES
+          matrix_files = ['results/capability_gap_signed_v2.csv','results/capability_gap_positive_v2.csv','results/capability_priority_v2.csv']
+          vector_files = ['results/capability_benchmark_v2.csv','results/capability_dispersion_weights_v2.csv','results/state_convergence_priority_v2.csv','results/capability_convergence_priority_v2.csv']
+          for name in matrix_files:
+              rows = list(csv.reader(Path(name).open(encoding='utf-8')))
+              assert len(rows) == 13, name
+              assert rows[0][1:] == CAPABILITIES, name
+              assert [r[0] for r in rows[1:]] == STATES, name
+              for row in rows[1:]: assert all(math.isfinite(float(x)) for x in row[1:]), name
+          for name in vector_files:
+              rows = list(csv.reader(Path(name).open(encoding='utf-8')))
+              assert len(rows) == 13, name
+              for row in rows[1:]: assert math.isfinite(float(row[1])), name
+          weight_rows = list(csv.reader(Path(vector_files[1]).open(encoding='utf-8')))
+          weights = [float(row[1]) for row in weight_rows[1:]]
+          assert all(w >= 0 for w in weights)
+          assert abs(sum(weights) - 1.0) < 1e-12
+          print('Gap/priority validation passed.')
+          PY
+
+      - name: Run constrained convergence baseline
+        run: python results/run_convergence_baseline.py
+
+      - name: Validate constrained baseline
+        run: python - <<'PY'
+          import csv
+          import math
+          from pathlib import Path
+          from model.convergence_analysis import CAPABILITIES, STATES
+          rows = list(csv.reader(Path('results/convergence_allocation_baseline_v2.csv').open(encoding='utf-8')))
+          assert len(rows) == len(STATES) + 1
+          assert rows[0][1:] == CAPABILITIES
+          assert [row[0] for row in rows[1:]] == STATES
+          for row in rows[1:]: assert all(math.isfinite(float(x)) and float(x) >= -1e-12 for x in row[1:])
+          summary = {row[0]: float(row[1]) for row in csv.reader(Path('results/convergence_baseline_summary_v2.csv').open(encoding='utf-8')) if row and row[0] != 'metric'}
+          assert summary['total_cost'] <= summary['budget'] + 1e-12
+          assert summary['weighted_progress'] >= -1e-12
+          print('Constrained baseline validation passed.')
+          PY
+
+      - name: Run heterogeneous cost-feasibility scenario
+        run: python results/run_heterogeneous_convergence.py
+
+      - name: Validate heterogeneous scenario
+        run: python - <<'PY'
+          import csv
+          import math
+          from pathlib import Path
+          from model.convergence_analysis import CAPABILITIES, STATES
+          files = ['results/convergence_allocation_heterogeneous_v2.csv','results/convergence_feasibility_heterogeneous_v2.csv','results/convergence_cost_heterogeneous_v2.csv']
+          for name in files:
+              rows = list(csv.reader(Path(name).open(encoding='utf-8')))
+              assert len(rows) == len(STATES) + 1, name
+              assert rows[0][1:] == CAPABILITIES, name
+              assert [row[0] for row in rows[1:]] == STATES, name
+              for row in rows[1:]: assert all(math.isfinite(float(x)) for x in row[1:]), name
+          summary = {row[0]: float(row[1]) for row in csv.reader(Path('results/convergence_heterogeneous_summary_v2.csv').open(encoding='utf-8')) if row and row[0] != 'metric'}
+          assert summary['total_cost'] <= summary['budget'] + 1e-12
+          assert summary['weighted_progress'] >= -1e-12
+          print('Heterogeneous convergence validation passed.')
+          PY
+
+      - name: Run convergence sensitivity analysis
+        run: python results/run_convergence_sensitivity.py
+
+      - name: Validate convergence sensitivity analysis
+        run: python - <<'PY'
+          import csv
+          import math
+          from pathlib import Path
+          path = Path('results/convergence_sensitivity_summary_v2.csv')
+          rows = list(csv.reader(path.open(encoding='utf-8')))
+          assert len(rows) == 22
+          assert rows[0] == ['heterogeneity_level', 'total_cost', 'weighted_progress', 'normalized_progress']
+          levels = [float(row[0]) for row in rows[1:]]
+          progress = [float(row[2]) for row in rows[1:]]
+          assert levels == [i / 20.0 for i in range(21)]
+          assert all(math.isfinite(x) for x in progress)
+          assert all(float(row[1]) <= 1.0 + 1e-12 for row in rows[1:])
+          assert abs(progress[0] - 0.1220059357126264) < 1e-12
+          characterization = {row[0]: row[1] for row in csv.reader(Path('results/convergence_sensitivity_characterization_v2.csv').open(encoding='utf-8')) if row and row[0] != 'metric'}
+          assert characterization['monotone_nonincreasing'] == '1'
+          assert characterization['curvature_classification'] in {'convex','concave','linear','neither'}
+          print('Fine-grid sensitivity characterization passed.')
+          PY
+
+      - name: Run sensitivity decomposition
+        run: python results/run_convergence_sensitivity_decomposition.py
+
+      - name: Validate sensitivity decomposition
+        run: python - <<'PY'
+          import csv
+          import math
+          from pathlib import Path
+          summary = Path('results/convergence_sensitivity_decomposition_v2.csv')
+          rows = list(csv.reader(summary.open(encoding='utf-8')))
+          assert len(rows) == 22
+          assert rows[0] == ['heterogeneity_level', 'feasibility_only', 'cost_only', 'joint', 'feasibility_normalized', 'cost_normalized', 'joint_normalized']
+          levels = [float(row[0]) for row in rows[1:]]
+          assert levels == [i / 20.0 for i in range(21)]
+          for row in rows[1:]: assert all(math.isfinite(float(x)) for x in row[1:])
+          characterization = {row[0]: row[1] for row in csv.reader(Path('results/convergence_sensitivity_decomposition_characterization_v2.csv').open(encoding='utf-8')) if row and row[0] != 'metric'}
+          assert characterization['feasibility_only_monotone_nonincreasing'] == '1'
+          assert characterization['joint_monotone_nonincreasing'] == '1'
+          assert abs(float(characterization['feasibility_only_baseline']) - 0.1220059357126264) < 1e-12
+          assert abs(float(characterization['cost_only_baseline']) - 0.1220059357126264) < 1e-12
+          print('Sensitivity decomposition validation passed.')
+          PY
+
+      - name: Publish gap-priority artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-v2-gap-priority-${{ github.sha }}
+          path: |
+            results/capability_benchmark_v2.csv
+            results/capability_gap_signed_v2.csv
+            results/capability_gap_positive_v2.csv
+            results/capability_dispersion_weights_v2.csv
+            results/capability_priority_v2.csv
+            results/state_convergence_priority_v2.csv
+            results/capability_convergence_priority_v2.csv
+            results/convergence_allocation_baseline_v2.csv
+            results/convergence_baseline_summary_v2.csv
+            results/convergence_allocation_heterogeneous_v2.csv
+            results/convergence_feasibility_heterogeneous_v2.csv
+            results/convergence_cost_heterogeneous_v2.csv
+            results/convergence_heterogeneous_summary_v2.csv
+            results/convergence_sensitivity_summary_v2.csv
+            results/convergence_sensitivity_characterization_v2.csv
+            results/convergence_sensitivity_decomposition_v2.csv
+            results/convergence_sensitivity_decomposition_characterization_v2.csv
