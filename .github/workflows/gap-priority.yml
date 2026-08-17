@@ -126,6 +126,31 @@ jobs:
           print('Fine-grid sensitivity characterization passed.')
           PY
 
+      - name: Run sensitivity decomposition
+        run: python results/run_convergence_sensitivity_decomposition.py
+
+      - name: Validate sensitivity decomposition
+        run: |
+          python - <<'PY'
+          import csv
+          import math
+          from pathlib import Path
+          summary = Path('results/convergence_sensitivity_decomposition_v2.csv')
+          rows = list(csv.reader(summary.open(encoding='utf-8')))
+          assert len(rows) == 22
+          assert rows[0] == ['heterogeneity_level', 'feasibility_only', 'cost_only', 'joint', 'feasibility_normalized', 'cost_normalized', 'joint_normalized']
+          levels = [float(row[0]) for row in rows[1:]]
+          assert levels == [i / 20.0 for i in range(21)]
+          for row in rows[1:]:
+              assert all(math.isfinite(float(x)) for x in row[1:])
+          characterization = {row[0]: row[1] for row in csv.reader(Path('results/convergence_sensitivity_decomposition_characterization_v2.csv').open(encoding='utf-8')) if row and row[0] != 'metric'}
+          assert characterization['feasibility_only_monotone_nonincreasing'] == '1'
+          assert characterization['joint_monotone_nonincreasing'] == '1'
+          assert abs(float(characterization['feasibility_only_baseline']) - 0.1220059357126264) < 1e-12
+          assert abs(float(characterization['cost_only_baseline']) - 0.1220059357126264) < 1e-12
+          print('Sensitivity decomposition validation passed.')
+          PY
+
       - name: Publish gap-priority artifact
         uses: actions/upload-artifact@v4
         with:
@@ -146,3 +171,5 @@ jobs:
             results/convergence_heterogeneous_summary_v2.csv
             results/convergence_sensitivity_summary_v2.csv
             results/convergence_sensitivity_characterization_v2.csv
+            results/convergence_sensitivity_decomposition_v2.csv
+            results/convergence_sensitivity_decomposition_characterization_v2.csv
