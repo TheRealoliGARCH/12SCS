@@ -1,0 +1,27 @@
+GLOBAL PIECEWISE COMPARATIVE-STATICS THEOREM
+
+Let lambda in [0,1] parameterize affine feasibility and cost coefficients. Suppose the active-set allocator has finitely many regimes I_k=[lambda_k,lambda_{k+1}], and on each regime the binding set F_k and marginal cell m_k are constant. Suppose the marginal denominator 1+F_k lambda is strictly positive on I_k.
+
+Then the weighted convergence value admits, on each regime,
+
+Pi_k(lambda) = A_k + B_k lambda + (C_k + D_k lambda + E_k lambda^2)/(1+F_k lambda).
+
+Consequently Pi_k is C-infinity on the interior of I_k, with
+
+Pi_k'(lambda) = B_k + ((D_k+2 E_k lambda)(1+F_k lambda) - F_k(C_k+D_k lambda+E_k lambda^2))/(1+F_k lambda)^2,
+
+Pi_k''(lambda) = 2 E_k/(1+F_k lambda) - 2 F_k(D_k+2 E_k lambda)/(1+F_k lambda)^2 + 2 F_k^2(C_k+D_k lambda+E_k lambda^2)/(1+F_k lambda)^3.
+
+If adjacent regimes k and k+1 meet at an exact intersection lambda_k* satisfying Pi_k(lambda_k*)=Pi_{k+1}(lambda_k*), the assembled global value Pi is continuous there. It is C1 at lambda_k* if and only if Pi_k'(lambda_k*)=Pi_{k+1}'(lambda_k*). Otherwise the derivative jump
+
+J_k = Pi_{k+1}'(lambda_k*) - Pi_k'(lambda_k*)
+
+is the exact kink magnitude.
+
+This is a conditional analytical theorem. The repository's numerical artifacts establish the hypotheses for the observed finite regime partition; they do not by themselves prove that the observed partition is globally exhaustive for every admissible model calibration.
+
+EMPIRICAL COROLLARY / COMPUTATIONAL VERIFICATION
+
+For the current 12SCS calibration, the CI pipeline independently generates the regime partition, derives the rational coefficients, recovers adjacent intersections, and evaluates one-sided derivatives and curvature. The resulting artifact therefore supplies a reproducible verification of the theorem's formulas for the observed regimes.
+
+A global monotonicity or curvature claim must be reported from the artifact only after checking every regime's one-sided derivative/curvature signs. Such a claim is empirical for the current calibration unless the signs are subsequently established symbolically from parameter restrictions.
