@@ -1,0 +1,41 @@
+name: 12SCSM Global Theorem Verification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-verification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install runtime dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Reconstruct global diagnostics
+        run: |
+          python results/run_gap_priority.py
+          python results/run_active_set_breakpoints.py
+          python results/run_active_set_regimes.py
+          python results/run_exact_regime_value_functions.py
+          python results/run_regime_derivatives_continuity.py
+          python results/run_exact_breakpoint_intersections.py
+          python results/run_exact_kink_analysis.py
+          python results/run_global_comparative_statics.py
+      - name: Verify calibrated theorem
+        run: python results/run_global_theorem_verification.py
+      - name: Publish theorem statement
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-global-theorem-${{ github.sha }}
+          path: results/global_piecewise_comparative_statics_theorem_v2.txt
