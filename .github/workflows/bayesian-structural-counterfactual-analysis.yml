@@ -1,0 +1,80 @@
+name: Bayesian Structural Counterfactual Analysis
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bayesian-structural-counterfactual:
+    name: Bayesian structural counterfactual
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install runtime dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Reconstruct deterministic prerequisites
+        run: |
+          python results/run_gap_priority.py
+          python results/run_active_set_breakpoints.py
+          python results/run_active_set_regimes.py
+          python results/run_active_set_regime_formulas.py
+          python results/run_primitive_coefficient_map.py
+          python results/run_primitive_counterfactual_coefficient_map.py
+      - name: Generate canonical Bayesian input
+        run: python results/run_bayesian_structural_counterfactual_input.py
+      - name: Validate Bayesian input
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p=Path('results/bayesian_structural_counterfactual_cells_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows=list(csv.DictReader(p.open(encoding='utf-8')))
+          assert rows
+          required={'A','B','C','D','E','F','D_cf_unit','E_cf_unit','lambda_start','lambda_end','d'}
+          assert required.issubset(rows[0])
+          for r in rows:
+              for k in required: float(r[k])
+          print(f'Bayesian input validated: {len(rows)} rows.')
+          PY
+      - name: Run Bayesian structural counterfactual analysis
+        run: python results/run_bayesian_structural_counterfactual_analysis.py
+      - name: Validate Bayesian output
+        run: |
+          python - <<'PY'
+          import csv, math
+          from pathlib import Path
+          p=Path('results/bayesian_structural_counterfactual_analysis_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows=list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows)==3
+          assert {'prior_a','prior_b','mean_delta','structural_contrast'}.issubset(rows[0])
+          contrasts=[]
+          for r in rows:
+              assert float(r['prior_a'])>0 and float(r['prior_b'])>0
+              assert math.isfinite(float(r['mean_delta']))
+              assert math.isfinite(float(r['structural_contrast']))
+              contrasts.append(float(r['structural_contrast']))
+          assert max(contrasts)-min(contrasts)<1e-15
+          print('Bayesian structural counterfactual output validated.')
+          PY
+      - name: Run dedicated Bayesian input unit test
+        run: python -m unittest tests.test_bayesian_structural_counterfactual_input -v
+      - name: Publish Bayesian artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-structural-counterfactual-${{ github.sha }}
+          path: |
+            results/bayesian_structural_counterfactual_cells_v1.csv
+            results/bayesian_structural_counterfactual_analysis_v1.csv
