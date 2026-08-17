@@ -21,6 +21,19 @@ def _shape(x: Matrix) -> tuple[int, int]:
     return rows, cols
 
 
+def allocate_budget(
+    positive_gaps: Matrix,
+    capability_weights: Sequence[float],
+    feasibility: Matrix,
+    costs: Matrix,
+    budget: float,
+) -> tuple[tuple[float, ...], ...]:
+    """Allocate a finite budget by descending weighted benefit per cost.
+
+    The allocation variable is a capability improvement delta_ij. It obeys
+    0 <= delta_ij <= G^+_ij * kappa_ij. This is a deterministic fractional
+    baseline, not a claim of global optimality for the nonlinear V2 objective.
+    """
 def allocate_budget(positive_gaps: Matrix, capability_weights: Sequence[float], feasibility: Matrix, costs: Matrix, budget: float) -> tuple[tuple[float, ...], ...]:
     """Allocate a finite budget by descending weighted benefit per cost."""
     n, k = _shape(positive_gaps)
@@ -30,6 +43,7 @@ def allocate_budget(positive_gaps: Matrix, capability_weights: Sequence[float], 
         raise ValueError("feasibility and costs must match the gap matrix")
     if budget < 0:
         raise ValueError("budget must be non-negative")
+
     omega = tuple(float(x) for x in capability_weights)
     if any(x < 0 for x in omega):
         raise ValueError("capability weights must be non-negative")
@@ -40,6 +54,10 @@ def allocate_budget(positive_gaps: Matrix, capability_weights: Sequence[float], 
         raise ValueError("feasibility coefficients must lie in [0,1]")
     if any(x < 0 for row in cost for x in row):
         raise ValueError("costs must be non-negative")
+    if any(kappa[i][j] > 0 and gap[i][j] > 0 and cost[i][j] <= 0
+           for i in range(n) for j in range(k)):
+        raise ValueError("actionable cells must have strictly positive costs")
+
     if any(kappa[i][j] > 0 and gap[i][j] > 0 and cost[i][j] <= 0 for i in range(n) for j in range(k)):
         raise ValueError("actionable cells must have strictly positive costs")
     candidates = []
@@ -49,6 +67,7 @@ def allocate_budget(positive_gaps: Matrix, capability_weights: Sequence[float], 
             if cap > 0:
                 candidates.append((omega[j] / cost[i][j], i, j, cap))
     candidates.sort(key=lambda item: (-item[0], item[1], item[2]))
+
     allocation = [[0.0 for _ in range(k)] for _ in range(n)]
     remaining = float(budget)
     for _, i, j, cap in candidates:
@@ -64,6 +83,9 @@ def total_cost(allocation: Matrix, costs: Matrix) -> float:
     """Return total cost of an allocation."""
     if _shape(allocation) != _shape(costs):
         raise ValueError("allocation and costs must have identical shapes")
+    return fsum(float(allocation[i][j]) * float(costs[i][j])
+                for i in range(len(allocation))
+                for j in range(len(allocation[0])))
     return fsum(float(allocation[i][j]) * float(costs[i][j]) for i in range(len(allocation)) for j in range(len(allocation[0])))
 
 
@@ -72,4 +94,6 @@ def weighted_progress(allocation: Matrix, capability_weights: Sequence[float]) -
     n, k = _shape(allocation)
     if len(capability_weights) != k:
         raise ValueError("capability_weights length mismatch")
+    return fsum(float(allocation[i][j]) * float(capability_weights[j])
+                for i in range(n) for j in range(k))
     return fsum(float(allocation[i][j]) * float(capability_weights[j]) for i in range(n) for j in range(k))
