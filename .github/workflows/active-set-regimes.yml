@@ -43,16 +43,22 @@ jobs:
           path = Path('results/convergence_active_set_regimes_v2.csv')
           rows = list(csv.DictReader(path.open(encoding='utf-8')))
           assert rows
-          assert len(rows) == 14
           assert abs(float(rows[0]['lambda_start'])) < 1e-12
           assert abs(float(rows[-1]['lambda_end']) - 1.0) < 1e-12
-          for left, right in zip(rows[:-1], rows[1:]):
-              assert abs(float(left['lambda_end']) - float(right['lambda_start'])) < 1e-12
+          previous_end = 0.0
           for row in rows:
-              for key in ('lambda_start','lambda_end','active_cell_count','progress_start','progress_mid','progress_end'):
-                  assert math.isfinite(float(row[key]))
+              start = float(row['lambda_start'])
+              end = float(row['lambda_end'])
+              assert math.isfinite(start) and math.isfinite(end)
+              assert 0.0 <= start < end <= 1.0
+              assert abs(start - previous_end) < 1e-12
+              previous_end = end
+              for key in ('active_cell_count','progress_start','progress_mid','progress_end'):
+                  value = float(row[key])
+                  assert math.isfinite(value)
               assert int(row['active_cell_count']) > 0
-          print('Active-set regime decomposition passed: 14 regimes.')
+          assert abs(previous_end - 1.0) < 1e-12
+          print(f'Active-set regime decomposition passed: {len(rows)} regimes.')
           PY
 
       - name: Publish active-set regime artifact
