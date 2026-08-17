@@ -25,7 +25,9 @@ class Phase2ActiveSetSignTests(unittest.TestCase):
         self.assertAlmostEqual(c["q0"], 2*c["q0_half"])
 
     def test_ordering_and_cellwise_signs(self):
-        cell = PrimitiveCell(gap=0.2, weight=1.2, a=-0.2, d=0.4)
+        # The previous d=0.4 fixture satisfied the ordering but not the p0
+        # cellwise condition.  This fixture satisfies all three conditions.
+        cell = PrimitiveCell(gap=0.2, weight=1.2, a=-0.2, d=0.8)
         F = 0.6
         self.assertTrue(ordering_holds(cell, F))
         signs = simple_sufficient_conditions(F, cell)
