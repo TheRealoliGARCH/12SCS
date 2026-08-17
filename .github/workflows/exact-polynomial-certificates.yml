@@ -1,0 +1,31 @@
+name: 12SCSM Exact Polynomial Sign Certificates
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-certificates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt
+      - name: Reconstruct exact regime coefficients
+        run: |
+          python results/run_gap_priority.py
+          python results/run_active_set_breakpoints.py
+          python results/run_active_set_regimes.py
+          python results/run_exact_regime_value_functions.py
+          python results/run_regime_derivatives_continuity.py
+      - name: Certify derivative numerator signs
+        run: python results/run_exact_polynomial_certificates.py
+      - uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-exact-polynomial-certificates-${{ github.sha }}
+          path: results/convergence_exact_polynomial_sign_certificates_v2.csv
