@@ -30,6 +30,25 @@ jobs:
           python -m pip install --upgrade pip
           if [[ -f requirements.txt ]]; then python -m pip install -r requirements.txt; fi
 
+      - name: Reconstruct Phase II test prerequisites
+        shell: bash
+        run: |
+          python results/run_gap_priority.py
+          python results/run_active_set_breakpoints.py
+          python results/run_active_set_regimes.py
+          python results/run_active_set_regime_formulas.py
+          python results/run_primitive_coefficient_map.py
+          python results/run_primitive_counterfactual_coefficient_map.py
+
+      - name: Verify generated prerequisites
+        shell: bash
+        run: |
+          test -s results/convergence_active_set_breakpoints_v2.csv
+          test -s results/convergence_active_set_regimes_v2.csv
+          test -s results/convergence_active_set_regime_formulas_v2.csv
+          test -s results/convergence_primitive_coefficient_map_v1.csv
+          test -s results/convergence_primitive_counterfactual_coefficient_map_v1.csv
+
       - name: Run full unittest suite
         shell: bash
         run: python -m unittest discover -s tests -p 'test_*.py' -v
