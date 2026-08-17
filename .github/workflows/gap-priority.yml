@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
@@ -141,8 +141,7 @@ jobs:
           assert rows[0] == ['heterogeneity_level', 'feasibility_only', 'cost_only', 'joint', 'feasibility_normalized', 'cost_normalized', 'joint_normalized']
           levels = [float(row[0]) for row in rows[1:]]
           assert levels == [i / 20.0 for i in range(21)]
-          for row in rows[1:]:
-              assert all(math.isfinite(float(x)) for x in row[1:])
+          for row in rows[1:]: assert all(math.isfinite(float(x)) for x in row[1:])
           characterization = {row[0]: row[1] for row in csv.reader(Path('results/convergence_sensitivity_decomposition_characterization_v2.csv').open(encoding='utf-8')) if row and row[0] != 'metric'}
           assert characterization['feasibility_only_monotone_nonincreasing'] == '1'
           assert characterization['joint_monotone_nonincreasing'] == '1'
@@ -152,7 +151,7 @@ jobs:
           PY
 
       - name: Publish gap-priority artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: 12scsm-v2-gap-priority-${{ github.sha }}
           path: |
