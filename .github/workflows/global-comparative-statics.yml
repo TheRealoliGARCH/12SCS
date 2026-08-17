@@ -1,0 +1,59 @@
+name: 12SCSM Global Comparative Statics
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  comparative-statics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install runtime dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Generate prerequisite gap data
+        run: python results/run_gap_priority.py
+      - name: Generate active-set regimes
+        run: python results/run_active_set_breakpoints.py && python results/run_active_set_regimes.py
+      - name: Derive exact regime diagnostics
+        run: python results/run_exact_regime_value_functions.py
+      - name: Derive regime derivatives
+        run: python results/run_regime_derivatives_continuity.py
+      - name: Recover exact adjacent intersections
+        run: python results/run_exact_breakpoint_intersections.py
+      - name: Classify exact kinks
+        run: python results/run_exact_kink_analysis.py
+      - name: Assemble global comparative statics
+        run: python results/run_global_comparative_statics.py
+      - name: Validate global diagnostics
+        run: |
+          python - <<'PY'
+          import csv, math
+          from pathlib import Path
+          p = Path('results/convergence_global_comparative_statics_v2.csv')
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert rows
+          for r in rows:
+              for k in ('lambda_exact','left_derivative','right_derivative','derivative_jump','left_curvature','right_curvature'):
+                  assert math.isfinite(float(r[k]))
+              assert r['transition'] in {'C1','KINK'}
+              assert r['global_slope_sign'] in {'DECREASING','INCREASING','SLOPE-CROSSING'}
+              assert r['curvature_transition'] in {'CONVEX','CONCAVE','CURVATURE-CHANGE'}
+          print(f'Global comparative statics validated for {len(rows)} boundaries.')
+          PY
+      - name: Publish global comparative-statics artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-global-comparative-statics-${{ github.sha }}
+          path: results/convergence_global_comparative_statics_v2.csv
