@@ -1,0 +1,58 @@
+name: 12SCSM Active-Set Regime Formulas
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  active-set-regime-formulas:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install runtime dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Generate gap and priority inputs
+        run: python results/run_gap_priority.py
+      - name: Run ranking breakpoint analysis
+        run: python results/run_active_set_breakpoints.py
+      - name: Reduce ranking crossovers to active-set regimes
+        run: python results/run_active_set_regimes.py
+      - name: Derive regime diagnostics
+        run: python results/run_active_set_regime_formulas.py
+      - name: Validate regime diagnostics
+        run: |
+          python - <<'PY'
+          import csv, math
+          from pathlib import Path
+          path = Path('results/convergence_active_set_regime_formulas_v2.csv')
+          rows = list(csv.DictReader(path.open(encoding='utf-8')))
+          assert rows
+          assert len(rows) == 14
+          for row in rows:
+              for key in ('lambda_start','lambda_end','active_cell_count','progress_start','progress_mid','progress_end'):
+                  assert math.isfinite(float(row[key]))
+              assert int(row['active_cell_count']) > 0
+          assert abs(float(rows[0]['lambda_start'])) < 1e-12
+          assert abs(float(rows[-1]['lambda_end']) - 1.0) < 1e-12
+          for left, right in zip(rows[:-1], rows[1:]):
+              assert abs(float(left['lambda_end']) - float(right['lambda_start'])) < 1e-12
+          print('Regime diagnostics passed: 14 contiguous regimes with finite values.')
+          PY
+      - name: Publish regime formula artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-active-set-regime-formulas-${{ github.sha }}
+          path: |
+            results/convergence_active_set_regimes_v2.csv
+            results/convergence_active_set_regime_formulas_v2.csv
