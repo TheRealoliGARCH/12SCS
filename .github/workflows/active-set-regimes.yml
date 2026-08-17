@@ -1,0 +1,71 @@
+name: 12SCSM Active-Set Regimes
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  active-set-regimes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install runtime dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Generate gap and priority inputs
+        run: python results/run_gap_priority.py
+
+      - name: Run ranking breakpoint analysis
+        run: python results/run_active_set_breakpoints.py
+
+      - name: Reduce ranking crossovers to active-set regimes
+        run: python results/run_active_set_regimes.py
+
+      - name: Validate active-set regime decomposition
+        run: |
+          python - <<'PY'
+          import csv
+          import math
+          from pathlib import Path
+          path = Path('results/convergence_active_set_regimes_v2.csv')
+          rows = list(csv.DictReader(path.open(encoding='utf-8')))
+          assert rows
+          assert abs(float(rows[0]['lambda_start'])) < 1e-12
+          assert abs(float(rows[-1]['lambda_end']) - 1.0) < 1e-12
+          previous_end = 0.0
+          for row in rows:
+              start = float(row['lambda_start'])
+              end = float(row['lambda_end'])
+              assert math.isfinite(start) and math.isfinite(end)
+              assert 0.0 <= start < end <= 1.0
+              assert abs(start - previous_end) < 1e-12
+              previous_end = end
+              for key in ('active_cell_count','progress_start','progress_mid','progress_end'):
+                  value = float(row[key])
+                  assert math.isfinite(value)
+              assert int(row['active_cell_count']) > 0
+          assert abs(previous_end - 1.0) < 1e-12
+          print(f'Active-set regime decomposition passed: {len(rows)} regimes.')
+          PY
+
+      - name: Publish active-set regime artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-active-set-regimes-${{ github.sha }}
+          path: |
+            results/convergence_active_set_breakpoints_v2.csv
+            results/convergence_active_set_path_v2.csv
+            results/convergence_active_set_regimes_v2.csv

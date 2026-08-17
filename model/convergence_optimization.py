@@ -34,6 +34,8 @@ def allocate_budget(
     0 <= delta_ij <= G^+_ij * kappa_ij. This is a deterministic fractional
     baseline, not a claim of global optimality for the nonlinear V2 objective.
     """
+def allocate_budget(positive_gaps: Matrix, capability_weights: Sequence[float], feasibility: Matrix, costs: Matrix, budget: float) -> tuple[tuple[float, ...], ...]:
+    """Allocate a finite budget by descending weighted benefit per cost."""
     n, k = _shape(positive_gaps)
     if len(capability_weights) != k:
         raise ValueError("capability_weights length mismatch")
@@ -56,6 +58,8 @@ def allocate_budget(
            for i in range(n) for j in range(k)):
         raise ValueError("actionable cells must have strictly positive costs")
 
+    if any(kappa[i][j] > 0 and gap[i][j] > 0 and cost[i][j] <= 0 for i in range(n) for j in range(k)):
+        raise ValueError("actionable cells must have strictly positive costs")
     candidates = []
     for i in range(n):
         for j in range(k):
@@ -82,6 +86,7 @@ def total_cost(allocation: Matrix, costs: Matrix) -> float:
     return fsum(float(allocation[i][j]) * float(costs[i][j])
                 for i in range(len(allocation))
                 for j in range(len(allocation[0])))
+    return fsum(float(allocation[i][j]) * float(costs[i][j]) for i in range(len(allocation)) for j in range(len(allocation[0])))
 
 
 def weighted_progress(allocation: Matrix, capability_weights: Sequence[float]) -> float:
@@ -91,3 +96,4 @@ def weighted_progress(allocation: Matrix, capability_weights: Sequence[float]) -
         raise ValueError("capability_weights length mismatch")
     return fsum(float(allocation[i][j]) * float(capability_weights[j])
                 for i in range(n) for j in range(k))
+    return fsum(float(allocation[i][j]) * float(capability_weights[j]) for i in range(n) for j in range(k))

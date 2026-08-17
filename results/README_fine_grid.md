@@ -1,0 +1,1 @@
+Fine-grid sensitivity characterization evaluates lambda = 0, 0.05, ..., 1.0. Define H(lambda) = Pi(lambda) / Pi(0). The workflow records the response grid, first differences, second differences, and an empirical curvature classification. The classification is descriptive for this benchmark and is not a general theorem.

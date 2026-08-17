@@ -17,7 +17,7 @@ def effective_dependency(dependency, substitutability):
 
 
 def systemic_criticality(functionality, leave_one_out):
-    """K = [Phi(G)-Phi(G\{cell})] / Phi(G)."""
+    r"""K = [Phi(G)-Phi(G\{cell})] / Phi(G)."""
     phi = float(functionality)
     loo = np.asarray(leave_one_out, dtype=float)
     if phi <= 0:
