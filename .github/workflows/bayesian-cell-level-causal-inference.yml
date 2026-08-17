@@ -1,0 +1,81 @@
+name: 12SCSM Bayesian Cell-Level Causal Inference
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'results/run_bayesian_cell_level_causal_dataset.py'
+      - 'tests/test_bayesian_cell_level_causal_dataset.py'
+      - '.github/workflows/bayesian-cell-level-causal-inference.yml'
+      - 'requirements.txt'
+      - 'model/**'
+
+permissions:
+  contents: read
+
+jobs:
+  cell-level-causal-inference:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install declared dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run unit tests
+        run: python -m unittest tests.test_bayesian_cell_level_causal_dataset -v
+      - name: Reconstruct V6 prerequisite data
+        run: |
+          python results/run_gap_priority.py
+          python results/run_active_set_breakpoints.py
+          python results/run_active_set_regimes.py
+          python results/run_active_set_regime_formulas.py
+          python results/run_primitive_coefficient_map.py
+      - name: Build cell-level causal dataset and identification audit
+        run: python results/run_bayesian_cell_level_causal_dataset.py
+      - name: Validate cell-level dataset
+        run: |
+          python - <<'PY'
+          import csv, math
+          from pathlib import Path
+          data = Path('results/bayesian_cell_level_causal_dataset_v1.csv')
+          audit = Path('results/bayesian_cell_level_causal_identification_v1.csv')
+          rows = list(csv.DictReader(data.open(encoding='utf-8')))
+          result = next(csv.DictReader(audit.open(encoding='utf-8')))
+          assert rows
+          assert len(rows) == int(result['n_rows'])
+          assert int(result['n_regimes']) >= 2
+          assert result['treatment_varies'] == 'True'
+          assert result['outcome_varies'] == 'True'
+          assert result['within_regime_positivity'] == 'True'
+          assert result['temporal_ordering'] == 'True'
+          assert result['intervention_defined'] == 'False'
+          assert result['outcome_mechanically_post_treatment'] == 'True'
+          assert result['causal_effect_identified'] == 'False'
+          for r in rows:
+              assert int(r['treatment_active']) in (0, 1)
+              assert r['allocation_role'] in {'binding', 'marginal', 'inactive'}
+              for k in ('lambda_start','lambda_end','lambda_mid','gap','weight','a','d','local_progress_proxy','p0_regime'):
+                  assert math.isfinite(float(r[k]))
+              assert float(r['lambda_start']) <= float(r['lambda_mid']) <= float(r['lambda_end'])
+          print(f'Cell-level causal dataset: {len(rows)} observations across {result["n_regimes"]} regimes.')
+          print('Identification audit correctly refuses a substantive causal effect: PASS')
+          PY
+      - name: Verify deterministic reconstruction
+        run: |
+          cp results/bayesian_cell_level_causal_dataset_v1.csv /tmp/cell-first.csv
+          cp results/bayesian_cell_level_causal_identification_v1.csv /tmp/cell-audit-first.csv
+          python results/run_bayesian_cell_level_causal_dataset.py
+          cmp /tmp/cell-first.csv results/bayesian_cell_level_causal_dataset_v1.csv
+          cmp /tmp/cell-audit-first.csv results/bayesian_cell_level_causal_identification_v1.csv
+          echo 'Cell-level causal dataset reproducibility: PASS'
+      - name: Publish cell-level causal artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: bayesian-cell-level-causal-inference-v1
+          path: |
+            results/bayesian_cell_level_causal_dataset_v1.csv
+            results/bayesian_cell_level_causal_identification_v1.csv
