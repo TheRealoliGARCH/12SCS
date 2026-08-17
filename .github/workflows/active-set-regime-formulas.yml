@@ -59,7 +59,9 @@ jobs:
               assert abs(float(c['Delta_P']) - 4.0*float(c['S'])*float(c['T'])) < 1e-7
               assert abs(float(c['q0']) - 2.0*float(c['T'])) < 1e-8
               assert abs(float(c['Delta_P']) - 2.0*float(c['B'])*float(c['F'])*float(c['q0']) - 2.0*float(c['E'])*float(c['q0'])) < 1e-7
-              assert abs(float(c['Delta_Q']) - 4.0*float(c['F'])**4*(float(c['r1'])**2 - 4.0*float(c['r0'])*float(c['r2']))) < 1e-7
+              assert abs(float(c['q1'])) < 1e-12
+              assert abs(float(c['q2'])) < 1e-12
+              assert abs(float(c['Delta_Q'])) < 1e-12
           print(f'Primitive coefficient validation passed: {len(coeffs)} regimes.')
           PY
       - name: Publish regime and primitive-map artifacts

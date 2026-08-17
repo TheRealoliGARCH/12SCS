@@ -26,7 +26,9 @@ class PrimitiveCoefficientMapTests(unittest.TestCase):
         self.assertAlmostEqual(c["p2"], c["F"] * c["S"])
         self.assertAlmostEqual(c["Delta_P"], 4.0 * c["S"] * c["T"])
         self.assertAlmostEqual(c["q0"], 2.0 * c["T"])
-        self.assertAlmostEqual(c["Delta_Q"], 4.0 * c["F"]**4 * (c["r1"]**2 - 4.0*c["r0"]*c["r2"]))
+        self.assertEqual(c["q1"], 0.0)
+        self.assertEqual(c["q2"], 0.0)
+        self.assertEqual(c["Delta_Q"], 0.0)
 
 
 if __name__ == "__main__":
