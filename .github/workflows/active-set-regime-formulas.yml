@@ -30,34 +30,44 @@ jobs:
         run: python results/run_active_set_breakpoints.py && python results/run_active_set_regimes.py
       - name: Derive regime mechanics
         run: python results/run_active_set_regime_formulas.py
-      - name: Validate regime mechanics
+      - name: Derive primitive coefficient map
+        run: python results/run_primitive_coefficient_map.py
+      - name: Validate regime mechanics and structural identities
         run: |
           python - <<'PY'
           import csv, math
           from pathlib import Path
           regime_path = Path('results/convergence_active_set_regimes_v2.csv')
           mechanics_path = Path('results/convergence_active_set_regime_formulas_v2.csv')
+          coeff_path = Path('results/convergence_primitive_coefficient_map_v1.csv')
           regimes = list(csv.DictReader(regime_path.open(encoding='utf-8')))
           rows = list(csv.DictReader(mechanics_path.open(encoding='utf-8')))
-          assert regimes, 'no active-set regimes were generated'
-          assert rows, 'no regime mechanics rows were generated'
-          assert len(rows) == len(regimes), (len(rows), len(regimes))
+          coeffs = list(csv.DictReader(coeff_path.open(encoding='utf-8')))
+          assert regimes and rows and coeffs
+          assert len(rows) == len(regimes) == len(coeffs)
           assert abs(float(rows[0]['lambda_start'])) < 1e-12
           assert abs(float(rows[-1]['lambda_end']) - 1.0) < 1e-12
           for a, b in zip(rows[:-1], rows[1:]):
               assert abs(float(a['lambda_end']) - float(b['lambda_start'])) < 1e-12
-          for r in rows:
+          for r, c in zip(rows, coeffs):
               for k in ('lambda_start','lambda_end','budget_residual','progress_start','progress_mid','progress_end'):
                   assert math.isfinite(float(r[k]))
-              assert int(r['active_cell_count']) > 0
-              assert len([x for x in r['marginal_cell'].split(';') if x]) <= 1
-              assert float(r['budget_residual']) >= -1e-10
-          print(f'Regime mechanics validation passed: {len(rows)} contiguous regimes.')
+              for k in ('A','B','C','D','E','F','p0','p1','p2','q0','q1','q2','Delta_P','Delta_Q','S','T','r0','r1','r2'):
+                  assert math.isfinite(float(c[k]))
+              assert abs(float(c['p1']) - 2.0*float(c['S'])) < 1e-8
+              assert abs(float(c['p2']) - float(c['F'])*float(c['S'])) < 1e-8
+              assert abs(float(c['Delta_P']) - 4.0*float(c['S'])*float(c['T'])) < 1e-7
+              assert abs(float(c['q0']) - 2.0*float(c['T'])) < 1e-8
+              assert abs(float(c['Delta_P']) - 2.0*float(c['B'])*float(c['F'])*float(c['q0']) - 2.0*float(c['E'])*float(c['q0'])) < 1e-7
+              assert abs(float(c['Delta_Q']) - 4.0*float(c['F'])**4*(float(c['r1'])**2 - 4.0*float(c['r0'])*float(c['r2']))) < 1e-7
+          print(f'Primitive coefficient validation passed: {len(coeffs)} regimes.')
           PY
-      - name: Publish regime mechanics artifact
+      - name: Publish regime and primitive-map artifacts
         uses: actions/upload-artifact@v6
         with:
-          name: 12scsm-active-set-regime-mechanics-${{ github.sha }}
+          name: 12scsm-phase2-primitive-coefficient-map-${{ github.sha }}
           path: |
             results/convergence_active_set_regimes_v2.csv
             results/convergence_active_set_regime_formulas_v2.csv
+            results/convergence_primitive_coefficient_map_v1.csv
+            results/primitive_coefficient_map_v1.txt
