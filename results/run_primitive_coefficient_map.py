@@ -63,10 +63,7 @@ def derive(binding_labels, marginal_label, gaps, weights, feasibility_base, cost
         r2 -= g * a * d
 
     if marginal_label:
-        _, marginal_capability = parse_cell(marginal_label)
-        _, marginal_state = parse_cell(marginal_label)
-        # The state is retained explicitly above to make the primitive map auditable.
-        state, capability = marginal_state, marginal_capability
+        state, capability = parse_cell(marginal_label)
         F = costs_base[state][capability] - 1.0
     else:
         F = 0.0
@@ -81,8 +78,6 @@ def derive(binding_labels, marginal_label, gaps, weights, feasibility_base, cost
     delta_p = p1 * p1 - 4.0 * p2 * p0
     delta_q = q1 * q1 - 4.0 * q2 * q0
 
-    # Structural identities. The residual-budget polynomial is
-    # R(lambda)=r0+r1 lambda+r2 lambda^2.
     S = B * F + E
     T = E - F * D + F * F * C
     assert abs(p1 - 2.0 * S) < 1e-10
@@ -90,6 +85,7 @@ def derive(binding_labels, marginal_label, gaps, weights, feasibility_base, cost
     assert abs(delta_p - 4.0 * S * T) < 1e-8
     assert abs(q0 - 2.0 * T) < 1e-10
     assert abs(delta_p - 2.0 * (B * F + E) * q0) < 1e-8
+    assert abs(delta_q - 4.0 * F**4 * (r1*r1 - 4.0*r0*r2)) < 1e-8
 
     return dict(A=A, B=B, C=C, D=D, E=E, F=F,
                 p0=p0, p1=p1, p2=p2, q0=q0, q1=q1, q2=q2,
@@ -116,11 +112,14 @@ def main():
             binding = [x for x in row["binding_feasibility_cells"].split(";") if x]
             marginal = row["marginal_cell"] or ""
             coeff = derive(binding, marginal, gaps, weights, feasibility_base, costs_base)
-            writer.writerow({k: row[k] if k in row else coeff[k] for k in fields})
+            output = {k: row[k] for k in ("regime", "lambda_start", "lambda_end")}
+            output.update({"binding_cells": ";".join(binding), "marginal_cell": marginal})
+            output.update({k: coeff[k] for k in fields if k in coeff})
+            writer.writerow(output)
 
     text = RESULTS / "primitive_coefficient_map_v1.txt"
     text.write_text(
-        """12SCS PHASE II -- PRIMITIVE COEFFICIENT MAP\n\n"
+        "12SCS PHASE II -- PRIMITIVE COEFFICIENT MAP\n\n"
         "Fix an active-set regime with binding cells i in I and at most one\n"
         "marginal cell m. Write g_i for the positive capability gap, w_i for\n"
         "the capability weight, a_i = kappa_i^0 - 1, and d_i = c_i^0 - 1.\n"
@@ -155,8 +154,8 @@ def main():
         "q2 >= 0. If every binding cell has c_i^0 <= 1, then q2 <= 0.\n"
         "This converts a curvature coefficient sign into a primitive cost-feasibility\n"
         "condition. Analogous primitive inequalities can be tested directly for\n"
-        "p0, p0+p1+p2, and T to obtain parameter-free monotonicity/curvature theorems.\n"
-        """, encoding="utf-8")
+        "p0, p0+p1+p2, and T to obtain parameter-free monotonicity/curvature theorems.\n",
+        encoding="utf-8")
     print(out)
 
 
