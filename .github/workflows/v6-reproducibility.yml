@@ -96,7 +96,7 @@ jobs:
           cp results/convergence_primitive_coefficient_map_v1.csv /tmp/v6-first/
           cp results/primitive_coefficient_map_v1.txt /tmp/v6-first/
           cp results/phase2_active_set_theorem_diagnostics_v1.csv /tmp/v6-first/
-          sha256sum /tmp/v6-first/* | sort > /tmp/v6-first.sha256
+          (cd /tmp/v6-first && sha256sum * | sort) > /tmp/v6-first.sha256
 
       - name: Repeat clean-room reconstruction
         run: |
@@ -126,7 +126,7 @@ jobs:
           cp results/convergence_primitive_coefficient_map_v1.csv /tmp/v6-second/
           cp results/primitive_coefficient_map_v1.txt /tmp/v6-second/
           cp results/phase2_active_set_theorem_diagnostics_v1.csv /tmp/v6-second/
-          sha256sum /tmp/v6-second/* | sort > /tmp/v6-second.sha256
+          (cd /tmp/v6-second && sha256sum * | sort) > /tmp/v6-second.sha256
           diff -u /tmp/v6-first.sha256 /tmp/v6-second.sha256
           cmp /tmp/v6-first/convergence_primitive_coefficient_map_v1.csv /tmp/v6-second/convergence_primitive_coefficient_map_v1.csv
           echo 'V6 bit-for-bit reproducibility: PASS'
