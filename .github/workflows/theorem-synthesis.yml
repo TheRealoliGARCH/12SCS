@@ -1,0 +1,46 @@
+name: 12SCSM Theorem Synthesis
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  theorem-synthesis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt
+      - name: Reconstruct theorem artifacts
+        run: |
+          python results/run_gap_priority.py
+          python results/run_active_set_breakpoints.py
+          python results/run_active_set_regimes.py
+          python results/run_exact_regime_value_functions.py
+          python results/run_regime_derivatives_continuity.py
+          python results/run_exact_breakpoint_intersections.py
+          python results/run_exact_kink_analysis.py
+          python results/run_global_comparative_statics.py
+          python results/run_curvature_polynomial_certificates.py
+      - name: Synthesize theorem
+        run: python results/run_theorem_synthesis.py
+      - name: Validate theorem statement
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('results/global_piecewise_comparative_statics_theorem_v3.txt')
+          text=p.read_text(encoding='utf-8')
+          assert 'THEOREM:' in text
+          assert 'strictly decreasing' in text
+          assert 'parameter-free universality requires separate symbolic coefficient inequalities' in text
+          print('Machine-checked theorem synthesis validated.')
+          PY
+      - uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-global-theorem-synthesis-${{ github.sha }}
+          path: results/global_piecewise_comparative_statics_theorem_v3.txt
