@@ -15,15 +15,26 @@ def read_vector(path):
     with path.open(encoding="utf-8",newline="") as f: rows=list(csv.reader(f))
     return {r[0]:float(r[1]) for r in rows[1:]}
 
+def ensure_counterfactual_prerequisites():
+    gap=ROOT/"results/capability_gap_positive_v2.csv"
+    weights=ROOT/"results/capability_dispersion_weights_v2.csv"
+    formulas=ROOT/"results/convergence_active_set_regime_formulas_v2.csv"
+    if not gap.exists() or not weights.exists():
+        subprocess.run([sys.executable,"results/run_gap_priority.py"],cwd=ROOT,check=True)
+    if not formulas.exists():
+        subprocess.run([sys.executable,"results/run_active_set_breakpoints.py"],cwd=ROOT,check=True)
+        subprocess.run([sys.executable,"results/run_active_set_regimes.py"],cwd=ROOT,check=True)
+        subprocess.run([sys.executable,"results/run_active_set_regime_formulas.py"],cwd=ROOT,check=True)
+    for path in (gap,weights,formulas):
+        if not path.exists() or path.stat().st_size == 0:
+            raise AssertionError(f"missing or empty prerequisite: {path}")
+
 class PrimitiveCounterfactualCoefficientMapTests(unittest.TestCase):
     def test_exact_affine_map(self):
-        gap_file=ROOT/"results/capability_gap_positive_v2.csv"
-        weight_file=ROOT/"results/capability_dispersion_weights_v2.csv"
-        if not gap_file.exists() or not weight_file.exists():
-            subprocess.run([sys.executable,"results/run_gap_priority.py"],cwd=ROOT,check=True)
+        ensure_counterfactual_prerequisites()
         subprocess.run([sys.executable,"results/run_primitive_counterfactual_coefficient_map.py"],cwd=ROOT,check=True)
         rows=list(csv.DictReader((ROOT/"results/convergence_primitive_counterfactual_coefficient_map_v1.csv").open(encoding="utf-8")))
-        gaps=read_matrix(gap_file); weights=read_vector(weight_file)
+        gaps=read_matrix(ROOT/"results/capability_gap_positive_v2.csv"); weights=read_vector(ROOT/"results/capability_dispersion_weights_v2.csv")
         f_raw,c_raw=build_scenario(STATES,CAPABILITIES)
         feas={s:{c:float(f_raw[i][j]) for j,c in enumerate(CAPABILITIES)} for i,s in enumerate(STATES)}
         costs={s:{c:float(c_raw[i][j]) for j,c in enumerate(CAPABILITIES)} for i,s in enumerate(STATES)}
