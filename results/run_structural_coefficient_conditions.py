@@ -25,6 +25,17 @@ p0 = B+D-F C,
 p1 = 2(B F+E),
 p2 = F(B F+E).
 
+There is an important structural identity. Put S=BF+E and
+T=E-FD+F^2 C. Then
+  p1=2S,
+  p2=F S,
+  p0=B+D-FC,
+  Delta_P=p1^2-4 p2 p0=4 S T.
+Moreover q0=2T for the curvature numerator below. Hence
+  Delta_P=2(BF+E) q0.
+This links first-order discriminant structure directly to the second-order
+constant coefficient.
+
 The following are calibration-independent sufficient conditions for strict
 monotonic decrease on the full parameter domain [0,1].
 
@@ -33,11 +44,11 @@ Case M1 (convex numerator):
   p0 < 0,
   p0+p1+p2 < 0.
 Then P(lambda)<0 for every lambda in [0,1], because a convex quadratic
-attains its maximum on a compact interval at an endpoint only when p2>=0.
+attains its maximum on a compact interval at an endpoint.
 
 Case M2 (globally negative concave numerator):
   p2 < 0,
-  Delta_P = p1^2-4 p2 p0 < 0.
+  Delta_P < 0.
 Then P(lambda)<0 for every real lambda, hence on [0,1].
 
 Case M3 (linear numerator):
