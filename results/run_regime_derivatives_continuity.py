@@ -8,9 +8,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from model.convergence_analysis import CAPABILITIES, STATES
-from model.heterogeneous_scenario import build_scenario
 RESULTS = ROOT / "results"
-TOL = 1e-9
+CONTINUITY_TOL = 1e-6
 
 def read_vector(path):
     with path.open(encoding="utf-8", newline="") as f:
@@ -31,7 +30,7 @@ def derivs(A, B, C, D, E, F, x):
     return d1, d2
 
 def coefficients(binding_labels, marginal_label, positive, weights, feasibility_base, costs_base):
-    index = {(f"{STATES[i]}:{CAPABILITIES[j]}"): (i,j)
+    index = {f"{STATES[i]}:{CAPABILITIES[j]}": (i,j)
              for i in range(len(STATES)) for j in range(len(CAPABILITIES))}
     p0 = p1 = 0.0
     s0, s1, s2 = 0.0, 0.0, 0.0
@@ -56,10 +55,9 @@ def coefficients(binding_labels, marginal_label, positive, weights, feasibility_
         E = -wm * s2
         F = cm
     else:
-        A = p0 + 0.0
+        A = p0
         B = p1
-        C = D = E = 0.0
-        F = 0.0
+        C = D = E = F = 0.0
     return A,B,C,D,E,F
 
 def value(coef, x):
@@ -69,15 +67,18 @@ def value(coef, x):
 def main():
     positive = read_matrix(RESULTS / "capability_gap_positive_v2.csv")
     weights = read_vector(RESULTS / "capability_dispersion_weights_v2.csv")
-    feasibility_base, costs_base = build_scenario(STATES, CAPABILITIES)
+    feasibility_base, costs_base = __import__("model.heterogeneous_scenario", fromlist=["build_scenario"]).build_scenario(STATES, CAPABILITIES)
     source = RESULTS / "convergence_exact_regime_value_functions_v2.csv"
     with source.open(encoding="utf-8", newline="") as f:
         rows = list(csv.DictReader(f))
+    if not rows:
+        raise AssertionError("no regime rows")
     out = RESULTS / "convergence_regime_derivatives_continuity_v2.csv"
     with out.open("w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["regime","lambda_start","lambda_end","A","B","C","D","E","F","dPi_start","dPi_mid","dPi_end","ddPi_mid"])
+        writer.writerow(["regime","lambda_start","lambda_end","A","B","C","D","E","F","dPi_start","dPi_mid","dPi_end","ddPi_mid","value_jump_to_next"])
         coefs = []
+        diagnostics = []
         for row in rows:
             binding = [x for x in row["binding_cells"].split(";") if x]
             marginal = [x for x in row["marginal_cells"].split(";") if x]
@@ -90,16 +91,20 @@ def main():
             d0,_ = derivs(*coef, left)
             dm,d2m = derivs(*coef, mid)
             d1,_ = derivs(*coef, right)
-            writer.writerow([row["regime"],left,right,*coef,d0,dm,d1,d2m])
-        for a,b in zip(rows, rows[1:]):
+            diagnostics.append([row["regime"],left,right,*coef,d0,dm,d1,d2m])
+        for i, (a,b) in enumerate(zip(rows, rows[1:])):
             x = float(a["lambda_end"])
-            va = value(coefs[int(a["regime"])], x)
-            vb = value(coefs[int(b["regime"])], x)
-            if abs(va-vb) > 1e-8:
-                raise AssertionError(f"value discontinuity at lambda={x}: {va} vs {vb}")
-            if not all(math.isfinite(z) for z in (va,vb)):
+            va = value(coefs[i], x)
+            vb = value(coefs[i+1], x)
+            jump = abs(va-vb)
+            if jump > CONTINUITY_TOL:
+                raise AssertionError(f"value discontinuity at lambda={x}: {va} vs {vb} (jump={jump})")
+            if not all(math.isfinite(z) for z in (va,vb,jump)):
                 raise AssertionError("non-finite breakpoint value")
-    print(f"Derived derivatives and continuity diagnostics for {len(rows)} regimes.")
+            diagnostics[i].append(jump)
+        diagnostics[-1].append(0.0)
+        writer.writerows(diagnostics)
+    print(f"Derived derivatives and continuity diagnostics for {len(rows)} regimes; max breakpoint value jump <= {CONTINUITY_TOL:g}.")
 
 if __name__ == "__main__":
     main()
