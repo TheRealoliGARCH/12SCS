@@ -12,7 +12,14 @@ class SensitivityDecompositionTests(unittest.TestCase):
         ones = tuple(tuple(1.0 for _ in CAPABILITIES) for _ in STATES)
         allocation = allocate_budget(positive, weights, ones, ones, 1.0)
         self.assertAlmostEqual(total_cost(allocation, ones), 1.0, places=12)
-        self.assertAlmostEqual(weighted_progress(allocation, weights), 1.0, places=12)
+        # With a unit budget, unit costs, identical positive gaps, and equal
+        # capability weights, the deterministic allocator puts the entire
+        # budget into one tied cell. The resulting weighted progress is one
+        # capability weight, not one unit of progress.
+        expected_progress = max(weights)
+        self.assertAlmostEqual(
+            weighted_progress(allocation, weights), expected_progress, places=12
+        )
 
     def test_scenario_dimensions(self):
         feasibility, costs = build_scenario(STATES, CAPABILITIES)
