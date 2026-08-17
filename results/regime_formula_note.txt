@@ -1,1 +1,0 @@
-Regime-wise diagnostics validate binding feasibility cells and residual marginal cells at each regime midpoint before exact symbolic formulas are derived.

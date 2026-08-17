@@ -1,1 +1,0 @@
-Validated regime diagnostics precede exact symbolic derivation.

@@ -1,1 +1,0 @@
-The regime-level artifact records endpoint and midpoint progress and the binding/marginal allocation classification.

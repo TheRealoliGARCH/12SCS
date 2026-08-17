@@ -1,1 +1,0 @@
-No symbolic interpolation is used; regime formulas will be derived after CI validates the active-set structure.
