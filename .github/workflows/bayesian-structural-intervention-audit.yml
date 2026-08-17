@@ -45,14 +45,18 @@ jobs:
           from pathlib import Path
           p = Path('results/bayesian_structural_intervention_audit_v1.csv')
           row = next(csv.DictReader(p.open(encoding='utf-8')))
-          assert row['intervention_is_well_defined'] == 'True'
+          # The V6 primitive map contains economically inadmissible negative
+          # cost coefficients.  The audit must therefore refuse to identify a
+          # full-population structural intervention rather than silently
+          # discarding those cells or claiming an identified ATE.
+          assert row['intervention_is_well_defined'] == 'False'
           assert row['outcome_is_pre_treatment'] == 'True'
-          assert row['positivity'] == 'True'
+          assert row['positivity'] == 'False'
           assert row['exchangeability_empirically_testable'] == 'False'
           assert row['empirical_ate_identified'] == 'False'
-          assert row['structural_ate_identified'] == 'True'
-          assert row['identification_status'] == 'STRUCTURAL_INTERVENTION_IDENTIFIED_BUT_EMPIRICAL_ATE_NOT_IDENTIFIED'
-          print('Structural intervention identification audit: PASS')
+          assert row['structural_ate_identified'] == 'False'
+          assert row['identification_status'] == 'NOT_IDENTIFIED'
+          print('Structural intervention identification audit: PASS (correctly not identified)')
           PY
       - name: Verify deterministic reconstruction
         run: |
