@@ -31,10 +31,12 @@ class Audit:
     adequate_sample_for_effect: bool
 
 
-def _get(row: dict[str, str], *names: str) -> str:
+def _get(row: dict[str, str], *names: str, default: str | None = None) -> str:
     for name in names:
         if name in row and row[name] != "":
             return row[name]
+    if default is not None:
+        return default
     raise KeyError(f"none of the required columns found: {names}")
 
 
@@ -42,11 +44,12 @@ def load_v6(path: Path) -> list[Regime]:
     rows = list(csv.DictReader(path.open(encoding="utf-8")))
     regimes: list[Regime] = []
     for r in rows:
-        # The primitive coefficient map does not carry active_cell_count or P1;
-        # recover them from the regime-formula columns when available.  The
-        # integration workflow constructs that companion artifact first.
-        active = _get(r, "active_cell_count")
-        p1 = _get(r, "P1", "progress_end")
+        # The primitive coefficient map is the canonical input for this audit.
+        # Its binding_cells column provides the active-cell count; P1 is not
+        # used by the identification audit and is retained only for schema
+        # compatibility with the regime-level representation.
+        binding = _get(r, "binding_cells", "binding_feasibility_cells", default="")
+        active = _get(r, "active_cell_count", default=str(len([x for x in binding.split(";") if x])))
         regimes.append(
             Regime(
                 int(_get(r, "regime")),
@@ -54,7 +57,7 @@ def load_v6(path: Path) -> list[Regime]:
                 float(_get(r, "lambda_end")),
                 int(float(active)),
                 float(_get(r, "p0")),
-                float(p1),
+                float(_get(r, "P1", default="0.0")),
                 float(_get(r, "q0")),
             )
         )
