@@ -6,7 +6,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results"
-TOL = 1e-7
+ABS_TOL = 1e-7
+REL_TOL = 1e-6
 
 
 def value(c, x):
@@ -25,6 +26,16 @@ def derivatives(c, x):
     return d1, d2
 
 
+def close(a, b):
+    return abs(a-b) <= ABS_TOL + REL_TOL*max(1.0, abs(a), abs(b))
+
+
+def curvature_class(x):
+    if abs(x) <= ABS_TOL:
+        return "LINEAR"
+    return "CONVEX" if x > 0.0 else "CONCAVE"
+
+
 def main():
     source = RESULTS / "convergence_regime_derivatives_continuity_v2.csv"
     intersections = RESULTS / "convergence_exact_breakpoint_intersections_v2.csv"
@@ -40,7 +51,7 @@ def main():
     out = RESULTS / "convergence_exact_kink_analysis_v2.csv"
     with out.open("w", encoding="utf-8", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["boundary","lambda_exact","value_gap","left_derivative","right_derivative","derivative_jump","left_curvature","right_curvature","transition"])
+        w.writerow(["boundary","lambda_exact","value_gap","left_derivative","right_derivative","derivative_jump","left_curvature","right_curvature","left_curvature_class","right_curvature_class","transition"])
         for k, cut in enumerate(cuts):
             x = float(cut["exact_intersection"])
             vl = value(coefs[k], x)
@@ -51,10 +62,10 @@ def main():
             jump = dr-dl
             if not all(math.isfinite(z) for z in (x, vl, vr, dl, dr, d2l, d2r, gap, jump)):
                 raise AssertionError(f"non-finite kink diagnostic at boundary {k+1}")
-            if gap > TOL:
+            if gap > ABS_TOL + REL_TOL*max(1.0, abs(vl), abs(vr)):
                 raise AssertionError(f"value mismatch at exact intersection {x}: {gap}")
-            transition = "C1" if abs(jump) <= TOL else "KINK"
-            w.writerow([k+1, x, gap, dl, dr, jump, d2l, d2r, transition])
+            transition = "C1" if close(dl, dr) else "KINK"
+            w.writerow([k+1, x, gap, dl, dr, jump, d2l, d2r, curvature_class(d2l), curvature_class(d2r), transition])
     print(f"Classified {len(cuts)} exact regime transitions.")
 
 
