@@ -25,7 +25,6 @@ from model.heterogeneous_scenario import build_scenario
 from results.run_primitive_coefficient_map import read_matrix, read_vector, parse_cell
 
 RESULTS = ROOT / "results"
-LAMBDA_TOL = 1e-12
 EFFECT_TOL = 1e-12
 
 
@@ -53,26 +52,25 @@ def _matrix_lookup(matrix):
 
 
 def _coefficient_map(binding, marginal, gaps, weights, feasibility, costs, overrides):
-    a_sum = b_sum = 0.0
-    r0, r1, r2 = 1.0, 0.0, 0.0
+    A = B = 0.0
+    C, D, E = 1.0, 0.0, 0.0
     for label in binding:
         state, capability = parse_cell(label)
         g = gaps[state][capability]
         w = weights[capability]
         a = feasibility[state][capability] - 1.0
         d = overrides.get(label, costs[state][capability] - 1.0)
-        a_sum += w * g
-        b_sum += w * g * a
-        r0 -= g
-        r1 -= g * (a + d)
-        r2 -= g * a * d
+        A += w * g
+        B += w * g * a
+        C -= g
+        D -= g * (a + d)
+        E -= g * a * d
     if marginal:
         state, capability = parse_cell(marginal)
         F = overrides.get(marginal, costs[state][capability] - 1.0)
     else:
         F = 0.0
-    C, D, E = r0, r1, r2
-    return a_sum, b_sum, C, D, E, F
+    return A, B, C, D, E, F
 
 
 def _objective(coeff, lam):
@@ -88,9 +86,8 @@ def audit(rows, gaps, weights, feasibility, costs, delta=0.10):
         raise ValueError("non-empty regimes and 0 < delta < 1 are required")
     all_labels = [f"{s}:{c}" for s in STATES for c in CAPABILITIES]
     d_values = {
-        label: costs[s][c] - 1.0
+        f"{s}:{c}": costs[s][c] - 1.0
         for s in STATES for c in CAPABILITIES
-        for label in [f"{s}:{c}"]
     }
     admissible = {label for label, d in d_values.items() if d >= 0.0}
     excluded = set(all_labels) - admissible
@@ -105,9 +102,7 @@ def audit(rows, gaps, weights, feasibility, costs, delta=0.10):
         active_d_labels = set(binding)
         if marginal:
             active_d_labels.add(marginal)
-        for label in sorted(admissible):
-            if label not in active_d_labels:
-                continue
+        for label in sorted(admissible & active_d_labels):
             d = d_values[label]
             overrides = {label: (1.0 - delta) * d}
             cf = _coefficient_map(binding, marginal, gaps, weights, feasibility, costs, overrides)
