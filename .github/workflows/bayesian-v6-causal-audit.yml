@@ -1,0 +1,48 @@
+name: 12SCSM Bayesian V6 Causal Identification Audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'results/run_bayesian_v6_causal_audit.py'
+      - 'tests/test_bayesian_v6_causal_audit.py'
+      - '.github/workflows/bayesian-v6-causal-audit.yml'
+      - 'results/convergence_primitive_coefficient_map_v1.csv'
+      - 'requirements.txt'
+
+jobs:
+  bayesian-v6-causal-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install declared dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run unit tests
+        run: python -m unittest tests.test_bayesian_v6_causal_audit -v
+      - name: Run V6 causal identification audit
+        run: python results/run_bayesian_v6_causal_audit.py
+      - name: Validate audit artifact
+        run: |
+          test -s results/bayesian_v6_causal_identification_audit_v1.csv
+          python - <<'PY'
+          import csv
+          row = next(csv.DictReader(open('results/bayesian_v6_causal_identification_audit_v1.csv', encoding='utf-8')))
+          assert int(row['n']) == 7
+          assert row['treatment_varies'] == 'True'
+          assert row['outcome_varies'] == 'True'
+          assert row['positivity'] == 'True'
+          assert row['temporal_ordering'] == 'True'
+          assert row['adequate_sample_for_effect'] == 'False'
+          print('V6 Bayesian causal identification audit: PASS')
+          print('Substantive causal effect identified from current seven regimes: NO')
+          PY
+      - name: Publish audit artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: bayesian-v6-causal-identification-audit-v1
+          path: results/bayesian_v6_causal_identification_audit_v1.csv
