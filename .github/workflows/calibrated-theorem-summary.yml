@@ -1,0 +1,34 @@
+name: 12SCSM Calibrated Theorem Summary
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  summary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt
+      - name: Reconstruct validated artifacts
+        run: |
+          python results/run_gap_priority.py
+          python results/run_active_set_breakpoints.py
+          python results/run_active_set_regimes.py
+          python results/run_exact_regime_value_functions.py
+          python results/run_regime_derivatives_continuity.py
+          python results/run_exact_breakpoint_intersections.py
+          python results/run_exact_kink_analysis.py
+          python results/run_global_comparative_statics.py
+      - name: Generate theorem summary
+        run: python results/run_calibrated_theorem_summary.py
+      - uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-calibrated-theorem-summary-${{ github.sha }}
+          path: results/calibrated_global_theorem_summary_v2.txt
