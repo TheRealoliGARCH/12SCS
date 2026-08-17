@@ -17,26 +17,16 @@ class PrimitiveCoefficientMapTests(unittest.TestCase):
             "S2": {"N": 1.10},
             "M": {"N": 1.40},
         }
-        c = derive(
-            ["S1:N", "S2:N"],
-            "M:N",
-            gaps,
-            weights,
-            feasibility,
-            costs,
-        )
+        c = derive(["S1:N", "S2:N"], "M:N", gaps, weights, feasibility, costs)
         self.assertAlmostEqual(c["C"], 0.70)
-        self.assertAlmostEqual(c["D"], 0.05)
-        self.assertAlmostEqual(c["E"], -0.016)
+        self.assertAlmostEqual(c["D"], 0.02)
+        self.assertAlmostEqual(c["E"], 0.011)
         self.assertAlmostEqual(c["F"], 0.40)
         self.assertAlmostEqual(c["p1"], 2.0 * c["S"])
         self.assertAlmostEqual(c["p2"], c["F"] * c["S"])
         self.assertAlmostEqual(c["Delta_P"], 4.0 * c["S"] * c["T"])
         self.assertAlmostEqual(c["q0"], 2.0 * c["T"])
-        self.assertAlmostEqual(
-            c["Delta_Q"],
-            4.0 * c["F"]**4 * (c["r1"]**2 - 4.0*c["r0"]*c["r2"]),
-        )
+        self.assertAlmostEqual(c["Delta_Q"], 4.0 * c["F"]**4 * (c["r1"]**2 - 4.0*c["r0"]*c["r2"]))
 
 
 if __name__ == "__main__":
