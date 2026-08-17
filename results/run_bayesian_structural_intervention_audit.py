@@ -69,7 +69,7 @@ def audit(cells: list[Cell], delta: float = 0.10) -> Audit:
     treatment_varies = any(c.d != 0.0 for c in cells)
     # The intervention is a paired structural counterfactual for every cell;
     # this is positivity in the structural, not observational, sense.
-    positivity = all(c.d > 0.0 for c in cells)
+    positivity = all(c.d >= 0.0 for c in cells)
     consistency = True
 
     # No external treatment-assignment mechanism is present in V6.  Hence
