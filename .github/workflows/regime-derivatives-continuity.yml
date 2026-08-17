@@ -42,10 +42,15 @@ jobs:
           assert abs(float(rows[-1]['lambda_end']) - 1.0) < 1e-12
           for a, b in zip(rows[:-1], rows[1:]):
               assert abs(float(a['lambda_end']) - float(b['lambda_start'])) < 1e-12
+          max_jump = 0.0
           for r in rows:
               for k in ('A','B','C','D','E','F','dPi_start','dPi_mid','dPi_end','ddPi_mid'):
                   assert math.isfinite(float(r[k]))
-          print(f'Derivative and continuity validation passed for {len(rows)} regimes.')
+              jump = float(r['value_jump_to_next'])
+              assert math.isfinite(jump)
+              assert jump <= 1e-6
+              max_jump = max(max_jump, jump)
+          print(f'Derivative and continuity validation passed for {len(rows)} regimes; max breakpoint value jump={max_jump:.3e}.')
           PY
       - name: Publish derivative artifact
         uses: actions/upload-artifact@v6
