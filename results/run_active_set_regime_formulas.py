@@ -3,12 +3,12 @@ from __future__ import annotations
 import csv
 import sys
 from pathlib import Path
-from model.convergence_optimization import allocate_budget, total_cost, weighted_progress
-from model.convergence_analysis import CAPABILITIES, STATES
-from model.heterogeneous_scenario import build_scenario
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+from model.convergence_optimization import allocate_budget, total_cost, weighted_progress
+from model.convergence_analysis import CAPABILITIES, STATES
+from model.heterogeneous_scenario import build_scenario
 RESULTS = ROOT / "results"
 BUDGET = 1.0
 TOL = 1e-10
@@ -34,9 +34,7 @@ def solve(level, positive, weights, feasibility_base, costs_base):
     return allocation, feasibility, costs
 
 def classify(allocation, positive, feasibility):
-    active = []
-    binding = []
-    marginal = []
+    active, binding, marginal = [], [], []
     for i in range(len(STATES)):
         for j in range(len(CAPABILITIES)):
             x = allocation[i][j]
@@ -69,8 +67,7 @@ def main():
             mid = (left + right) / 2.0
             allocations = []
             for level in (left, mid, right):
-                allocation, feasibility, costs = solve(level, positive, weights, feasibility_base, costs_base)
-                allocations.append((allocation, feasibility, costs))
+                allocations.append(solve(level, positive, weights, feasibility_base, costs_base))
             alloc_mid, feas_mid, costs_mid = allocations[1]
             active, binding, marginal = classify(alloc_mid, positive, feas_mid)
             if len(marginal) > 1:
