@@ -1,0 +1,71 @@
+name: 12SCSM Bayesian Admissible Intervention Audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'results/run_bayesian_admissible_intervention_audit.py'
+      - 'results/run_bayesian_cell_level_causal_dataset.py'
+      - 'tests/test_bayesian_admissible_intervention_audit.py'
+      - '.github/workflows/bayesian-admissible-intervention-audit.yml'
+      - 'requirements.txt'
+      - 'model/**'
+
+permissions:
+  contents: read
+
+jobs:
+  admissible-intervention-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install declared dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run unit tests
+        run: python -m unittest tests.test_bayesian_admissible_intervention_audit -v
+      - name: Reconstruct V6 cell-level data
+        run: |
+          python results/run_gap_priority.py
+          python results/run_active_set_breakpoints.py
+          python results/run_active_set_regimes.py
+          python results/run_active_set_regime_formulas.py
+          python results/run_primitive_coefficient_map.py
+          python results/run_bayesian_cell_level_causal_dataset.py
+      - name: Run admissible-population intervention audit
+        run: python results/run_bayesian_admissible_intervention_audit.py
+      - name: Validate admissible intervention identification result
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p = Path('results/bayesian_admissible_intervention_audit_v1.csv')
+          row = next(csv.DictReader(p.open(encoding='utf-8')))
+          assert int(row['n_total']) > 0
+          assert int(row['n_admissible']) > 0
+          assert int(row['n_excluded']) > 0
+          assert int(row['n_admissible']) + int(row['n_excluded']) == int(row['n_total'])
+          assert row['intervention_well_defined'] == 'True'
+          assert row['outcome_pre_treatment'] == 'True'
+          assert row['structural_positivity'] == 'True'
+          assert row['consistency'] == 'True'
+          assert row['empirical_ate_identified'] == 'False'
+          assert row['structural_ate_identified'] == 'True'
+          assert row['identification_status'] == 'ADMISSIBLE_STRUCTURAL_INTERVENTION_IDENTIFIED_BUT_EMPIRICAL_ATE_NOT_IDENTIFIED'
+          print('Admissible structural intervention identification audit: PASS')
+          PY
+      - name: Verify deterministic reconstruction
+        run: |
+          cp results/bayesian_admissible_intervention_audit_v1.csv /tmp/admissible-intervention-first.csv
+          python results/run_bayesian_admissible_intervention_audit.py
+          cmp /tmp/admissible-intervention-first.csv results/bayesian_admissible_intervention_audit_v1.csv
+          echo 'Admissible intervention audit reproducibility: PASS'
+      - name: Publish admissible intervention audit
+        uses: actions/upload-artifact@v6
+        with:
+          name: bayesian-admissible-intervention-audit-v1
+          path: results/bayesian_admissible_intervention_audit_v1.csv
