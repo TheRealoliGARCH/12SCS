@@ -1,0 +1,68 @@
+name: 12SCSM Structural Counterfactual Estimand Audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'results/run_bayesian_structural_counterfactual.py'
+      - 'results/run_primitive_coefficient_map.py'
+      - 'tests/test_bayesian_structural_counterfactual.py'
+      - '.github/workflows/bayesian-structural-counterfactual-estimand-audit.yml'
+      - 'model/**'
+      - 'requirements.txt'
+
+permissions:
+  contents: read
+
+jobs:
+  structural-counterfactual-estimand-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install declared dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run unit tests
+        run: python -m unittest tests.test_bayesian_structural_counterfactual -v
+      - name: Reconstruct V6 primitive coefficient map
+        run: |
+          python results/run_gap_priority.py
+          python results/run_active_set_breakpoints.py
+          python results/run_active_set_regimes.py
+          python results/run_active_set_regime_formulas.py
+          python results/run_primitive_coefficient_map.py
+      - name: Run structural counterfactual estimand audit
+        run: python results/run_bayesian_structural_counterfactual.py
+      - name: Validate structural estimand result
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p = Path('results/bayesian_structural_counterfactual_estimand_audit_v1.csv')
+          row = next(csv.DictReader(p.open(encoding='utf-8')))
+          assert int(row['n_regimes']) > 0
+          assert int(row['n_cells']) > 0
+          assert int(row['n_admissible_cells']) > 0
+          assert int(row['n_nonzero_cell_effects']) > 0
+          assert float(row['max_abs_effect']) > 0.0
+          assert row['outcome_responds_to_d'] == 'True'
+          assert row['structural_estimand_defined'] == 'True'
+          assert row['empirical_ate_identified'] == 'False'
+          assert row['status'] == 'STRUCTURAL_ESTIMAND_DEFINED_BUT_EMPIRICAL_ATE_NOT_IDENTIFIED'
+          print('Structural counterfactual estimand audit: PASS')
+          PY
+      - name: Verify deterministic reconstruction
+        run: |
+          cp results/bayesian_structural_counterfactual_estimand_audit_v1.csv /tmp/structural-counterfactual-first.csv
+          python results/run_bayesian_structural_counterfactual.py
+          cmp /tmp/structural-counterfactual-first.csv results/bayesian_structural_counterfactual_estimand_audit_v1.csv
+          echo 'Structural counterfactual audit reproducibility: PASS'
+      - name: Publish structural estimand audit
+        uses: actions/upload-artifact@v6
+        with:
+          name: bayesian-structural-counterfactual-estimand-audit-v1
+          path: results/bayesian_structural_counterfactual_estimand_audit_v1.csv
