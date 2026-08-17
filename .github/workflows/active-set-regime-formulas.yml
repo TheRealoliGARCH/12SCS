@@ -35,21 +35,29 @@ jobs:
           python - <<'PY'
           import csv, math
           from pathlib import Path
-          p = Path('results/convergence_active_set_regime_formulas_v2.csv')
-          rows = list(csv.DictReader(p.open(encoding='utf-8')))
-          assert len(rows) == 14
+          regime_path = Path('results/convergence_active_set_regimes_v2.csv')
+          mechanics_path = Path('results/convergence_active_set_regime_formulas_v2.csv')
+          regimes = list(csv.DictReader(regime_path.open(encoding='utf-8')))
+          rows = list(csv.DictReader(mechanics_path.open(encoding='utf-8')))
+          assert regimes, 'no active-set regimes were generated'
+          assert rows, 'no regime mechanics rows were generated'
+          assert len(rows) == len(regimes), (len(rows), len(regimes))
           assert abs(float(rows[0]['lambda_start'])) < 1e-12
           assert abs(float(rows[-1]['lambda_end']) - 1.0) < 1e-12
           for a, b in zip(rows[:-1], rows[1:]):
               assert abs(float(a['lambda_end']) - float(b['lambda_start'])) < 1e-12
           for r in rows:
-              for k in ('lambda_start','lambda_end','progress_start','progress_mid','progress_end','continuity_error'):
+              for k in ('lambda_start','lambda_end','budget_residual','progress_start','progress_mid','progress_end'):
                   assert math.isfinite(float(r[k]))
               assert int(r['active_cell_count']) > 0
-          print('Regime mechanics validation passed: 14 regimes.')
+              assert len([x for x in r['marginal_cell'].split(';') if x]) <= 1
+              assert float(r['budget_residual']) >= -1e-10
+          print(f'Regime mechanics validation passed: {len(rows)} contiguous regimes.')
           PY
       - name: Publish regime mechanics artifact
         uses: actions/upload-artifact@v6
         with:
           name: 12scsm-active-set-regime-mechanics-${{ github.sha }}
-          path: results/convergence_active_set_regime_formulas_v2.csv
+          path: |
+            results/convergence_active_set_regimes_v2.csv
+            results/convergence_active_set_regime_formulas_v2.csv
