@@ -17,9 +17,13 @@ def read_vector(path):
 
 class PrimitiveCounterfactualCoefficientMapTests(unittest.TestCase):
     def test_exact_affine_map(self):
+        gap_file=ROOT/"results/capability_gap_positive_v2.csv"
+        weight_file=ROOT/"results/capability_dispersion_weights_v2.csv"
+        if not gap_file.exists() or not weight_file.exists():
+            subprocess.run([sys.executable,"results/run_gap_priority.py"],cwd=ROOT,check=True)
         subprocess.run([sys.executable,"results/run_primitive_counterfactual_coefficient_map.py"],cwd=ROOT,check=True)
         rows=list(csv.DictReader((ROOT/"results/convergence_primitive_counterfactual_coefficient_map_v1.csv").open(encoding="utf-8")))
-        gaps=read_matrix(ROOT/"results/capability_gap_positive_v2.csv"); weights=read_vector(ROOT/"results/capability_dispersion_weights_v2.csv")
+        gaps=read_matrix(gap_file); weights=read_vector(weight_file)
         f_raw,c_raw=build_scenario(STATES,CAPABILITIES)
         feas={s:{c:float(f_raw[i][j]) for j,c in enumerate(CAPABILITIES)} for i,s in enumerate(STATES)}
         costs={s:{c:float(c_raw[i][j]) for j,c in enumerate(CAPABILITIES)} for i,s in enumerate(STATES)}
