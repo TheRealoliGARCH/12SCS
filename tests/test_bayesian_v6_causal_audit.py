@@ -8,7 +8,10 @@ class BayesianV6CausalAuditTests(unittest.TestCase):
     def test_v6_has_variation_but_not_effect_identification(self):
         regimes = load_v6(Path("results/convergence_primitive_coefficient_map_v1.csv"))
         result = audit(regimes)
-        self.assertEqual(result.n, 7)
+        # V6 contains thirteen active-set regimes in the reproducibility artifact.
+        # The audit deliberately does not treat this small regime-level sample as
+        # sufficient for a substantive causal-effect estimate.
+        self.assertEqual(result.n, 13)
         self.assertTrue(result.treatment_varies)
         self.assertTrue(result.outcome_varies)
         self.assertTrue(result.positivity)
