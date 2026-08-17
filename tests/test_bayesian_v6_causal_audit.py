@@ -6,11 +6,12 @@ from results.run_bayesian_v6_causal_audit import audit, load_v6
 
 class BayesianV6CausalAuditTests(unittest.TestCase):
     def test_v6_has_variation_but_not_effect_identification(self):
-        regimes = load_v6(Path("results/convergence_primitive_coefficient_map_v1.csv"))
+        # Unit tests must not depend on generated workflow artifacts.  The
+        # deterministic fixture mirrors the V6 regime-level schema and retains
+        # the identification properties being tested.
+        fixture = Path(__file__).parent / "fixtures" / "v6_causal_audit.csv"
+        regimes = load_v6(fixture)
         result = audit(regimes)
-        # V6 contains thirteen active-set regimes in the reproducibility artifact.
-        # The audit deliberately does not treat this small regime-level sample as
-        # sufficient for a substantive causal-effect estimate.
         self.assertEqual(result.n, 13)
         self.assertTrue(result.treatment_varies)
         self.assertTrue(result.outcome_varies)
