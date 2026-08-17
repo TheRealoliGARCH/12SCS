@@ -18,9 +18,7 @@ with
     D = -sum_i g_i(a_i+d_i),
     E = -sum_i g_i a_i d_i.
 
-This module records the exact primitive forms of the derivative numerators.
-A crucial correction to the earlier Phase-II draft is that the second derivative
-numerator is CONSTANT: q1=q2=0 identically.  Thus q0+q1+q2=q0.
+The second-derivative numerator is CONSTANT: q1=q2=0 identically.
 """
 from __future__ import annotations
 
@@ -68,25 +66,24 @@ def derive(cells: Sequence[Cell], budget: float, marginal_d: float) -> Primitive
     p1 = 2.0 * S
     p2 = F * S
 
-    # Direct differentiation of P(lambda)/(1+F lambda)^2 gives
-    # Pi''(lambda) = q0/(1+F lambda)^3.  All lambda-dependent terms cancel.
+    # Exact cancellation after differentiation:
+    # Pi''(lambda) = q0/(1+F lambda)^3, with q1=q2=0.
     q0 = 2.0 * (E - F * D + F * F * C)
     q1 = 0.0
     q2 = 0.0
 
     P1 = p0 + p1 + p2
-    Q1 = q0 + q1 + q2
+    Q1 = q0
     return PrimitiveMap(A, B, C, D, E, F, p0, p1, p2, q0, q1, q2, P1, Q1)
 
 
 def primitive_forms(cells: Sequence[Cell], budget: float, marginal_d: float) -> dict[str, str]:
-    """Return human-readable exact primitive expressions used in Phase II."""
-    # These strings are deliberately algebraic rather than calibration-specific.
+    """Return exact primitive expressions used by the Phase II sign analysis."""
     return {
         "p0": "sum_i g_i[w_i a_i - (a_i+d_i) + F] - F B0",
         "P1": (
-            "sum_i g_i[w_i a_i(1+F)^2 "
-            "- (a_i+d_i)(1+2F) - a_i d_i(2+F) + F] - F B0"
+            "sum_i g_i[w_i a_i(1+F)^2 - (a_i+d_i) "
+            "- a_i d_i(2+F) + F] - F B0"
         ),
         "q0": "2[F^2 B0 - sum_i g_i(a_i-F)(d_i-F)]",
         "Q1": "2[F^2 B0 - sum_i g_i(a_i-F)(d_i-F)]",
@@ -101,9 +98,9 @@ def sign_restrictions() -> dict[str, str]:
         "denominator": "F > -1 implies 1+F lambda > 0 on [0,1]",
         "a": "kappa_i^0 in [0,1] implies -1 <= a_i <= 0",
         "d": "c_i^0 > 0 implies d_i > -1",
-        "p0": "sign is not implied by the primitive box alone; p0 requires an additional inequality",
-        "P1": "sign is not implied by the primitive box alone; P1 requires an additional inequality",
-        "q0": "sign is equivalent to F^2 B0 >= sum_i g_i(a_i-F)(d_i-F) for q0 >= 0",
+        "p0": "the primitive box alone does not determine the sign of p0",
+        "P1": "the primitive box alone does not determine the sign of P1",
+        "q0": "q0 >= 0 iff F^2 B0 >= sum_i g_i(a_i-F)(d_i-F)",
     }
 
 
