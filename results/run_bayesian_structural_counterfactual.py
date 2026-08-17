@@ -84,10 +84,10 @@ def _objective(coeff, lam):
 def audit(rows, gaps, weights, feasibility, costs, delta=0.10):
     if not rows or not (0.0 < delta < 1.0):
         raise ValueError("non-empty regimes and 0 < delta < 1 are required")
-    all_labels = [f"{s}:{c}" for s in STATES for c in CAPABILITIES]
+    all_labels = [f"{state}:{cap}" for state in costs for cap in costs[state]]
     d_values = {
-        f"{s}:{c}": costs[s][c] - 1.0
-        for s in STATES for c in CAPABILITIES
+        f"{state}:{cap}": costs[state][cap] - 1.0
+        for state in costs for cap in costs[state]
     }
     admissible = {label for label, d in d_values.items() if d >= 0.0}
     excluded = set(all_labels) - admissible
