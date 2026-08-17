@@ -1,19 +1,9 @@
-"""Derive the primitive coefficient map for the Phase II rational regime.
-
-Within a fixed active-set regime, binding cells are saturated at
-    delta_ij = g_ij (1 + a_ij lambda),
-while one marginal cell m absorbs the residual budget at cost
-    c_m(lambda) = 1 + F lambda.
-The resulting progress function has the exact form
-    A + B lambda + (C + D lambda + E lambda^2)/(1 + F lambda).
-
-No calibration-specific coefficient values are hard-coded here.
-"""
+"""Derive the primitive coefficient map for a fixed active-set regime."""
 from __future__ import annotations
 
 import csv
-from pathlib import Path
 import sys
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -42,29 +32,17 @@ def read_vector(path: Path):
 
 
 def parse_cell(label: str):
-    state, capability = label.split(":", 1)
-    return state, capability
+    return label.split(":", 1)
 
 
 def matrix_to_lookup(matrix):
-    """Convert the scenario's tuple-of-tuples to state/capability lookup."""
-    return {
-        state: {
-            capability: float(matrix[i][j])
-            for j, capability in enumerate(CAPABILITIES)
-        }
-        for i, state in enumerate(STATES)
-    }
+    return {state: {cap: float(matrix[i][j]) for j, cap in enumerate(CAPABILITIES)}
+            for i, state in enumerate(STATES)}
 
 
 def derive(binding_labels, marginal_label, gaps, weights, feasibility_base, costs_base):
-    """Return exact primitive and rational coefficients for one regime."""
-    A = 0.0
-    B = 0.0
-    r0 = BUDGET
-    r1 = 0.0
-    r2 = 0.0
-
+    A = B = 0.0
+    r0, r1, r2 = BUDGET, 0.0, 0.0
     for label in binding_labels:
         state, capability = parse_cell(label)
         g = gaps[state][capability]
@@ -85,22 +63,25 @@ def derive(binding_labels, marginal_label, gaps, weights, feasibility_base, cost
 
     C, D, E = r0, r1, r2
     p0 = B + D - F * C
-    p1 = 2.0 * (B * F + E)
-    p2 = F * (B * F + E)
-    q0 = 2.0 * (E - D * F + C * F * F)
-    q1 = 2.0 * F * (D * F - 2.0 * E)
-    q2 = 2.0 * F * F * E
-    delta_p = p1 * p1 - 4.0 * p2 * p0
-    delta_q = q1 * q1 - 4.0 * q2 * q0
-
     S = B * F + E
+    p1 = 2.0 * S
+    p2 = F * S
+
+    # Exact cancellation in the second derivative.
+    q0 = 2.0 * (E - F * D + F * F * C)
+    q1 = 0.0
+    q2 = 0.0
+
+    delta_p = p1 * p1 - 4.0 * p2 * p0
+    delta_q = 0.0
     T = E - F * D + F * F * C
+
     assert abs(p1 - 2.0 * S) < 1e-10
     assert abs(p2 - F * S) < 1e-10
     assert abs(delta_p - 4.0 * S * T) < 1e-8
     assert abs(q0 - 2.0 * T) < 1e-10
-    assert abs(delta_p - 2.0 * (B * F + E) * q0) < 1e-8
-    assert abs(delta_q - 4.0 * F**4 * (r1*r1 - 4.0*r0*r2)) < 1e-8
+    assert q1 == 0.0 and q2 == 0.0
+    assert delta_q == 0.0
 
     return dict(A=A, B=B, C=C, D=D, E=E, F=F,
                 p0=p0, p1=p1, p2=p2, q0=q0, q1=q1, q2=q2,
@@ -134,44 +115,17 @@ def main():
             output.update({k: coeff[k] for k in fields if k in coeff})
             writer.writerow(output)
 
-    text = RESULTS / "primitive_coefficient_map_v1.txt"
-    text.write_text(
+    (RESULTS / "primitive_coefficient_map_v1.txt").write_text(
         "12SCS PHASE II -- PRIMITIVE COEFFICIENT MAP\n\n"
-        "Fix an active-set regime with binding cells i in I and at most one\n"
-        "marginal cell m. Write g_i for the positive capability gap, w_i for\n"
-        "the capability weight, a_i = kappa_i^0 - 1, and d_i = c_i^0 - 1.\n"
-        "Then kappa_i(lambda)=1+a_i lambda and c_i(lambda)=1+d_i lambda.\n\n"
-        "For binding cells, the progress contribution is w_i g_i(1+a_i lambda),\n"
-        "and their budget expenditure is g_i(1+a_i lambda)(1+d_i lambda).\n"
-        "Define the residual-budget polynomial R(lambda)=r0+r1 lambda+r2 lambda^2,\n"
-        "where\n"
-        "  r0 = B0 - sum_i g_i,\n"
-        "  r1 = -sum_i g_i(a_i+d_i),\n"
-        "  r2 = -sum_i g_i a_i d_i.\n\n"
-        "For marginal cell m, F=d_m and the exact rational coefficients are\n"
-        "  A = sum_i w_i g_i,\n"
-        "  B = sum_i w_i g_i a_i,\n"
-        "  C = r0,  D = r1,  E = r2.\n"
-        "Hence Pi(lambda)=A+B lambda+(C+D lambda+E lambda^2)/(1+F lambda).\n\n"
-        "The primitive restrictions include g_i >= 0, w_i >= 0, kappa_i^0 in [0,1],\n"
-        "and c_i^0 > 0. Therefore a_i in [-1,0], d_i > -1, and F > -1.\n"
-        "The last inequality makes the rational denominator strictly positive on\n"
-        "[0,1] without any calibration-specific numerical assumption.\n\n"
-        "The first-order numerator satisfies\n"
-        "  p0=B+D-FC, p1=2(BF+E), p2=F(BF+E).\n"
-        "Put S=BF+E and T=E-FD+F^2 C. Then\n"
-        "  Delta_P=4ST=2(BF+E)q0,  q0=2T.\n"
-        "Moreover\n"
-        "  Delta_Q=4F^4(r1^2-4r0 r2).\n"
-        "Thus the discriminants are not independent objects: both are generated\n"
-        "by the residual-budget polynomial and the marginal-cell cost slope.\n\n"
-        "A useful endogenous sign implication is\n"
-        "  q2 = -2F^2 sum_i g_i a_i d_i.\n"
-        "Consequently, if every binding cell has c_i^0 >= 1 (d_i >= 0), then\n"
-        "q2 >= 0. If every binding cell has c_i^0 <= 1, then q2 <= 0.\n"
-        "This converts a curvature coefficient sign into a primitive cost-feasibility\n"
-        "condition. Analogous primitive inequalities can be tested directly for\n"
-        "p0, p0+p1+p2, and T to obtain parameter-free monotonicity/curvature theorems.\n",
+        "For binding cells i, let a_i=kappa_i^0-1, d_i=c_i^0-1, gap g_i,\n"
+        "weight w_i, and let F=d_m for the marginal cell. Then\n"
+        "A=sum_i w_i g_i, B=sum_i w_i g_i a_i, C=B0-sum_i g_i,\n"
+        "D=-sum_i g_i(a_i+d_i), E=-sum_i g_i a_i d_i.\n\n"
+        "The first derivative numerator is P=p0+p1 lambda+p2 lambda^2 with\n"
+        "p0=B+D-FC, p1=2(BF+E), p2=F(BF+E).\n"
+        "Writing S=BF+E and T=E-FD+F^2 C gives Delta_P=4ST and q0=2T.\n"
+        "The second derivative is exactly q0/(1+F lambda)^3; hence q1=q2=0\n"
+        "and Delta_Q=0 identically.\n",
         encoding="utf-8")
     print(out)
 
