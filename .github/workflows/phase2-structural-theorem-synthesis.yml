@@ -36,19 +36,30 @@ jobs:
           assert p.exists() and p.stat().st_size > 0
           rows = list(csv.DictReader(p.open(encoding='utf-8')))
           assert len(rows) == 10
-          required = {'analysis','component','statement','status','inference_level'}
+          required = {
+              'analysis', 'theorem_component', 'conditions_or_definition',
+              'conclusion', 'status'
+          }
           assert required.issubset(rows[0])
-          components = {r['component'] for r in rows}
+          components = {r['theorem_component'] for r in rows}
           assert components == {
-              'definitions', 'derivative_coefficients', 'curvature_identity',
-              'discriminant_factorization', 'convex_endpoint_certificate',
-              'global_discriminant_certificate', 'linear_certificate',
-              'degenerate_S_branch', 'degenerate_q0_branch', 'scope'
+              'pole_exclusion', 'first_derivative', 'coefficients',
+              'curvature_bridge', 'convex_endpoint_certificate',
+              'concave_discriminant_certificate', 'linear_certificate',
+              'curvature_to_discriminant', 'degenerate_branch',
+              'curvature_neutral_branch'
           }
           for r in rows:
               assert r['analysis'] == 'phase2_structural_theorem_synthesis'
-              assert r['status'] == 'established'
-              assert r['inference_level'] == 'structural_coefficient_theorem'
+          assert sum(r['status'] == 'exact' for r in rows) == 4
+          assert sum(r['status'] == 'sufficient' for r in rows) == 3
+          assert sum(r['status'] == 'exact sign implication' for r in rows) == 1
+          assert sum(r['status'] == 'strict positivity of denominator' for r in rows) == 1
+          assert sum(r['status'] == 'coefficient reduction' for r in rows) == 1
+          by_name = {r['theorem_component']: r for r in rows}
+          assert by_name['curvature_bridge']['conclusion'] == 'Delta_P=4*S*T=2*S*q0'
+          assert by_name['degenerate_branch']['conclusion'] == 'p1=p2=0 and Delta_P=0'
+          assert by_name['curvature_neutral_branch']['conclusion'] == 'Delta_P=0'
           print('PHASE2 structural theorem synthesis validated: PHASE2_STRUCTURAL_THEOREM_SYNTHESIS_COMPLETE.')
           PY
 
