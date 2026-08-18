@@ -1,0 +1,78 @@
+name: Bayesian Regression Discontinuity Summary Prior Sensitivity
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rd-summary-prior-sensitivity:
+    name: RD summary prior sensitivity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Reconstruct summary bootstrap input
+        run: python results/run_rd_summary_bootstrap.py
+
+      - name: Run Bayesian RD prior sensitivity analysis
+        run: python results/run_bayesian_rd_summary_prior_sensitivity.py
+
+      - name: Validate prior sensitivity output
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          p = Path('results/bayesian_rd_summary_prior_sensitivity_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 21
+          required = {
+              'country','estimate','standard_error','prior_mean','prior_sd',
+              'posterior_mean','posterior_sd','posterior_q025','posterior_median',
+              'posterior_q975','posterior_prob_negative','posterior_prob_positive',
+              'source_type'
+          }
+          assert required.issubset(rows[0])
+          countries = {'Pakistan','Israel','North Korea'}
+          scales = {1.0,2.0,5.0,10.0,20.0,50.0,100.0}
+          assert {r['country'] for r in rows} == countries
+          assert {float(r['prior_sd']) for r in rows} == scales
+          for country in countries:
+              subset = sorted((r for r in rows if r['country'] == country), key=lambda r: float(r['prior_sd']))
+              assert len(subset) == 7
+              assert [float(r['prior_sd']) for r in subset] == sorted(scales)
+              means = [abs(float(r['posterior_mean'])) for r in subset]
+              assert all(a <= b + 1e-12 for a, b in zip(means, means[1:]))
+              for r in subset:
+                  assert float(r['posterior_sd']) > 0.0
+                  assert float(r['posterior_q025']) <= float(r['posterior_median']) <= float(r['posterior_q975'])
+                  pneg = float(r['posterior_prob_negative'])
+                  ppos = float(r['posterior_prob_positive'])
+                  assert 0.0 <= pneg <= 1.0
+                  assert 0.0 <= ppos <= 1.0
+                  assert abs((pneg + ppos) - 1.0) < 1e-12
+                  assert r['source_type'] == 'reported_estimate_and_standard_error'
+          print('RD summary prior sensitivity validated: RD_SUMMARY_PRIOR_SENSITIVITY_COMPLETE.')
+          PY
+
+      - name: Run prior-sensitivity unit test
+        run: python -m unittest tests.test_bayesian_rd_summary_prior_sensitivity -v
+
+      - name: Publish prior-sensitivity artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-rd-summary-prior-sensitivity-${{ github.sha }}
+          path: results/bayesian_rd_summary_prior_sensitivity_v1.csv
