@@ -1,0 +1,58 @@
+name: Bayesian Regression Discontinuity Prior Specification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rd-prior-specification:
+    name: RD prior specification audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run Bayesian RD prior specification
+        run: python results/run_bayesian_rd_prior_specification.py
+
+      - name: Validate RD prior specification
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p = Path('results/bayesian_rd_prior_specification_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 5
+          required = {'parameter','family','location','scale','proper'}
+          assert required.issubset(rows[0])
+          priors = {r['parameter']: r for r in rows}
+          assert set(priors) == {'alpha','tau','beta','gamma','sigma'}
+          for key in priors:
+              assert priors[key]['proper'] == 'True'
+              assert float(priors[key]['scale']) > 0.0
+          for key in ('alpha','tau','beta','gamma'):
+              assert priors[key]['family'] == 'Normal'
+          assert priors['sigma']['family'] == 'HalfNormal'
+          print('RD prior specification validated: RD_PRIORS_SPECIFIED.')
+          PY
+
+      - name: Run RD prior specification unit test
+        run: python -m unittest tests.test_bayesian_rd_prior_specification -v
+
+      - name: Publish RD prior specification artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-rd-prior-specification-${{ github.sha }}
+          path: results/bayesian_rd_prior_specification_v1.csv
