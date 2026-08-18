@@ -1,0 +1,63 @@
+name: Phase II Sharpness Witnesses
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sharpness-witnesses:
+    name: Phase II sharpness witnesses
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run sharpness witnesses
+        run: python results/run_phase2_sharpness_witnesses.py
+
+      - name: Validate sharpness witness artifact
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          p = Path('results/phase2_sharpness_witnesses_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 7
+          witnesses = [r for r in rows if r['status'] == 'sharpness_witness']
+          boundaries = [r for r in rows if r['status'] == 'boundary_non_witness']
+          scope = [r for r in rows if r['status'] == 'scope']
+          assert len(witnesses) == 5
+          assert len(boundaries) == 1
+          assert len(scope) == 1
+          assert {r['analysis'] for r in rows} == {'phase2_sharpness_witnesses'}
+          assert {r['inference_level'] for r in rows} == {'coefficient_level_sharpness'}
+          print('PHASE2 sharpness witnesses validated: PHASE2_SHARPNESS_WITNESSES_COMPLETE.')
+          PY
+
+      - name: Run sharpness witness unit test
+        run: python -m unittest tests.test_phase2_sharpness_witnesses -v
+
+      - name: Re-run witnesses for reproducibility
+        run: |
+          cp results/phase2_sharpness_witnesses_v1.csv /tmp/phase2_sharpness_witnesses_first.csv
+          python results/run_phase2_sharpness_witnesses.py
+          cmp /tmp/phase2_sharpness_witnesses_first.csv results/phase2_sharpness_witnesses_v1.csv
+
+      - name: Publish sharpness witness artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scs-phase2-sharpness-witnesses-${{ github.sha }}
+          path: results/phase2_sharpness_witnesses_v1.csv
