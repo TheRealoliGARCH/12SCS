@@ -1,0 +1,82 @@
+name: Bayesian Regression Discontinuity Summary Cross-Diagnostic Synthesis
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rd-summary-cross-diagnostic-synthesis:
+    name: RD summary cross-diagnostic synthesis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Reconstruct summary bootstrap input
+        run: python results/run_rd_summary_bootstrap.py
+
+      - name: Run full hierarchical pooling
+        run: python results/run_bayesian_rd_summary_hierarchical_pooling.py
+
+      - name: Run hierarchical hyperprior sensitivity
+        run: python results/run_bayesian_rd_summary_hierarchical_sensitivity.py
+
+      - name: Run hierarchical posterior predictive check
+        run: python results/run_bayesian_rd_summary_hierarchical_ppc.py
+
+      - name: Run hierarchical leave-one-out analysis
+        run: python results/run_bayesian_rd_summary_hierarchical_leave_one_out.py
+
+      - name: Run hierarchical influence diagnostic
+        run: python results/run_bayesian_rd_summary_hierarchical_influence.py
+
+      - name: Run cross-diagnostic synthesis
+        run: python results/run_bayesian_rd_summary_cross_diagnostic_synthesis.py
+
+      - name: Validate cross-diagnostic synthesis output
+        run: |
+          python - <<'PY'
+          import csv
+          import math
+          from pathlib import Path
+
+          p = Path('results/bayesian_rd_summary_cross_diagnostic_synthesis_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 14
+          required = {'analysis','diagnostic_layer','metric','value','source_type','inference_level'}
+          assert required.issubset(rows[0])
+          assert {r['diagnostic_layer'] for r in rows} == {
+              'full_sample', 'hyperprior_sensitivity', 'leave_one_out', 'posterior_predictive_check'
+          }
+          assert sum(r['diagnostic_layer'] == 'full_sample' for r in rows) == 3
+          assert sum(r['diagnostic_layer'] == 'hyperprior_sensitivity' for r in rows) == 5
+          assert sum(r['diagnostic_layer'] == 'leave_one_out' for r in rows) == 4
+          assert sum(r['diagnostic_layer'] == 'posterior_predictive_check' for r in rows) == 2
+          for r in rows:
+              assert r['analysis'] == 'bayesian_rd_summary_cross_diagnostic_synthesis'
+              assert math.isfinite(float(r['value']))
+              assert r['source_type'] == 'reported_estimate_and_standard_error'
+              assert r['inference_level'] == 'summary_data_cross_diagnostic_synthesis'
+          print('RD summary cross-diagnostic synthesis validated: RD_SUMMARY_CROSS_DIAGNOSTIC_SYNTHESIS_COMPLETE.')
+          PY
+
+      - name: Run cross-diagnostic synthesis unit test
+        run: python -m unittest tests.test_bayesian_rd_summary_cross_diagnostic_synthesis -v
+
+      - name: Publish cross-diagnostic synthesis artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-rd-summary-cross-diagnostic-synthesis-${{ github.sha }}
+          path: results/bayesian_rd_summary_cross_diagnostic_synthesis_v1.csv
