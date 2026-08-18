@@ -1,0 +1,61 @@
+name: Bayesian Regression Discontinuity Data Contract
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rd-data-contract:
+    name: RD data contract audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run Bayesian RD data contract
+        run: python results/run_bayesian_rd_data_contract.py
+
+      - name: Validate RD data contract result
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p = Path('results/bayesian_rd_data_contract_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 1
+          r = rows[0]
+          required = {'input_present','canonical_fields','observation_count','cutoff_consistent','sharp_assignment_verified','status'}
+          assert required.issubset(r)
+          if r['input_present'] == 'False':
+              assert r['observation_count'] == '0'
+              assert r['cutoff_consistent'] == 'False'
+              assert r['sharp_assignment_verified'] == 'False'
+              assert r['status'] == 'RD_DATA_NOT_SUPPLIED'
+          else:
+              assert int(r['observation_count']) > 0
+              assert r['cutoff_consistent'] == 'True'
+              assert r['sharp_assignment_verified'] == 'True'
+              assert r['status'] == 'RD_DATA_CONTRACT_VALID'
+          print('RD data contract validated:', r['status'])
+          PY
+
+      - name: Run RD data contract unit test
+        run: python -m unittest tests.test_bayesian_rd_data_contract -v
+
+      - name: Publish RD data contract artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-rd-data-contract-${{ github.sha }}
+          path: results/bayesian_rd_data_contract_v1.csv
