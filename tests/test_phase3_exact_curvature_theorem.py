@@ -18,7 +18,7 @@ class Phase3ExactCurvatureTheoremTests(unittest.TestCase):
         rows = list(csv.DictReader(path.open(encoding='utf-8')))
         self.assertEqual(len(rows), 10)
         self.assertEqual(len({r['theorem_component'] for r in rows}), 10)
-        self.assertEqual(sum(r['classification'] == 'exact_identity' for r in rows), 3)
+        self.assertEqual(sum(r['classification'] == 'exact_identity' for r in rows), 4)
         self.assertEqual(sum(r['classification'] == 'necessary_and_sufficient' for r in rows), 3)
         self.assertEqual(sum(r['classification'] == 'structural_consequence' for r in rows), 1)
         # Independent deterministic algebra checks for representative values.
