@@ -1,0 +1,71 @@
+name: Bayesian Structural Identification Audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  identification-audit:
+    name: Structural identification audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install runtime dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Reconstruct deterministic prerequisites
+        run: |
+          python results/run_gap_priority.py
+          python results/run_active_set_breakpoints.py
+          python results/run_active_set_regimes.py
+          python results/run_active_set_regime_formulas.py
+          python results/run_primitive_coefficient_map.py
+          python results/run_primitive_counterfactual_coefficient_map.py
+          python results/run_bayesian_structural_counterfactual_input.py
+
+      - name: Run Bayesian structural identification audit
+        run: python results/run_bayesian_structural_identification_audit.py
+
+      - name: Validate identification result
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p = Path('results/bayesian_structural_identification_audit_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 1
+          r = rows[0]
+          required = {'structural_map_present','prior_present','observed_outcome_data_present','likelihood_present','identification_strategy_present','data_identified_causal_effect','status'}
+          assert required.issubset(r)
+          assert r['structural_map_present'] == 'True'
+          assert r['prior_present'] == 'True'
+          assert r['observed_outcome_data_present'] == 'False'
+          assert r['likelihood_present'] == 'False'
+          assert r['identification_strategy_present'] == 'False'
+          assert r['data_identified_causal_effect'] == 'False'
+          assert r['status'] == 'NOT_IDENTIFIED_FROM_DATA'
+          print('Identification audit validated: NOT_IDENTIFIED_FROM_DATA.')
+          PY
+
+      - name: Run identification audit unit test
+        run: python -m unittest tests.test_bayesian_structural_identification_audit -v
+
+      - name: Publish identification audit artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-structural-identification-audit-${{ github.sha }}
+          path: results/bayesian_structural_identification_audit_v1.csv
