@@ -23,36 +23,30 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Run primitive map discovery boundary
+      - name: Run recovered primitive map contract
         run: python results/run_phase2_primitive_map_discovery.py
 
-      - name: Validate primitive map discovery artifact
+      - name: Validate recovered primitive map artifact
         run: |
           python - <<'PY'
           import csv
           from pathlib import Path
-
           p = Path('results/phase2_primitive_map_discovery_v1.csv')
           assert p.exists() and p.stat().st_size > 0
           rows = list(csv.DictReader(p.open(encoding='utf-8')))
           assert len(rows) == 10
-          required = {
-              'canonical_source_artifact', 'primitive_variable_list',
-              'coefficient_A', 'coefficient_B', 'coefficient_C',
-              'coefficient_D', 'coefficient_E', 'coefficient_F',
-              'primitive_domain', 'endogenous_signs'
-          }
           by_object = {r['required_object']: r for r in rows}
-          assert set(by_object) == required
-          assert by_object['canonical_source_artifact']['discovery_status'] == 'unresolved'
-          assert by_object['primitive_variable_list']['discovery_status'] == 'unresolved'
-          for key in ['coefficient_A','coefficient_B','coefficient_C','coefficient_D','coefficient_E','coefficient_F']:
-              assert by_object[key]['discovery_status'] == 'unresolved'
-          assert by_object['primitive_domain']['discovery_status'] == 'unresolved'
-          assert by_object['endogenous_signs']['discovery_status'] == 'not_derivable'
+          recovered = {'canonical_source_artifact','primitive_variable_list','coefficient_A','coefficient_B','coefficient_C','coefficient_D','coefficient_E','coefficient_F','primitive_domain'}
+          assert set(by_object) == recovered | {'endogenous_signs'}
+          for key in recovered:
+              assert by_object[key]['discovery_status'] == 'recovered'
+          assert by_object['endogenous_signs']['discovery_status'] == 'partially_derivable'
+          assert 'ab52d05e47302bbe8b24da44b52f8e76951ef39f' in by_object['canonical_source_artifact']['boundary_statement']
+          assert 'F>-1' in by_object['primitive_domain']['boundary_statement']
+          assert 'q2=' in by_object['endogenous_signs']['boundary_statement']
           assert {r['analysis'] for r in rows} == {'phase2_primitive_map_discovery'}
-          assert {r['inference_level'] for r in rows} == {'primitive_map_identification_boundary'}
-          print('PHASE2 primitive map discovery validated: PHASE2_PRIMITIVE_MAP_DISCOVERY_COMPLETE.')
+          assert {r['inference_level'] for r in rows} == {'primitive_map_recovered_from_repository_history'}
+          print('PHASE2 recovered primitive map validated: PHASE2_PRIMITIVE_MAP_DISCOVERY_COMPLETE.')
           PY
 
       - name: Run primitive map discovery unit test
