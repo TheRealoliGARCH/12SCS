@@ -41,13 +41,13 @@ jobs:
           assert p.exists() and p.stat().st_size>0
           rows=list(csv.DictReader(p.open(encoding='utf-8')))
           assert rows
-          required={'analysis','regime','C','D','E','F','T','curvature_classification','inference_level'}
+          required={'analysis','regime','C','D','E','F','T','curvature_class','inference_level'}
           assert required.issubset(rows[0])
           assert all(r['regime'].strip() for r in rows)
           assert len({r['regime'] for r in rows})==len(rows)
-          assert {r['curvature_classification'] for r in rows}.issubset({'strictly_convex','affine','strictly_concave'})
+          assert {r['curvature_class'] for r in rows}.issubset({'strictly_convex','affine','strictly_concave'})
           assert {r['analysis'] for r in rows}=={'phase3_primitive_curvature_pullback'}
-          assert {r['inference_level'] for r in rows}=={'primitive_curvature_pullback'}
+          assert {r['inference_level'] for r in rows}=={'exact_primitive_pullback'}
           for r in rows:
               C,D,E,F,T=(float(r[k]) for k in ('C','D','E','F','T'))
               assert abs(T-(E-F*D+F*F*C))<=1e-12
