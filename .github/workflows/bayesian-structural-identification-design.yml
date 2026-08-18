@@ -1,0 +1,53 @@
+name: Bayesian Structural Identification Design
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  identification-design:
+    name: Identification design audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run identification design specification
+        run: python results/run_bayesian_structural_identification_design.py
+
+      - name: Validate identification design result
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p = Path('results/bayesian_structural_identification_design_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 7
+          status = {r['component']: r['present'] for r in rows}
+          assert status['structural_map'] == 'True'
+          assert status['prior'] == 'True'
+          for key in ('observed_outcome_data','likelihood','consistency','exchangeability_or_design','positivity_or_support'):
+              assert status[key] == 'False'
+          print('Identification design validated: IDENTIFICATION_DESIGN_INCOMPLETE.')
+          PY
+
+      - name: Run identification design unit test
+        run: python -m unittest tests.test_bayesian_structural_identification_design -v
+
+      - name: Publish identification design artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-structural-identification-design-${{ github.sha }}
+          path: results/bayesian_structural_identification_design_v1.csv
