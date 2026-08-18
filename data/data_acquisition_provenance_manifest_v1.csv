@@ -1,0 +1,2 @@
+dataset_id,primitive_or_variable,description,source_name,source_url,access_method,acquisition_timestamp_utc,coverage_start,coverage_end,frequency,units,raw_filename,raw_sha256,row_count,column_count,missingness_status,transformation_status,license_or_access_notes,provenance_status,reproducibility_status,notes
+TEMPLATE-001,,,,,,,,,,,,,,,,,,,template_not_populated,pending,Populate one row per acquired raw dataset.
