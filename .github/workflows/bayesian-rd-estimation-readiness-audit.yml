@@ -1,0 +1,61 @@
+name: Bayesian Regression Discontinuity Estimation Readiness Audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rd-estimation-readiness:
+    name: RD estimation readiness audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Reconstruct RD prerequisite artifacts
+        run: |
+          python results/run_bayesian_rd_data_contract.py
+          python results/run_bayesian_rd_likelihood_specification.py
+          python results/run_bayesian_rd_prior_specification.py
+
+      - name: Run Bayesian RD estimation readiness audit
+        run: python results/run_bayesian_rd_estimation_readiness_audit.py
+
+      - name: Validate RD estimation readiness
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p = Path('results/bayesian_rd_estimation_readiness_audit_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 6
+          values = {r['component']: r['value'] for r in rows}
+          assert values['validated_rd_data'] == 'False'
+          assert values['likelihood_specified'] == 'True'
+          assert values['proper_priors_specified'] == 'True'
+          assert values['bandwidth_supplied'] == 'False'
+          assert values['estimation_ready'] == 'False'
+          assert values['status'] == 'RD_ESTIMATION_NOT_READY'
+          print('RD estimation readiness validated: RD_ESTIMATION_NOT_READY.')
+          PY
+
+      - name: Run RD estimation readiness unit test
+        run: python -m unittest tests.test_bayesian_rd_estimation_readiness_audit -v
+
+      - name: Publish RD estimation readiness artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-rd-estimation-readiness-audit-${{ github.sha }}
+          path: results/bayesian_rd_estimation_readiness_audit_v1.csv
