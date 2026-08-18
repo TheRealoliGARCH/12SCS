@@ -1,0 +1,75 @@
+name: Phase III Closure and Consistency Audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  closure-consistency-audit:
+    name: Phase III closure and consistency audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install runtime dependency
+        run: python -m pip install --upgrade pip numpy
+
+      - name: Reconstruct primitive-map prerequisites
+        run: |
+          python results/run_gap_priority.py
+          python results/run_active_set_breakpoints.py
+          python results/run_active_set_regimes.py
+          python results/run_active_set_regime_formulas.py
+          python results/run_primitive_coefficient_map.py
+
+      - name: Run Phase III closure audit
+        run: python results/run_phase3_closure_consistency_audit.py
+
+      - name: Validate closure audit artifact
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p=Path('results/phase3_closure_consistency_audit_v1.csv')
+          assert p.exists() and p.stat().st_size>0
+          rows=list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows)==20
+          assert {r['analysis'] for r in rows}=={'phase3_closure_consistency_audit'}
+          assert {r['inference_level'] for r in rows}=={'phase3_closure_audit'}
+          artifacts={'exact_curvature','critical_point_root_geometry','primitive_curvature_pullback','primitive_curvature_sharpness','unified_shape_theorem'}
+          for target in artifacts:
+              subset=[r for r in rows if r['audit_target']==target]
+              assert len(subset)==3
+              assert {r['check'] for r in subset}=={'artifact_exists','artifact_unique_bytes','artifact_hash'}
+              assert subset[0]['result']=='True' or any(r['result']=='True' for r in subset)
+          cross={r['check'] for r in rows if r['audit_target']=='cross_artifact'}
+          assert cross=={'curvature_identity','pullback_identity','discriminant_identity','zero_curvature_boundary','scope_boundary'}
+          print('PHASE3 closure audit validated: PHASE3_CLOSURE_CONSISTENCY_AUDIT_COMPLETE.')
+          PY
+
+      - name: Run closure audit unit test
+        run: python -m unittest tests.test_phase3_closure_consistency_audit -v
+
+      - name: Re-run closure audit for reproducibility
+        run: |
+          cp results/phase3_closure_consistency_audit_v1.csv /tmp/phase3_closure_consistency_audit_first.csv
+          python results/run_phase3_closure_consistency_audit.py
+          cmp /tmp/phase3_closure_consistency_audit_first.csv results/phase3_closure_consistency_audit_v1.csv
+
+      - name: Publish closure audit artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scs-phase3-closure-consistency-audit-${{ github.sha }}
+          path: results/phase3_closure_consistency_audit_v1.csv
