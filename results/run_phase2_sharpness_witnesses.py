@@ -12,9 +12,9 @@ OUTPUT = Path('results/phase2_sharpness_witnesses_v1.csv')
 WITNESSES = [
     ('drop_F_positive_concave', -1, 0, 1, 'F>0', 'convex endpoint', 'P(0)=-1<0; P(1)=0 is not strict', 'boundary_non_witness'),
     ('drop_global_discriminant_route', -1, -2, -1, 'Delta_P<0', 'concave vertex outside/endpoint', 'P(lambda)=-1-2lambda-lambda^2<0 on [0,1]', 'sharpness_witness'),
-    ('drop_S_negative', -1, 0, 1, 'S<0', 'convex endpoint', 'P(0)=P(1)=-1', 'sharpness_witness'),
+    ('drop_S_negative', -1, 0, 0.5, 'S<0', 'convex endpoint', 'P(0)=-1<0; P(1)=-0.5<0', 'sharpness_witness'),
     ('drop_T_positive', -1, -2, 0, 'T>0', 'linear endpoint', 'P(lambda)=-1-2lambda<0 on [0,1]', 'sharpness_witness'),
-    ('drop_primitive_D_nonpositive', -1, 0, 1, 'D<=0 refinement', 'aggregate p0<0 plus convex endpoint', 'coefficient aggregate conditions can hold without the primitive refinement', 'sharpness_witness'),
+    ('drop_primitive_D_nonpositive', -1, 0, 0.5, 'D<=0 refinement', 'aggregate p0<0 plus convex endpoint', 'P(0)=-1<0; P(1)=-0.5<0 without the refinement', 'sharpness_witness'),
     ('drop_primitive_cost_alignment', -1, -2, -1, 'd_i>=-a_i and d_i>=0', 'aggregate T route', 'T can be positive without termwise primitive alignment', 'sharpness_witness'),
     ('scope', '', '', '', 'witness interpretation', 'exact coefficient theorem', 'witnesses establish non-necessity of stronger routes, not primitive realizability for every coefficient tuple', 'scope'),
 ]
