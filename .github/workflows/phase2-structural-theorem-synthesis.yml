@@ -1,0 +1,68 @@
+name: Phase II Structural Theorem Synthesis
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  structural-theorem-synthesis:
+    name: Phase II structural theorem synthesis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run structural theorem synthesis
+        run: python results/run_phase2_structural_theorem_synthesis.py
+
+      - name: Validate structural theorem artifact
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          p = Path('results/phase2_structural_theorem_synthesis_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 10
+          required = {'analysis','component','statement','status','inference_level'}
+          assert required.issubset(rows[0])
+          components = {r['component'] for r in rows}
+          assert components == {
+              'definitions', 'derivative_coefficients', 'curvature_identity',
+              'discriminant_factorization', 'convex_endpoint_certificate',
+              'global_discriminant_certificate', 'linear_certificate',
+              'degenerate_S_branch', 'degenerate_q0_branch', 'scope'
+          }
+          for r in rows:
+              assert r['analysis'] == 'phase2_structural_theorem_synthesis'
+              assert r['status'] == 'established'
+              assert r['inference_level'] == 'structural_coefficient_theorem'
+          print('PHASE2 structural theorem synthesis validated: PHASE2_STRUCTURAL_THEOREM_SYNTHESIS_COMPLETE.')
+          PY
+
+      - name: Run structural theorem synthesis unit test
+        run: python -m unittest tests.test_phase2_structural_theorem_synthesis -v
+
+      - name: Re-run synthesis for reproducibility
+        run: |
+          cp results/phase2_structural_theorem_synthesis_v1.csv /tmp/phase2_structural_theorem_synthesis_first.csv
+          python results/run_phase2_structural_theorem_synthesis.py
+          cmp /tmp/phase2_structural_theorem_synthesis_first.csv results/phase2_structural_theorem_synthesis_v1.csv
+
+      - name: Publish structural theorem artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scs-phase2-structural-theorem-synthesis-${{ github.sha }}
+          path: results/phase2_structural_theorem_synthesis_v1.csv
