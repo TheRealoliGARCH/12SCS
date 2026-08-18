@@ -17,49 +17,38 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v6
-
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-
       - name: Run constructive primitive witnesses
         run: python results/run_phase2_constructive_primitive_witnesses.py
-
       - name: Validate constructive primitive witness artifact
         run: |
           python - <<'PY'
           import csv
           from pathlib import Path
-
           p = Path('results/phase2_constructive_primitive_witnesses_v1.csv')
           assert p.exists() and p.stat().st_size > 0
           rows = list(csv.DictReader(p.open(encoding='utf-8')))
           assert len(rows) == 3
           components = {r['witness_component'] for r in rows}
-          assert components == {
-              'global_discriminant_route',
-              'linear_T_positive_route',
-              'scope'
-          }
+          assert components == {'global_discriminant_and_cost_alignment', 'T_positive_linear_route', 'scope'}
           witnesses = [r for r in rows if r['status'] == 'constructively_realized']
           scope = [r for r in rows if r['status'] == 'scope']
           assert len(witnesses) == 2
           assert len(scope) == 1
           assert {r['analysis'] for r in rows} == {'phase2_constructive_primitive_witnesses'}
-          assert {r['inference_level'] for r in rows} == {'primitive_constructive_sharpness'}
+          assert {r['inference_level'] for r in rows} == {'explicit_primitive_lift'}
           print('PHASE2 constructive primitive witnesses validated: PHASE2_CONSTRUCTIVE_PRIMITIVE_WITNESSES_COMPLETE.')
           PY
-
       - name: Run constructive primitive witness unit test
         run: python -m unittest tests.test_phase2_constructive_primitive_witnesses -v
-
       - name: Re-run witnesses for reproducibility
         run: |
           cp results/phase2_constructive_primitive_witnesses_v1.csv /tmp/phase2_constructive_primitive_witnesses_first.csv
           python results/run_phase2_constructive_primitive_witnesses.py
           cmp /tmp/phase2_constructive_primitive_witnesses_first.csv results/phase2_constructive_primitive_witnesses_v1.csv
-
       - name: Publish constructive primitive witness artifact
         uses: actions/upload-artifact@v6
         with:
