@@ -1,0 +1,55 @@
+name: Bayesian Regression Discontinuity Likelihood Specification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rd-likelihood-specification:
+    name: RD likelihood specification audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run Bayesian RD likelihood specification
+        run: python results/run_bayesian_rd_likelihood_specification.py
+
+      - name: Validate RD likelihood specification
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p = Path('results/bayesian_rd_likelihood_specification_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 13
+          required = {'component', 'formalization', 'specified'}
+          assert required.issubset(rows[0])
+          status = {r['component']: r['specified'] for r in rows}
+          for key in ('model_family','outcome','running_variable','cutoff','treatment','local_window','conditional_mean','noise','causal_estimand','posterior'):
+              assert status[key] == 'True'
+          for key in ('observed_data_required','prior_hyperparameters_supplied','bandwidth_supplied'):
+              assert status[key] == 'False'
+          print('RD likelihood validated: RD_LIKELIHOOD_SPECIFIED_NOT_ESTIMATION_READY.')
+          PY
+
+      - name: Run RD likelihood specification unit test
+        run: python -m unittest tests.test_bayesian_rd_likelihood_specification -v
+
+      - name: Publish RD likelihood specification artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-rd-likelihood-specification-${{ github.sha }}
+          path: results/bayesian_rd_likelihood_specification_v1.csv
