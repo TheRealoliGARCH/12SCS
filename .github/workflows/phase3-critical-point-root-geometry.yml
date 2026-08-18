@@ -1,0 +1,72 @@
+name: Phase III Critical-Point Root Geometry
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  critical-point-root-geometry:
+    name: Phase III critical-point root geometry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run critical-point root geometry theorem
+        run: python results/run_phase3_critical_point_root_geometry.py
+
+      - name: Validate root geometry artifact
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          p = Path('results/phase3_critical_point_root_geometry_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 10
+          names = [r['theorem_component'] for r in rows]
+          assert all(n.strip() for n in names)
+          assert len(set(names)) == 10
+          counts = {}
+          for r in rows:
+              counts[r['classification']] = counts.get(r['classification'], 0) + 1
+          assert counts == {
+              'established_domain_condition': 1,
+              'exact_identity': 3,
+              'necessary_and_sufficient_discriminant_regime': 2,
+              'exact_boundary': 1,
+              'necessary_and_sufficient_interval_condition': 1,
+              'exact_structural_boundary': 1,
+              'scope_boundary': 1,
+          }
+          assert {r['analysis'] for r in rows} == {'phase3_critical_point_root_geometry'}
+          assert {r['inference_level'] for r in rows} == {'critical_point_root_geometry'}
+          print('PHASE3 critical-point root geometry validated: PHASE3_CRITICAL_POINT_ROOT_GEOMETRY_COMPLETE.')
+          PY
+
+      - name: Run root geometry unit test
+        run: python -m unittest tests.test_phase3_critical_point_root_geometry -v
+
+      - name: Re-run theorem for reproducibility
+        run: |
+          cp results/phase3_critical_point_root_geometry_v1.csv /tmp/phase3_critical_point_root_geometry_first.csv
+          python results/run_phase3_critical_point_root_geometry.py
+          cmp /tmp/phase3_critical_point_root_geometry_first.csv results/phase3_critical_point_root_geometry_v1.csv
+
+      - name: Publish root geometry artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scs-phase3-critical-point-root-geometry-${{ github.sha }}
+          path: results/phase3_critical_point_root_geometry_v1.csv
