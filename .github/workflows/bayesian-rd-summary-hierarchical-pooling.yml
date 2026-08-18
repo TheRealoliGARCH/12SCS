@@ -35,29 +35,41 @@ jobs:
           import csv
           import math
           from pathlib import Path
+
           p = Path('results/bayesian_rd_summary_hierarchical_pooling_v1.csv')
           assert p.exists() and p.stat().st_size > 0
           rows = list(csv.DictReader(p.open(encoding='utf-8')))
-          assert rows
-          values = {r['component']: r['value'] for r in rows}
+          assert len(rows) == 1
+          r = rows[0]
           required = {
-              'posterior_mean_mu','posterior_sd_mu','posterior_q025_mu',
-              'posterior_median_mu','posterior_q975_mu','posterior_prob_mu_negative',
-              'posterior_prob_mu_positive','posterior_mean_kappa','country_count',
-              'source_type','status'
+              'analysis','country_count','mu_prior_mean','mu_prior_sd',
+              'kappa_prior_family','kappa_prior_sd','kappa_grid_max','kappa_grid_size',
+              'posterior_mu_mean','posterior_mu_sd',
+              'posterior_mu_q025_normal_approx','posterior_mu_median_approx',
+              'posterior_mu_q975_normal_approx','posterior_mu_prob_negative',
+              'posterior_mu_prob_positive','posterior_kappa_mean',
+              'source_type','inference_level'
           }
-          assert required.issubset(values)
-          for key in required - {'source_type','status'}:
-              assert math.isfinite(float(values[key]))
-          assert float(values['posterior_sd_mu']) > 0.0
-          assert float(values['posterior_q025_mu']) <= float(values['posterior_median_mu']) <= float(values['posterior_q975_mu'])
-          assert 0.0 <= float(values['posterior_prob_mu_negative']) <= 1.0
-          assert 0.0 <= float(values['posterior_prob_mu_positive']) <= 1.0
-          assert abs(float(values['posterior_prob_mu_negative']) + float(values['posterior_prob_mu_positive']) - 1.0) < 1e-9
-          assert float(values['posterior_mean_kappa']) >= 0.0
-          assert int(float(values['country_count'])) == 3
-          assert values['source_type'] == 'reported_estimate_and_standard_error'
-          assert values['status'] == 'RD_SUMMARY_HIERARCHICAL_POOLING_COMPLETE'
+          assert required.issubset(r)
+          numeric = required - {'analysis','kappa_prior_family','source_type','inference_level'}
+          for key in numeric:
+              assert math.isfinite(float(r[key]))
+          assert r['analysis'] == 'three_country_summary_pool'
+          assert int(r['country_count']) == 3
+          assert float(r['mu_prior_sd']) > 0.0
+          assert r['kappa_prior_family'] == 'HalfNormal'
+          assert float(r['kappa_prior_sd']) > 0.0
+          assert int(r['kappa_grid_size']) > 100
+          assert float(r['posterior_mu_sd']) > 0.0
+          assert float(r['posterior_kappa_mean']) >= 0.0
+          assert float(r['posterior_mu_q025_normal_approx']) <= float(r['posterior_mu_median_approx']) <= float(r['posterior_mu_q975_normal_approx'])
+          pneg = float(r['posterior_mu_prob_negative'])
+          ppos = float(r['posterior_mu_prob_positive'])
+          assert 0.0 <= pneg <= 1.0
+          assert 0.0 <= ppos <= 1.0
+          assert abs((pneg + ppos) - 1.0) < 1e-9
+          assert r['source_type'] == 'reported_estimate_and_standard_error'
+          assert r['inference_level'] == 'summary_data_not_observation_level_rd'
           print('RD summary hierarchical pooling validated: RD_SUMMARY_HIERARCHICAL_POOLING_COMPLETE.')
           PY
 
