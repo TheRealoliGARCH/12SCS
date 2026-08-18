@@ -1,0 +1,71 @@
+name: Bayesian Regression Discontinuity Summary Hierarchical Posterior Predictive Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rd-summary-hierarchical-ppc:
+    name: RD summary hierarchical posterior predictive check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Reconstruct summary bootstrap input
+        run: python results/run_rd_summary_bootstrap.py
+
+      - name: Run hierarchical posterior predictive check
+        run: python results/run_bayesian_rd_summary_hierarchical_ppc.py
+
+      - name: Validate posterior predictive output
+        run: |
+          python - <<'PY'
+          import csv
+          import math
+          from pathlib import Path
+
+          p = Path('results/bayesian_rd_summary_hierarchical_ppc_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 5
+          required = {
+              'analysis','scope','country','observed_estimate','replicated_mean',
+              'two_sided_predictive_tail_probability','source_type','inference_level'
+          }
+          assert required.issubset(rows[0])
+          country_rows = [r for r in rows if r['scope'] == 'country']
+          assert len(country_rows) == 3
+          assert {r['country'] for r in country_rows} == {'Pakistan','Israel','North Korea'}
+          assert sum(r['scope'] == 'global' for r in rows) == 1
+          assert sum(r['scope'] == 'global_range' for r in rows) == 1
+          for r in rows:
+              assert r['analysis'] == 'bayesian_rd_summary_hierarchical_posterior_predictive_check'
+              assert math.isfinite(float(r['observed_estimate']))
+              assert math.isfinite(float(r['replicated_mean']))
+              prob = float(r['two_sided_predictive_tail_probability'])
+              assert 0.0 <= prob <= 1.0
+              assert r['source_type'] == 'reported_estimate_and_standard_error'
+              assert r['inference_level'] == 'summary_data_hierarchical_ppc'
+          print('RD summary hierarchical PPC validated: RD_SUMMARY_HIERARCHICAL_PPC_COMPLETE.')
+          PY
+
+      - name: Run hierarchical PPC unit test
+        run: python -m unittest tests.test_bayesian_rd_summary_hierarchical_ppc -v
+
+      - name: Publish hierarchical PPC artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-rd-summary-hierarchical-ppc-${{ github.sha }}
+          path: results/bayesian_rd_summary_hierarchical_ppc_v1.csv
