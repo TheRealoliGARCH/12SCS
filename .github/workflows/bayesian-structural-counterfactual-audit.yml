@@ -1,0 +1,70 @@
+name: Bayesian Structural Counterfactual Audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Prior-induced structural audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install runtime dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Reconstruct Bayesian input prerequisites
+        run: |
+          python results/run_gap_priority.py
+          python results/run_active_set_breakpoints.py
+          python results/run_active_set_regimes.py
+          python results/run_active_set_regime_formulas.py
+          python results/run_primitive_coefficient_map.py
+          python results/run_primitive_counterfactual_coefficient_map.py
+          python results/run_bayesian_structural_counterfactual_input.py
+
+      - name: Run Bayesian structural counterfactual audit
+        run: python results/run_bayesian_structural_counterfactual_audit.py
+
+      - name: Validate audit output
+        run: |
+          python - <<'PY'
+          import csv, math
+          from pathlib import Path
+          p = Path('results/bayesian_structural_counterfactual_audit_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 3
+          required = {'prior_a','prior_b','mean_delta','var_delta','alpha','beta','mean_contrast','var_contrast'}
+          assert required.issubset(rows[0])
+          means = [float(r['mean_delta']) for r in rows]
+          variances = [float(r['var_delta']) for r in rows]
+          contrasts = [float(r['mean_contrast']) for r in rows]
+          assert all(abs(x - 0.1) < 1e-15 for x in means)
+          assert variances[0] > variances[1] > variances[2] >= 0
+          assert max(contrasts) - min(contrasts) < 1e-15
+          assert all(math.isfinite(float(r[k])) for r in rows for k in required)
+          print('Bayesian structural counterfactual audit validated.')
+          PY
+
+      - name: Run audit unit test
+        run: python -m unittest tests.test_bayesian_structural_counterfactual_audit -v
+
+      - name: Publish audit artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-structural-counterfactual-audit-${{ github.sha }}
+          path: results/bayesian_structural_counterfactual_audit_v1.csv
