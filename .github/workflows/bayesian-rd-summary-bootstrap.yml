@@ -1,0 +1,66 @@
+name: Bayesian Regression Discontinuity Summary Bootstrap
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rd-summary-bootstrap:
+    name: RD summary-statistic bootstrap
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run RD summary-statistic bootstrap
+        run: python results/run_rd_summary_bootstrap.py
+
+      - name: Validate bootstrap output
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          p = Path('results/rd_summary_bootstrap_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 3
+          required = {
+              'country', 'estimate', 'standard_error', 'bootstrap_reps',
+              'q025', 'median', 'q975', 'prob_negative', 'prob_positive',
+              'source_type'
+          }
+          assert required.issubset(rows[0])
+          assert {r['country'] for r in rows} == {'Pakistan', 'Israel', 'North Korea'}
+          for r in rows:
+              assert int(r['bootstrap_reps']) == 10000
+              assert float(r['standard_error']) > 0.0
+              assert float(r['q025']) <= float(r['median']) <= float(r['q975'])
+              pneg = float(r['prob_negative'])
+              ppos = float(r['prob_positive'])
+              assert 0.0 <= pneg <= 1.0
+              assert 0.0 <= ppos <= 1.0
+              assert abs((pneg + ppos) - 1.0) < 0.02
+              assert r['source_type'] == 'reported_estimate_and_standard_error'
+          print('RD summary bootstrap validated: RD_SUMMARY_BOOTSTRAP_COMPLETE.')
+          PY
+
+      - name: Run summary-bootstrap unit test
+        run: python -m unittest tests.test_rd_summary_bootstrap -v
+
+      - name: Publish bootstrap artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-rd-summary-bootstrap-${{ github.sha }}
+          path: results/rd_summary_bootstrap_v1.csv
