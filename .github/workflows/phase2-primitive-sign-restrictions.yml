@@ -1,0 +1,72 @@
+name: Phase II Primitive Sign Restrictions
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  primitive-sign-restrictions:
+    name: Phase II primitive sign restrictions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run primitive sign restrictions
+        run: python results/run_phase2_primitive_sign_restrictions.py
+
+      - name: Validate primitive sign restrictions artifact
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          p = Path('results/phase2_primitive_sign_restrictions_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 8
+          required = {
+              'primitive_identity_p0', 'primitive_identity_S',
+              'primitive_identity_T', 'primitive_identity_discriminant',
+              'endogenous_pole_exclusion', 'p0_sign_boundary',
+              'S_sign_boundary', 'T_sign_boundary'
+          }
+          by_component = {r['component']: r for r in rows}
+          assert set(by_component) == required
+          assert by_component['primitive_identity_p0']['status'] == 'exact'
+          assert by_component['primitive_identity_S']['status'] == 'exact'
+          assert by_component['primitive_identity_T']['status'] == 'exact'
+          assert by_component['primitive_identity_discriminant']['status'] == 'exact'
+          assert by_component['endogenous_pole_exclusion']['status'] == 'endogenous'
+          for key in ['p0_sign_boundary', 'S_sign_boundary', 'T_sign_boundary']:
+              assert by_component[key]['status'] == 'not_derivable_from_basic_domain'
+          assert {r['analysis'] for r in rows} == {'phase2_primitive_sign_restrictions'}
+          assert {r['inference_level'] for r in rows} == {'primitive_level_sign_classification'}
+          print('PHASE2 primitive sign restrictions validated: PHASE2_PRIMITIVE_SIGN_RESTRICTIONS_COMPLETE.')
+          PY
+
+      - name: Run primitive sign restrictions unit test
+        run: python -m unittest tests.test_phase2_primitive_sign_restrictions -v
+
+      - name: Re-run sign restrictions for reproducibility
+        run: |
+          cp results/phase2_primitive_sign_restrictions_v1.csv /tmp/phase2_primitive_sign_restrictions_first.csv
+          python results/run_phase2_primitive_sign_restrictions.py
+          cmp /tmp/phase2_primitive_sign_restrictions_first.csv results/phase2_primitive_sign_restrictions_v1.csv
+
+      - name: Publish primitive sign restrictions artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scs-phase2-primitive-sign-restrictions-${{ github.sha }}
+          path: results/phase2_primitive_sign_restrictions_v1.csv
