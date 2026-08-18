@@ -1,0 +1,78 @@
+name: Bayesian Regression Discontinuity Summary Hierarchical Sensitivity
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rd-summary-hierarchical-sensitivity:
+    name: RD summary hierarchical sensitivity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Reconstruct summary bootstrap input
+        run: python results/run_rd_summary_bootstrap.py
+
+      - name: Run Bayesian RD hierarchical sensitivity
+        run: python results/run_bayesian_rd_summary_hierarchical_sensitivity.py
+
+      - name: Validate hierarchical sensitivity output
+        run: |
+          python - <<'PY'
+          import csv
+          import math
+          from pathlib import Path
+
+          p = Path('results/bayesian_rd_summary_hierarchical_sensitivity_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 5
+          required = {
+              'analysis','country_count','kappa_prior_family','kappa_prior_sd',
+              'posterior_mu_mean','posterior_mu_sd','posterior_mu_q025_normal_approx',
+              'posterior_mu_median_approx','posterior_mu_q975_normal_approx',
+              'posterior_mu_prob_negative','posterior_mu_prob_positive',
+              'posterior_kappa_mean','source_type','inference_level'
+          }
+          assert required.issubset(rows[0])
+          scales = {5.0, 10.0, 20.0, 50.0, 100.0}
+          assert {float(r['kappa_prior_sd']) for r in rows} == scales
+          for r in rows:
+              assert r['analysis'] == 'bayesian_rd_summary_hierarchical_hyperprior_sensitivity'
+              assert int(r['country_count']) == 3
+              assert r['kappa_prior_family'] == 'HalfNormal'
+              assert math.isfinite(float(r['posterior_mu_mean']))
+              assert float(r['posterior_mu_sd']) > 0.0
+              assert float(r['posterior_mu_q025_normal_approx']) <= float(r['posterior_mu_median_approx']) <= float(r['posterior_mu_q975_normal_approx'])
+              pneg = float(r['posterior_mu_prob_negative'])
+              ppos = float(r['posterior_mu_prob_positive'])
+              assert 0.0 <= pneg <= 1.0
+              assert 0.0 <= ppos <= 1.0
+              assert abs((pneg + ppos) - 1.0) < 1e-12
+              assert float(r['posterior_kappa_mean']) >= 0.0
+              assert r['source_type'] == 'reported_estimate_and_standard_error'
+              assert r['inference_level'] == 'summary_data_hierarchical_sensitivity'
+          print('RD summary hierarchical sensitivity validated: RD_SUMMARY_HIERARCHICAL_SENSITIVITY_COMPLETE.')
+          PY
+
+      - name: Run hierarchical-sensitivity unit test
+        run: python -m unittest tests.test_bayesian_rd_summary_hierarchical_sensitivity -v
+
+      - name: Publish hierarchical-sensitivity artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-rd-summary-hierarchical-sensitivity-${{ github.sha }}
+          path: results/bayesian_rd_summary_hierarchical_sensitivity_v1.csv
