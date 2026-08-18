@@ -1,0 +1,71 @@
+name: Bayesian Regression Discontinuity Summary Hierarchical Pooling
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rd-summary-hierarchical-pooling:
+    name: RD summary hierarchical pooling
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Reconstruct summary bootstrap input
+        run: python results/run_rd_summary_bootstrap.py
+
+      - name: Run Bayesian RD hierarchical pooling
+        run: python results/run_bayesian_rd_summary_hierarchical_pooling.py
+
+      - name: Validate hierarchical pooling output
+        run: |
+          python - <<'PY'
+          import csv
+          import math
+          from pathlib import Path
+          p = Path('results/bayesian_rd_summary_hierarchical_pooling_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert rows
+          values = {r['component']: r['value'] for r in rows}
+          required = {
+              'posterior_mean_mu','posterior_sd_mu','posterior_q025_mu',
+              'posterior_median_mu','posterior_q975_mu','posterior_prob_mu_negative',
+              'posterior_prob_mu_positive','posterior_mean_kappa','country_count',
+              'source_type','status'
+          }
+          assert required.issubset(values)
+          for key in required - {'source_type','status'}:
+              assert math.isfinite(float(values[key]))
+          assert float(values['posterior_sd_mu']) > 0.0
+          assert float(values['posterior_q025_mu']) <= float(values['posterior_median_mu']) <= float(values['posterior_q975_mu'])
+          assert 0.0 <= float(values['posterior_prob_mu_negative']) <= 1.0
+          assert 0.0 <= float(values['posterior_prob_mu_positive']) <= 1.0
+          assert abs(float(values['posterior_prob_mu_negative']) + float(values['posterior_prob_mu_positive']) - 1.0) < 1e-9
+          assert float(values['posterior_mean_kappa']) >= 0.0
+          assert int(float(values['country_count'])) == 3
+          assert values['source_type'] == 'reported_estimate_and_standard_error'
+          assert values['status'] == 'RD_SUMMARY_HIERARCHICAL_POOLING_COMPLETE'
+          print('RD summary hierarchical pooling validated: RD_SUMMARY_HIERARCHICAL_POOLING_COMPLETE.')
+          PY
+
+      - name: Run hierarchical-pooling unit test
+        run: python -m unittest tests.test_bayesian_rd_summary_hierarchical_pooling -v
+
+      - name: Publish hierarchical-pooling artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-rd-summary-hierarchical-pooling-${{ github.sha }}
+          path: results/bayesian_rd_summary_hierarchical_pooling_v1.csv
