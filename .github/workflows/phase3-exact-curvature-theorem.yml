@@ -17,21 +17,17 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v6
-
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-
       - name: Run exact curvature theorem
         run: python results/run_phase3_exact_curvature_theorem.py
-
       - name: Validate exact curvature theorem artifact
         run: |
           python - <<'PY'
           import csv
           from pathlib import Path
-
           p = Path('results/phase3_exact_curvature_theorem_v1.csv')
           assert p.exists() and p.stat().st_size > 0
           rows = list(csv.DictReader(p.open(encoding='utf-8')))
@@ -46,23 +42,20 @@ jobs:
               'established_domain_condition': 1,
               'exact_identity': 4,
               'necessary_and_sufficient': 3,
-              'exact_consequence': 1,
+              'structural_consequence': 1,
               'scope_boundary': 1,
           }
           assert {r['analysis'] for r in rows} == {'phase3_exact_curvature_theorem'}
           assert {r['inference_level'] for r in rows} == {'phase3_exact_curvature_theorem'}
           print('PHASE3 exact curvature theorem validated: PHASE3_EXACT_CURVATURE_THEOREM_COMPLETE.')
           PY
-
       - name: Run exact curvature theorem unit test
         run: python -m unittest tests.test_phase3_exact_curvature_theorem -v
-
       - name: Re-run theorem for reproducibility
         run: |
           cp results/phase3_exact_curvature_theorem_v1.csv /tmp/phase3_exact_curvature_theorem_first.csv
           python results/run_phase3_exact_curvature_theorem.py
           cmp /tmp/phase3_exact_curvature_theorem_first.csv results/phase3_exact_curvature_theorem_v1.csv
-
       - name: Publish exact curvature theorem artifact
         uses: actions/upload-artifact@v6
         with:
