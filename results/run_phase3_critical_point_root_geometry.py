@@ -15,10 +15,9 @@ ROWS = [
     ('two_real_root_regime', 'ST>0', 'Delta_P>0, subject to quadratic nondegeneracy, two distinct real roots', 'necessary_and_sufficient_discriminant_regime'),
     ('root_formula', 'lambda=(-S plus_or_minus sqrt(S*T))/(F*S)', 'valid when F*S!=0 and ST>=0', 'exact_identity'),
     ('interval_critical_point', 'root lies in (0,1)', 'interior criticality requires exact interval membership', 'necessary_and_sufficient_interval_condition'),
-    ('T_zero_shape_boundary', 'T=0', 'curvature vanishes identically; P is proportional to (1+F*lambda)', 'exact_structural_boundary'),
+    ('T_zero_shape_boundary', 'T=0', 'curvature vanishes identically and P=p0*(1+F*lambda)^2', 'exact_structural_boundary'),
     ('scope', 'discriminant classifies real roots; interval membership remains separate', 'no claim that ST>0 alone creates an interior critical point', 'scope_boundary'),
 ]
-
 
 def main() -> None:
     with OUTPUT.open('w', newline='', encoding='utf-8') as f:
