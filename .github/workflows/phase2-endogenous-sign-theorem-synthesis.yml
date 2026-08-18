@@ -1,0 +1,71 @@
+name: Phase II Endogenous Sign Theorem Synthesis
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  endogenous-sign-theorem-synthesis:
+    name: Phase II endogenous sign theorem synthesis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run endogenous sign theorem synthesis
+        run: python results/run_phase2_endogenous_sign_theorem_synthesis.py
+
+      - name: Validate endogenous sign theorem artifact
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          p = Path('results/phase2_endogenous_sign_theorem_synthesis_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 7
+          required = {
+              'basic_endogenous_B_nonpositive',
+              'p0_negative_sufficient_condition',
+              'S_nonnegative_sufficient_condition',
+              'S_negative_sufficient_condition',
+              'T_nonnegative_sufficient_condition',
+              'concave_monotonicity_branch',
+              'convex_monotonicity_branch'
+          }
+          by_component = {r['component']: r for r in rows}
+          assert set(by_component) == required
+          assert by_component['basic_endogenous_B_nonpositive']['classification'] == 'endogenous'
+          for key in required - {'basic_endogenous_B_nonpositive'}:
+              assert by_component[key]['classification'] == 'sufficient'
+          assert {r['analysis'] for r in rows} == {'phase2_endogenous_sign_theorem_synthesis'}
+          assert {r['inference_level'] for r in rows} == {'primitive_sufficient_sign_theorem'}
+          print('PHASE2 endogenous sign theorem synthesis validated: PHASE2_ENDOGENOUS_SIGN_THEOREM_SYNTHESIS_COMPLETE.')
+          PY
+
+      - name: Run endogenous sign theorem synthesis unit test
+        run: python -m unittest tests.test_phase2_endogenous_sign_theorem_synthesis -v
+
+      - name: Re-run synthesis for reproducibility
+        run: |
+          cp results/phase2_endogenous_sign_theorem_synthesis_v1.csv /tmp/phase2_endogenous_sign_theorem_first.csv
+          python results/run_phase2_endogenous_sign_theorem_synthesis.py
+          cmp /tmp/phase2_endogenous_sign_theorem_first.csv results/phase2_endogenous_sign_theorem_synthesis_v1.csv
+
+      - name: Publish endogenous sign theorem artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scs-phase2-endogenous-sign-theorem-synthesis-${{ github.sha }}
+          path: results/phase2_endogenous_sign_theorem_synthesis_v1.csv
