@@ -49,14 +49,22 @@ jobs:
           rows = list(csv.DictReader(p.open(encoding='utf-8')))
           assert len(rows) == 1
           r = rows[0]
-          required = {'structural_map_present','prior_present','observed_outcome_data_present','likelihood_present','identification_strategy_present','data_identified_causal_effect','status'}
+          required = {
+              'structural_map_present',
+              'prior_specification_present',
+              'observed_outcome_data_present',
+              'likelihood_present',
+              'intervention_identification_strategy_present',
+              'data_identified',
+              'status',
+          }
           assert required.issubset(r)
           assert r['structural_map_present'] == 'True'
-          assert r['prior_present'] == 'True'
+          assert r['prior_specification_present'] == 'True'
           assert r['observed_outcome_data_present'] == 'False'
           assert r['likelihood_present'] == 'False'
-          assert r['identification_strategy_present'] == 'False'
-          assert r['data_identified_causal_effect'] == 'False'
+          assert r['intervention_identification_strategy_present'] == 'False'
+          assert r['data_identified'] == 'False'
           assert r['status'] == 'NOT_IDENTIFIED_FROM_DATA'
           print('Identification audit validated: NOT_IDENTIFIED_FROM_DATA.')
           PY
