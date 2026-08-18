@@ -1,0 +1,57 @@
+name: Phase II Exact Interval Negativity
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-interval-negativity:
+    name: Phase II exact interval negativity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run exact interval negativity theorem
+        run: python results/run_phase2_exact_interval_negativity.py
+
+      - name: Validate exact interval negativity artifact
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          p = Path('results/phase2_exact_interval_negativity_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 8
+          assert {r['analysis'] for r in rows} == {'phase2_exact_interval_negativity'}
+          assert len({tuple(r.items()) for r in rows}) == len(rows)
+          print('PHASE2 exact interval negativity artifact validated.')
+          PY
+
+      - name: Run exact interval negativity unit test
+        run: python -m unittest tests.test_phase2_exact_interval_negativity -v
+
+      - name: Re-run theorem for reproducibility
+        run: |
+          cp results/phase2_exact_interval_negativity_v1.csv /tmp/phase2_exact_interval_negativity_first.csv
+          python results/run_phase2_exact_interval_negativity.py
+          cmp /tmp/phase2_exact_interval_negativity_first.csv results/phase2_exact_interval_negativity_v1.csv
+
+      - name: Publish exact interval negativity artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scs-phase2-exact-interval-negativity-${{ github.sha }}
+          path: results/phase2_exact_interval_negativity_v1.csv
