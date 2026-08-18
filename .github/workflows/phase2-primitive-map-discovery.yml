@@ -1,0 +1,71 @@
+name: Phase II Primitive Map Discovery
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  primitive-map-discovery:
+    name: Phase II primitive map discovery
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run primitive map discovery boundary
+        run: python results/run_phase2_primitive_map_discovery.py
+
+      - name: Validate primitive map discovery artifact
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          p = Path('results/phase2_primitive_map_discovery_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 10
+          required = {
+              'canonical_source_artifact', 'primitive_variable_list',
+              'coefficient_A', 'coefficient_B', 'coefficient_C',
+              'coefficient_D', 'coefficient_E', 'coefficient_F',
+              'primitive_domain', 'endogenous_signs'
+          }
+          by_object = {r['required_object']: r for r in rows}
+          assert set(by_object) == required
+          assert by_object['canonical_source_artifact']['discovery_status'] == 'unresolved'
+          assert by_object['primitive_variable_list']['discovery_status'] == 'unresolved'
+          for key in ['coefficient_A','coefficient_B','coefficient_C','coefficient_D','coefficient_E','coefficient_F']:
+              assert by_object[key]['discovery_status'] == 'unresolved'
+          assert by_object['primitive_domain']['discovery_status'] == 'unresolved'
+          assert by_object['endogenous_signs']['discovery_status'] == 'not_derivable'
+          assert {r['analysis'] for r in rows} == {'phase2_primitive_map_discovery'}
+          assert {r['inference_level'] for r in rows} == {'primitive_map_identification_boundary'}
+          print('PHASE2 primitive map discovery validated: PHASE2_PRIMITIVE_MAP_DISCOVERY_COMPLETE.')
+          PY
+
+      - name: Run primitive map discovery unit test
+        run: python -m unittest tests.test_phase2_primitive_map_discovery -v
+
+      - name: Re-run discovery for reproducibility
+        run: |
+          cp results/phase2_primitive_map_discovery_v1.csv /tmp/phase2_primitive_map_discovery_first.csv
+          python results/run_phase2_primitive_map_discovery.py
+          cmp /tmp/phase2_primitive_map_discovery_first.csv results/phase2_primitive_map_discovery_v1.csv
+
+      - name: Publish primitive map discovery artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scs-phase2-primitive-map-discovery-${{ github.sha }}
+          path: results/phase2_primitive_map_discovery_v1.csv
