@@ -1,0 +1,71 @@
+name: Phase III Joint Shape Classification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  joint-shape-classification:
+    name: Phase III joint shape classification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run joint shape classification theorem
+        run: python results/run_phase3_joint_shape_classification.py
+
+      - name: Validate joint shape classification artifact
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          p = Path('results/phase3_joint_shape_classification_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 10
+          names = [r['theorem_component'] for r in rows]
+          assert all(n.strip() for n in names)
+          assert len(set(names)) == 10
+          counts = {}
+          for r in rows:
+              counts[r['classification']] = counts.get(r['classification'], 0) + 1
+          assert counts == {
+              'domain': 1,
+              'exact_identity': 2,
+              'necessary_and_sufficient_joint': 3,
+              'exact_structural_exclusion': 2,
+              'exact_boundary': 1,
+              'scope_boundary': 1,
+          }
+          assert {r['analysis'] for r in rows} == {'phase3_joint_shape_classification'}
+          assert {r['inference_level'] for r in rows} == {'joint_shape_classification'}
+          print('PHASE3 joint shape classification validated: PHASE3_JOINT_SHAPE_CLASSIFICATION_COMPLETE.')
+          PY
+
+      - name: Run joint shape classification unit test
+        run: python -m unittest tests.test_phase3_joint_shape_classification -v
+
+      - name: Re-run classification for reproducibility
+        run: |
+          cp results/phase3_joint_shape_classification_v1.csv /tmp/phase3_joint_shape_classification_first.csv
+          python results/run_phase3_joint_shape_classification.py
+          cmp /tmp/phase3_joint_shape_classification_first.csv results/phase3_joint_shape_classification_v1.csv
+
+      - name: Publish joint shape classification artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scs-phase3-joint-shape-classification-${{ github.sha }}
+          path: results/phase3_joint_shape_classification_v1.csv
