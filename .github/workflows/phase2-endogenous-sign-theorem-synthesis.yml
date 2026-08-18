@@ -35,21 +35,25 @@ jobs:
           p = Path('results/phase2_endogenous_sign_theorem_synthesis_v1.csv')
           assert p.exists() and p.stat().st_size > 0
           rows = list(csv.DictReader(p.open(encoding='utf-8')))
-          assert len(rows) == 7
+          assert len(rows) == 9
           required = {
-              'basic_endogenous_B_nonpositive',
-              'p0_negative_sufficient_condition',
-              'S_nonnegative_sufficient_condition',
-              'S_negative_sufficient_condition',
-              'T_nonnegative_sufficient_condition',
-              'concave_monotonicity_branch',
-              'convex_monotonicity_branch'
+              'basic_B_sign',
+              'p0_negative',
+              'S_nonnegative',
+              'T_nonnegative',
+              'S_negative',
+              'T_positive',
+              'concave_global_negative',
+              'convex_endpoint_negative',
+              'theorem_scope'
           }
-          by_component = {r['component']: r for r in rows}
+          by_component = {r['theorem_component']: r for r in rows}
           assert set(by_component) == required
-          assert by_component['basic_endogenous_B_nonpositive']['classification'] == 'endogenous'
-          for key in required - {'basic_endogenous_B_nonpositive'}:
-              assert by_component[key]['classification'] == 'sufficient'
+          assert by_component['basic_B_sign']['status'] == 'endogenous'
+          for key in ['p0_negative', 'S_nonnegative', 'T_nonnegative', 'S_negative', 'concave_global_negative', 'convex_endpoint_negative']:
+              assert by_component[key]['status'] == 'sufficient'
+          assert by_component['T_positive']['status'] == 'primitive_substituted_sufficient'
+          assert by_component['theorem_scope']['status'] == 'scope'
           assert {r['analysis'] for r in rows} == {'phase2_endogenous_sign_theorem_synthesis'}
           assert {r['inference_level'] for r in rows} == {'primitive_sufficient_sign_theorem'}
           print('PHASE2 endogenous sign theorem synthesis validated: PHASE2_ENDOGENOUS_SIGN_THEOREM_SYNTHESIS_COMPLETE.')
