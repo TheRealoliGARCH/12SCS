@@ -1,0 +1,70 @@
+name: Bayesian Regression Discontinuity Summary Posterior
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rd-summary-posterior:
+    name: RD summary-data posterior
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Reconstruct summary bootstrap input
+        run: python results/run_rd_summary_bootstrap.py
+
+      - name: Run Bayesian RD summary posterior
+        run: python results/run_bayesian_rd_summary_posterior.py
+
+      - name: Validate summary posterior output
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p = Path('results/bayesian_rd_summary_posterior_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 3
+          required = {
+              'country','estimate','standard_error','prior_mean','prior_sd',
+              'posterior_mean','posterior_sd','posterior_q025','posterior_median',
+              'posterior_q975','posterior_prob_negative','posterior_prob_positive',
+              'source_type'
+          }
+          assert required.issubset(rows[0])
+          assert {r['country'] for r in rows} == {'Pakistan','Israel','North Korea'}
+          for r in rows:
+              assert float(r['prior_sd']) > 0.0
+              assert float(r['standard_error']) > 0.0
+              assert float(r['posterior_sd']) > 0.0
+              assert float(r['posterior_q025']) <= float(r['posterior_median']) <= float(r['posterior_q975'])
+              pneg = float(r['posterior_prob_negative'])
+              ppos = float(r['posterior_prob_positive'])
+              assert 0.0 <= pneg <= 1.0
+              assert 0.0 <= ppos <= 1.0
+              assert abs((pneg + ppos) - 1.0) < 1e-12
+              assert r['source_type'] == 'reported_estimate_and_standard_error'
+          print('RD summary posterior validated: RD_SUMMARY_POSTERIOR_COMPLETE.')
+          PY
+
+      - name: Run summary-posterior unit test
+        run: python -m unittest tests.test_bayesian_rd_summary_posterior -v
+
+      - name: Publish summary posterior artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-rd-summary-posterior-${{ github.sha }}
+          path: results/bayesian_rd_summary_posterior_v1.csv
