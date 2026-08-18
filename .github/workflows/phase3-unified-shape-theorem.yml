@@ -1,0 +1,79 @@
+name: Phase III Unified Shape Theorem
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unified-shape-theorem:
+    name: Phase III unified shape theorem
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run unified shape theorem synthesis
+        run: python results/run_phase3_unified_shape_theorem.py
+
+      - name: Validate unified shape theorem artifact
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          p = Path('results/phase3_unified_shape_theorem_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 12
+          names = [r['theorem_component'] for r in rows]
+          assert len(set(names)) == 12
+          expected = {
+              'domain', 'first_derivative', 'curvature', 'discriminant',
+              'convex_decrease', 'affine_decrease', 'concave_decrease',
+              'global_root_exclusion', 'zero_curvature_boundary',
+              'primitive_pullback', 'sharpness', 'scope'
+          }
+          assert set(names) == expected
+          counts = {}
+          for r in rows:
+              counts[r['classification']] = counts.get(r['classification'], 0) + 1
+          assert counts == {
+              'exact_domain': 1,
+              'exact_identity': 3,
+              'necessary_and_sufficient_joint': 3,
+              'exact_structural_exclusion': 1,
+              'exact_structural_boundary': 1,
+              'exact_primitive_pullback': 1,
+              'constructive_sharpness': 1,
+              'scope_boundary': 1,
+          }
+          assert {r['analysis'] for r in rows} == {'phase3_unified_shape_theorem'}
+          assert {r['inference_level'] for r in rows} == {'unified_shape_theorem'}
+          print('PHASE3 unified shape theorem validated: PHASE3_UNIFIED_SHAPE_THEOREM_COMPLETE.')
+          PY
+
+      - name: Run unified shape theorem unit test
+        run: python -m unittest tests.test_phase3_unified_shape_theorem -v
+
+      - name: Re-run synthesis for reproducibility
+        run: |
+          cp results/phase3_unified_shape_theorem_v1.csv /tmp/phase3_unified_shape_theorem_first.csv
+          python results/run_phase3_unified_shape_theorem.py
+          cmp /tmp/phase3_unified_shape_theorem_first.csv results/phase3_unified_shape_theorem_v1.csv
+
+      - name: Publish unified shape theorem artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scs-phase3-unified-shape-theorem-${{ github.sha }}
+          path: results/phase3_unified_shape_theorem_v1.csv
