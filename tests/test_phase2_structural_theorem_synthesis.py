@@ -24,7 +24,7 @@ class Phase2StructuralTheoremSynthesisTests(unittest.TestCase):
         self.assertEqual(by_name['curvature_bridge']['conclusion'], 'Delta_P=4*S*T=2*S*q0')
         self.assertEqual(by_name['degenerate_branch']['conclusion'], 'p1=p2=0 and Delta_P=0')
         self.assertEqual(by_name['curvature_neutral_branch']['conclusion'], 'Delta_P=0')
-        self.assertEqual(sum(r['status'] == 'exact' for r in rows), 4)
+        self.assertEqual(sum(r['status'] == 'exact' for r in rows), 5)
         self.assertEqual(sum(r['status'] == 'sufficient' for r in rows), 3)
 
 
