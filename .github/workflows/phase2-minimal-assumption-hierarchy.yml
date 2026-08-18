@@ -1,0 +1,78 @@
+name: Phase II Minimal Assumption Hierarchy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  minimal-assumption-hierarchy:
+    name: Phase II minimal assumption hierarchy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run minimal assumption hierarchy
+        run: python results/run_phase2_minimal_assumption_hierarchy.py
+
+      - name: Validate minimal assumption hierarchy artifact
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          p = Path('results/phase2_minimal_assumption_hierarchy_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 11
+          required = {
+              'basic_domain',
+              'p0_aggregate',
+              'S_nonnegative_aggregate',
+              'S_negative_aggregate',
+              'T_positive_aggregate',
+              'concave_minimal_branch',
+              'convex_minimal_branch',
+              'primitive_p0_refinement',
+              'primitive_S_negative_refinement',
+              'primitive_T_nonnegative_refinement',
+              'scope'
+          }
+          by_name = {r['theorem_component']: r for r in rows}
+          assert set(by_name) == required
+          assert by_name['basic_domain']['classification'] == 'endogenous'
+          assert by_name['concave_minimal_branch']['classification'] == 'minimal_branch'
+          assert by_name['convex_minimal_branch']['classification'] == 'minimal_branch'
+          assert by_name['scope']['classification'] == 'scope'
+          assert sum(r['classification'] == 'minimal_aggregate_sufficient' for r in rows) == 4
+          assert sum(r['classification'] == 'stronger_transparent_sufficient' for r in rows) == 3
+          assert {r['analysis'] for r in rows} == {'phase2_minimal_assumption_hierarchy'}
+          assert {r['inference_level'] for r in rows} == {'minimal_assumption_hierarchy'}
+          print('PHASE2 minimal assumption hierarchy validated: PHASE2_MINIMAL_ASSUMPTION_HIERARCHY_COMPLETE.')
+          PY
+
+      - name: Run minimal assumption hierarchy unit test
+        run: python -m unittest tests.test_phase2_minimal_assumption_hierarchy -v
+
+      - name: Re-run hierarchy for reproducibility
+        run: |
+          cp results/phase2_minimal_assumption_hierarchy_v1.csv /tmp/phase2_minimal_assumption_hierarchy_first.csv
+          python results/run_phase2_minimal_assumption_hierarchy.py
+          cmp /tmp/phase2_minimal_assumption_hierarchy_first.csv results/phase2_minimal_assumption_hierarchy_v1.csv
+
+      - name: Publish minimal assumption hierarchy artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scs-phase2-minimal-assumption-hierarchy-${{ github.sha }}
+          path: results/phase2_minimal_assumption_hierarchy_v1.csv
