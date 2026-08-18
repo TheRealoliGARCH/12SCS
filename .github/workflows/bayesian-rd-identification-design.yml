@@ -1,0 +1,61 @@
+name: Bayesian Regression Discontinuity Identification Design
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rd-identification-design:
+    name: RD identification design audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run Bayesian RD identification design
+        run: python results/run_bayesian_rd_identification_design.py
+
+      - name: Validate RD identification design
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p = Path('results/bayesian_rd_identification_design_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 10
+          required = {'component','formalization','present','description'}
+          assert required.issubset(rows[0])
+          status = {r['component']: r['present'] for r in rows}
+          assert status['design'] == 'True'
+          assert status['running_variable'] == 'False'
+          assert status['cutoff'] == 'False'
+          assert status['treatment_rule'] == 'False'
+          assert status['outcome'] == 'False'
+          assert status['local_likelihood'] == 'False'
+          assert status['continuity'] == 'False'
+          assert status['no_precise_manipulation'] == 'False'
+          assert status['local_support'] == 'False'
+          assert status['bandwidth_or_local_model'] == 'False'
+          print('RD identification design validated: RD_IDENTIFICATION_DESIGN_INCOMPLETE.')
+          PY
+
+      - name: Run RD identification design unit test
+        run: python -m unittest tests.test_bayesian_rd_identification_design -v
+
+      - name: Publish RD identification design artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-rd-identification-design-${{ github.sha }}
+          path: results/bayesian_rd_identification_design_v1.csv
