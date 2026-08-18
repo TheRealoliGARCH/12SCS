@@ -26,6 +26,14 @@ jobs:
       - name: Install runtime dependency
         run: python -m pip install --upgrade pip numpy
 
+      - name: Reconstruct primitive-map prerequisites
+        run: |
+          python results/run_gap_priority.py
+          python results/run_active_set_breakpoints.py
+          python results/run_active_set_regimes.py
+          python results/run_active_set_regime_formulas.py
+          python results/run_primitive_coefficient_map.py
+
       - name: Run primitive curvature pullback theorem
         run: python results/run_phase3_primitive_curvature_pullback.py
 
@@ -34,21 +42,20 @@ jobs:
           python - <<'PY'
           import csv
           from pathlib import Path
-
           p = Path('results/phase3_primitive_curvature_pullback_v1.csv')
           assert p.exists() and p.stat().st_size > 0
           rows = list(csv.DictReader(p.open(encoding='utf-8')))
           assert len(rows) > 0
-          required = {'analysis', 'regime', 'C', 'D', 'E', 'F', 'T', 'curvature_classification', 'inference_level'}
+          required = {'analysis','regime','C','D','E','F','T','curvature_classification','inference_level'}
           assert required.issubset(rows[0])
           assert all(r['regime'].strip() for r in rows)
           assert len({r['regime'] for r in rows}) == len(rows)
-          allowed = {'strictly_convex', 'affine', 'strictly_concave'}
+          allowed = {'strictly_convex','affine','strictly_concave'}
           assert {r['curvature_classification'] for r in rows}.issubset(allowed)
           assert {r['analysis'] for r in rows} == {'phase3_primitive_curvature_pullback'}
           assert {r['inference_level'] for r in rows} == {'primitive_curvature_pullback'}
           for r in rows:
-              C, D, E, F, T = (float(r[k]) for k in ('C','D','E','F','T'))
+              C,D,E,F,T = (float(r[k]) for k in ('C','D','E','F','T'))
               assert abs(T - (E - F*D + F*F*C)) <= 1e-12
           print('PHASE3 primitive curvature pullback validated: PHASE3_PRIMITIVE_CURVATURE_PULLBACK_COMPLETE.')
           PY
@@ -60,7 +67,7 @@ jobs:
         run: |
           cp results/phase3_primitive_curvature_pullback_v1.csv /tmp/phase3_primitive_curvature_pullback_first.csv
           python results/run_phase3_primitive_curvature_pullback.py
-          cmp /tmp/phase3_primitive_curvature_pullback_first.csv results/phase3_primitive_curvature_pullback_v1.csv
+          cmp /tmp/phase3_primitive_curvature_pullback_first.csv results/phase3_primitive_curvature_pullback_first.csv
 
       - name: Publish primitive curvature pullback artifact
         uses: actions/upload-artifact@v6
