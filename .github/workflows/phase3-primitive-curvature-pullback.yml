@@ -1,0 +1,66 @@
+name: Phase III Primitive Curvature Pullback
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  primitive-curvature-pullback:
+    name: Phase III primitive curvature pullback
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run primitive curvature pullback theorem
+        run: python results/run_phase3_primitive_curvature_pullback.py
+
+      - name: Validate primitive curvature pullback artifact
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          p = Path('results/phase3_primitive_curvature_pullback_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) > 0
+          required = {'analysis', 'regime', 'C', 'D', 'E', 'F', 'T', 'curvature_classification', 'inference_level'}
+          assert required.issubset(rows[0])
+          assert all(r['regime'].strip() for r in rows)
+          assert len({r['regime'] for r in rows}) == len(rows)
+          allowed = {'strictly_convex', 'affine', 'strictly_concave'}
+          assert {r['curvature_classification'] for r in rows}.issubset(allowed)
+          assert {r['analysis'] for r in rows} == {'phase3_primitive_curvature_pullback'}
+          assert {r['inference_level'] for r in rows} == {'primitive_curvature_pullback'}
+          for r in rows:
+              C, D, E, F, T = (float(r[k]) for k in ('C','D','E','F','T'))
+              assert abs(T - (E - F*D + F*F*C)) <= 1e-12
+          print('PHASE3 primitive curvature pullback validated: PHASE3_PRIMITIVE_CURVATURE_PULLBACK_COMPLETE.')
+          PY
+
+      - name: Run primitive curvature pullback unit test
+        run: python -m unittest tests.test_phase3_primitive_curvature_pullback -v
+
+      - name: Re-run pullback for reproducibility
+        run: |
+          cp results/phase3_primitive_curvature_pullback_v1.csv /tmp/phase3_primitive_curvature_pullback_first.csv
+          python results/run_phase3_primitive_curvature_pullback.py
+          cmp /tmp/phase3_primitive_curvature_pullback_first.csv results/phase3_primitive_curvature_pullback_v1.csv
+
+      - name: Publish primitive curvature pullback artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scs-phase3-primitive-curvature-pullback-${{ github.sha }}
+          path: results/phase3_primitive_curvature_pullback_v1.csv
