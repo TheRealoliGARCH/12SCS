@@ -1,0 +1,77 @@
+name: Bayesian Regression Discontinuity Summary Hierarchical Leave-One-Out
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rd-summary-hierarchical-leave-one-out:
+    name: RD summary hierarchical leave-one-out
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Reconstruct summary bootstrap input
+        run: python results/run_rd_summary_bootstrap.py
+
+      - name: Run hierarchical leave-one-out analysis
+        run: python results/run_bayesian_rd_summary_hierarchical_leave_one_out.py
+
+      - name: Validate leave-one-out output
+        run: |
+          python - <<'PY'
+          import csv
+          import math
+          from pathlib import Path
+
+          p = Path('results/bayesian_rd_summary_hierarchical_leave_one_out_v1.csv')
+          assert p.exists() and p.stat().st_size > 0
+          rows = list(csv.DictReader(p.open(encoding='utf-8')))
+          assert len(rows) == 3
+          required = {
+              'analysis','omitted_country','included_country_count',
+              'posterior_mu_mean','posterior_mu_sd',
+              'posterior_mu_q025_normal_approx','posterior_mu_median_approx',
+              'posterior_mu_q975_normal_approx','posterior_mu_prob_negative',
+              'posterior_mu_prob_positive','posterior_kappa_mean',
+              'source_type','inference_level'
+          }
+          assert required.issubset(rows[0])
+          assert {r['omitted_country'] for r in rows} == {'Pakistan','Israel','North Korea'}
+          for r in rows:
+              assert r['analysis'] == 'bayesian_rd_summary_hierarchical_leave_one_out'
+              assert int(r['included_country_count']) == 2
+              assert math.isfinite(float(r['posterior_mu_mean']))
+              assert float(r['posterior_mu_sd']) > 0.0
+              assert float(r['posterior_mu_q025_normal_approx']) <= float(r['posterior_mu_median_approx']) <= float(r['posterior_mu_q975_normal_approx'])
+              pneg = float(r['posterior_mu_prob_negative'])
+              ppos = float(r['posterior_mu_prob_positive'])
+              assert 0.0 <= pneg <= 1.0
+              assert 0.0 <= ppos <= 1.0
+              assert abs((pneg + ppos) - 1.0) < 1e-12
+              assert float(r['posterior_kappa_mean']) >= 0.0
+              assert r['source_type'] == 'reported_estimate_and_standard_error'
+              assert r['inference_level'] == 'summary_data_hierarchical_leave_one_out'
+          print('RD summary hierarchical leave-one-out validated: RD_SUMMARY_HIERARCHICAL_LEAVE_ONE_OUT_COMPLETE.')
+          PY
+
+      - name: Run leave-one-out unit test
+        run: python -m unittest tests.test_bayesian_rd_summary_hierarchical_leave_one_out -v
+
+      - name: Publish leave-one-out artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: 12scsm-bayesian-rd-summary-hierarchical-leave-one-out-${{ github.sha }}
+          path: results/bayesian_rd_summary_hierarchical_leave_one_out_v1.csv
