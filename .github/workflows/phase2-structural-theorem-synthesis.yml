@@ -51,11 +51,11 @@ jobs:
           }
           for r in rows:
               assert r['analysis'] == 'phase2_structural_theorem_synthesis'
-          assert sum(r['status'] == 'exact' for r in rows) == 4
+          assert sum(r['status'] == 'exact' for r in rows) == 5
           assert sum(r['status'] == 'sufficient' for r in rows) == 3
           assert sum(r['status'] == 'exact sign implication' for r in rows) == 1
           assert sum(r['status'] == 'strict positivity of denominator' for r in rows) == 1
-          assert sum(r['status'] == 'coefficient reduction' for r in rows) == 1
+          assert sum(r['status'] == 'coefficient reduction' for r in rows) == 0
           by_name = {r['theorem_component']: r for r in rows}
           assert by_name['curvature_bridge']['conclusion'] == 'Delta_P=4*S*T=2*S*q0'
           assert by_name['degenerate_branch']['conclusion'] == 'p1=p2=0 and Delta_P=0'
