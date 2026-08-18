@@ -35,24 +35,30 @@ jobs:
           p = Path('results/phase2_primitive_sign_restrictions_v1.csv')
           assert p.exists() and p.stat().st_size > 0
           rows = list(csv.DictReader(p.open(encoding='utf-8')))
-          assert len(rows) == 8
+          assert len(rows) == 17
           required = {
-              'primitive_identity_p0', 'primitive_identity_S',
-              'primitive_identity_T', 'primitive_identity_discriminant',
-              'endogenous_pole_exclusion', 'p0_sign_boundary',
-              'S_sign_boundary', 'T_sign_boundary'
+              'analysis', 'layer', 'quantity',
+              'primitive_expression_or_condition', 'classification',
+              'basis', 'inference_level'
           }
-          by_component = {r['component']: r for r in rows}
-          assert set(by_component) == required
-          assert by_component['primitive_identity_p0']['status'] == 'exact'
-          assert by_component['primitive_identity_S']['status'] == 'exact'
-          assert by_component['primitive_identity_T']['status'] == 'exact'
-          assert by_component['primitive_identity_discriminant']['status'] == 'exact'
-          assert by_component['endogenous_pole_exclusion']['status'] == 'endogenous'
-          for key in ['p0_sign_boundary', 'S_sign_boundary', 'T_sign_boundary']:
-              assert by_component[key]['status'] == 'not_derivable_from_basic_domain'
+          assert required.issubset(rows[0])
+          by_quantity = {r['quantity']: r for r in rows}
+          for key in ['B', 'C', 'D', 'E', 'F', 'p0', 'S', 'T', 'q0', 'Delta_P', 'F>-1', 'sign(p0)', 'sign(S)', 'sign(T)', 'p0<0', 'S>=0', 'S<0 and T>0']:
+              assert key in by_quantity
+          assert by_quantity['p0']['primitive_expression_or_condition'] == 'sum_i w_i*g_i*a_i-sum_i g_i*(a_i+d_i)-d_m*(B0-sum_i g_i)'
+          assert by_quantity['S']['primitive_expression_or_condition'] == 'd_m*sum_i w_i*g_i*a_i-sum_i g_i*a_i*d_i'
+          assert by_quantity['T']['primitive_expression_or_condition'] == '-sum_i g_i*a_i*d_i+d_m*sum_i g_i*(a_i+d_i)+d_m^2*(B0-sum_i g_i)'
+          assert by_quantity['q0']['primitive_expression_or_condition'] == '2*T'
+          assert by_quantity['Delta_P']['primitive_expression_or_condition'] == '4*S*T=2*S*q0'
+          assert by_quantity['F>-1']['classification'] == 'endogenous'
+          for key in ['sign(p0)', 'sign(S)', 'sign(T)']:
+              assert by_quantity[key]['classification'] == 'not_derivable'
+          assert sum(r['classification'] == 'identity' for r in rows) == 10
+          assert sum(r['classification'] == 'endogenous' for r in rows) == 1
+          assert sum(r['classification'] == 'not_derivable' for r in rows) == 3
+          assert sum(r['classification'] == 'additional_assumption' for r in rows) == 3
           assert {r['analysis'] for r in rows} == {'phase2_primitive_sign_restrictions'}
-          assert {r['inference_level'] for r in rows} == {'primitive_level_sign_classification'}
+          assert {r['inference_level'] for r in rows} == {'primitive_to_structural_sign_classification'}
           print('PHASE2 primitive sign restrictions validated: PHASE2_PRIMITIVE_SIGN_RESTRICTIONS_COMPLETE.')
           PY
 
