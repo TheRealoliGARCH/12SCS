@@ -1,0 +1,10 @@
+component,present,description
+validated_rd_data,False,Observed RD analysis dataset validated and provenance recorded.
+running_variable,False,Observed running variable supplied in analysis units.
+cutoff,False,Institutional cutoff supplied and documented.
+treatment_rule,False,Sharp treatment-assignment rule verified.
+outcome,False,Observed outcome variable supplied.
+bandwidth_or_local_model,False,Bandwidth or Bayesian local specification pre-specified.
+continuity,False,RD continuity assumption explicitly adopted and defended.
+no_precise_manipulation,False,Running-variable manipulation diagnostic completed.
+local_support,False,Observed support exists on both sides of cutoff.
