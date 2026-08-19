@@ -1,0 +1,29 @@
+name: Data Freeze Audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'data/**'
+      - 'results/run_data_freeze_audit.py'
+      - '.github/workflows/data-freeze-audit.yml'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run deterministic freeze audit
+        run: python results/run_data_freeze_audit.py
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-freeze-audit-report
+          path: results/data_freeze_audit_report_v1.json
+      - name: Enforce freeze gate
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('results/data_freeze_audit_report_v1.json'))
+          assert r['freeze_decision']=='PASS', r
+          PY
