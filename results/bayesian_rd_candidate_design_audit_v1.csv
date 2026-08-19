@@ -1,0 +1,2 @@
+candidate_id,running_variable,cutoff,treatment,outcome,independent_cutoff_justification,two_sided_local_support,non_circular,classification,reason
+existing_frozen_capability_data,UNRESOLVED,UNRESOLVED,UNRESOLVED,UNRESOLVED,False,False,True,INSUFFICIENT,No defensible observed R-c-D-Y mapping has been established from the frozen dataset.
