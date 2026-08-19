@@ -1,0 +1,36 @@
+{
+  "audits": [
+    {
+      "explained_spectral_energy": 0.9999998489867467,
+      "max_abs_coordinate_residual": 0.0023152826802158577,
+      "modes": 5,
+      "residual_frobenius_norm": 0.0033367396876623793
+    },
+    {
+      "explained_spectral_energy": 1.0,
+      "max_abs_coordinate_residual": 1.3195000647669985e-13,
+      "modes": 6,
+      "residual_frobenius_norm": 2.2145676998442196e-13
+    },
+    {
+      "explained_spectral_energy": 1.0,
+      "max_abs_coordinate_residual": 1.3195000647669985e-13,
+      "modes": 7,
+      "residual_frobenius_norm": 2.1919326052233885e-13
+    }
+  ],
+  "interpretation": "six_mode_candidate_evaluated_by_direct_reconstruction_residual",
+  "n_features": 55,
+  "six_mode": {
+    "explained_spectral_energy": 1.0,
+    "max_abs_coordinate_residual": 1.3195000647669985e-13,
+    "modes": 6,
+    "residual_frobenius_norm": 2.2145676998442196e-13
+  },
+  "spectral_source_path": "results/phase_v_centered_spectral_compression_v1.json",
+  "spectral_source_sha256": "cb4d387ce67fa418292bce35226e134905b8affe1c643b5d7cfb338df35173c3",
+  "status": "SIX_MODE_RECONSTRUCTION_AUDIT_COMPLETE",
+  "trajectory_dimension": 8,
+  "trajectory_source_path": "results/phase_v_stability_trajectory_compression_v1.json",
+  "trajectory_source_sha256": "9b0744386b274db6d152e3cc8d60bf660095169e0e6c98b28633e29a2b2592bb"
+}
