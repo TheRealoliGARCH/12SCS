@@ -1,0 +1,676 @@
+{
+  "central_symmetry_class_count": 55,
+  "central_symmetry_classes": [
+    [
+      {
+        "feature_index": 0,
+        "representative": 0
+      }
+    ],
+    [
+      {
+        "feature_index": 1,
+        "representative": 1
+      }
+    ],
+    [
+      {
+        "feature_index": 2,
+        "representative": 2
+      }
+    ],
+    [
+      {
+        "feature_index": 3,
+        "representative": 3
+      }
+    ],
+    [
+      {
+        "feature_index": 4,
+        "representative": 4
+      }
+    ],
+    [
+      {
+        "feature_index": 5,
+        "representative": 5
+      }
+    ],
+    [
+      {
+        "feature_index": 6,
+        "representative": 6
+      }
+    ],
+    [
+      {
+        "feature_index": 7,
+        "representative": 7
+      }
+    ],
+    [
+      {
+        "feature_index": 8,
+        "representative": 8
+      }
+    ],
+    [
+      {
+        "feature_index": 9,
+        "representative": 9
+      }
+    ],
+    [
+      {
+        "feature_index": 10,
+        "representative": 10
+      }
+    ],
+    [
+      {
+        "feature_index": 11,
+        "representative": 11
+      }
+    ],
+    [
+      {
+        "feature_index": 12,
+        "representative": 12
+      }
+    ],
+    [
+      {
+        "feature_index": 13,
+        "representative": 13
+      }
+    ],
+    [
+      {
+        "feature_index": 14,
+        "representative": 14
+      }
+    ],
+    [
+      {
+        "feature_index": 15,
+        "representative": 15
+      }
+    ],
+    [
+      {
+        "feature_index": 16,
+        "representative": 16
+      }
+    ],
+    [
+      {
+        "feature_index": 17,
+        "representative": 17
+      }
+    ],
+    [
+      {
+        "feature_index": 18,
+        "representative": 18
+      }
+    ],
+    [
+      {
+        "feature_index": 19,
+        "representative": 19
+      }
+    ],
+    [
+      {
+        "feature_index": 20,
+        "representative": 20
+      }
+    ],
+    [
+      {
+        "feature_index": 21,
+        "representative": 21
+      }
+    ],
+    [
+      {
+        "feature_index": 22,
+        "representative": 22
+      }
+    ],
+    [
+      {
+        "feature_index": 23,
+        "representative": 23
+      }
+    ],
+    [
+      {
+        "feature_index": 24,
+        "representative": 24
+      }
+    ],
+    [
+      {
+        "feature_index": 25,
+        "representative": 25
+      }
+    ],
+    [
+      {
+        "feature_index": 26,
+        "representative": 26
+      }
+    ],
+    [
+      {
+        "feature_index": 27,
+        "representative": 27
+      }
+    ],
+    [
+      {
+        "feature_index": 28,
+        "representative": 28
+      }
+    ],
+    [
+      {
+        "feature_index": 29,
+        "representative": 29
+      }
+    ],
+    [
+      {
+        "feature_index": 30,
+        "representative": 30
+      }
+    ],
+    [
+      {
+        "feature_index": 31,
+        "representative": 31
+      }
+    ],
+    [
+      {
+        "feature_index": 32,
+        "representative": 32
+      }
+    ],
+    [
+      {
+        "feature_index": 33,
+        "representative": 33
+      }
+    ],
+    [
+      {
+        "feature_index": 34,
+        "representative": 34
+      }
+    ],
+    [
+      {
+        "feature_index": 35,
+        "representative": 35
+      }
+    ],
+    [
+      {
+        "feature_index": 36,
+        "representative": 36
+      }
+    ],
+    [
+      {
+        "feature_index": 37,
+        "representative": 37
+      }
+    ],
+    [
+      {
+        "feature_index": 38,
+        "representative": 38
+      }
+    ],
+    [
+      {
+        "feature_index": 39,
+        "representative": 39
+      }
+    ],
+    [
+      {
+        "feature_index": 40,
+        "representative": 40
+      }
+    ],
+    [
+      {
+        "feature_index": 41,
+        "representative": 41
+      }
+    ],
+    [
+      {
+        "feature_index": 42,
+        "representative": 42
+      }
+    ],
+    [
+      {
+        "feature_index": 43,
+        "representative": 43
+      }
+    ],
+    [
+      {
+        "feature_index": 44,
+        "representative": 44
+      }
+    ],
+    [
+      {
+        "feature_index": 45,
+        "representative": 45
+      }
+    ],
+    [
+      {
+        "feature_index": 46,
+        "representative": 46
+      }
+    ],
+    [
+      {
+        "feature_index": 47,
+        "representative": 47
+      }
+    ],
+    [
+      {
+        "feature_index": 48,
+        "representative": 48
+      }
+    ],
+    [
+      {
+        "feature_index": 49,
+        "representative": 49
+      }
+    ],
+    [
+      {
+        "feature_index": 50,
+        "representative": 50
+      }
+    ],
+    [
+      {
+        "feature_index": 51,
+        "representative": 51
+      }
+    ],
+    [
+      {
+        "feature_index": 52,
+        "representative": 52
+      }
+    ],
+    [
+      {
+        "feature_index": 53,
+        "representative": 53
+      }
+    ],
+    [
+      {
+        "feature_index": 54,
+        "representative": 54
+      }
+    ]
+  ],
+  "central_symmetry_reduction": 0,
+  "coordinate_dimension": 6,
+  "exact_equivalence_class_count": 55,
+  "exact_equivalence_classes": [
+    [
+      {
+        "feature_index": 0,
+        "representative": 0
+      }
+    ],
+    [
+      {
+        "feature_index": 1,
+        "representative": 1
+      }
+    ],
+    [
+      {
+        "feature_index": 2,
+        "representative": 2
+      }
+    ],
+    [
+      {
+        "feature_index": 3,
+        "representative": 3
+      }
+    ],
+    [
+      {
+        "feature_index": 4,
+        "representative": 4
+      }
+    ],
+    [
+      {
+        "feature_index": 5,
+        "representative": 5
+      }
+    ],
+    [
+      {
+        "feature_index": 6,
+        "representative": 6
+      }
+    ],
+    [
+      {
+        "feature_index": 7,
+        "representative": 7
+      }
+    ],
+    [
+      {
+        "feature_index": 8,
+        "representative": 8
+      }
+    ],
+    [
+      {
+        "feature_index": 9,
+        "representative": 9
+      }
+    ],
+    [
+      {
+        "feature_index": 10,
+        "representative": 10
+      }
+    ],
+    [
+      {
+        "feature_index": 11,
+        "representative": 11
+      }
+    ],
+    [
+      {
+        "feature_index": 12,
+        "representative": 12
+      }
+    ],
+    [
+      {
+        "feature_index": 13,
+        "representative": 13
+      }
+    ],
+    [
+      {
+        "feature_index": 14,
+        "representative": 14
+      }
+    ],
+    [
+      {
+        "feature_index": 15,
+        "representative": 15
+      }
+    ],
+    [
+      {
+        "feature_index": 16,
+        "representative": 16
+      }
+    ],
+    [
+      {
+        "feature_index": 17,
+        "representative": 17
+      }
+    ],
+    [
+      {
+        "feature_index": 18,
+        "representative": 18
+      }
+    ],
+    [
+      {
+        "feature_index": 19,
+        "representative": 19
+      }
+    ],
+    [
+      {
+        "feature_index": 20,
+        "representative": 20
+      }
+    ],
+    [
+      {
+        "feature_index": 21,
+        "representative": 21
+      }
+    ],
+    [
+      {
+        "feature_index": 22,
+        "representative": 22
+      }
+    ],
+    [
+      {
+        "feature_index": 23,
+        "representative": 23
+      }
+    ],
+    [
+      {
+        "feature_index": 24,
+        "representative": 24
+      }
+    ],
+    [
+      {
+        "feature_index": 25,
+        "representative": 25
+      }
+    ],
+    [
+      {
+        "feature_index": 26,
+        "representative": 26
+      }
+    ],
+    [
+      {
+        "feature_index": 27,
+        "representative": 27
+      }
+    ],
+    [
+      {
+        "feature_index": 28,
+        "representative": 28
+      }
+    ],
+    [
+      {
+        "feature_index": 29,
+        "representative": 29
+      }
+    ],
+    [
+      {
+        "feature_index": 30,
+        "representative": 30
+      }
+    ],
+    [
+      {
+        "feature_index": 31,
+        "representative": 31
+      }
+    ],
+    [
+      {
+        "feature_index": 32,
+        "representative": 32
+      }
+    ],
+    [
+      {
+        "feature_index": 33,
+        "representative": 33
+      }
+    ],
+    [
+      {
+        "feature_index": 34,
+        "representative": 34
+      }
+    ],
+    [
+      {
+        "feature_index": 35,
+        "representative": 35
+      }
+    ],
+    [
+      {
+        "feature_index": 36,
+        "representative": 36
+      }
+    ],
+    [
+      {
+        "feature_index": 37,
+        "representative": 37
+      }
+    ],
+    [
+      {
+        "feature_index": 38,
+        "representative": 38
+      }
+    ],
+    [
+      {
+        "feature_index": 39,
+        "representative": 39
+      }
+    ],
+    [
+      {
+        "feature_index": 40,
+        "representative": 40
+      }
+    ],
+    [
+      {
+        "feature_index": 41,
+        "representative": 41
+      }
+    ],
+    [
+      {
+        "feature_index": 42,
+        "representative": 42
+      }
+    ],
+    [
+      {
+        "feature_index": 43,
+        "representative": 43
+      }
+    ],
+    [
+      {
+        "feature_index": 44,
+        "representative": 44
+      }
+    ],
+    [
+      {
+        "feature_index": 45,
+        "representative": 45
+      }
+    ],
+    [
+      {
+        "feature_index": 46,
+        "representative": 46
+      }
+    ],
+    [
+      {
+        "feature_index": 47,
+        "representative": 47
+      }
+    ],
+    [
+      {
+        "feature_index": 48,
+        "representative": 48
+      }
+    ],
+    [
+      {
+        "feature_index": 49,
+        "representative": 49
+      }
+    ],
+    [
+      {
+        "feature_index": 50,
+        "representative": 50
+      }
+    ],
+    [
+      {
+        "feature_index": 51,
+        "representative": 51
+      }
+    ],
+    [
+      {
+        "feature_index": 52,
+        "representative": 52
+      }
+    ],
+    [
+      {
+        "feature_index": 53,
+        "representative": 53
+      }
+    ],
+    [
+      {
+        "feature_index": 54,
+        "representative": 54
+      }
+    ]
+  ],
+  "exact_reduction": 0,
+  "interpretation": "exact_coordinate_equivalence_and_sign_symmetry_audit_no_tolerance_clustering",
+  "n_features": 55,
+  "source_path": "results/phase_v_canonical_six_mode_coordinates_v1.json",
+  "source_sha256": "7c31cc440c875713ed077344a6ebada567fa5d3ae05ed66a5b63a8ac9676c38b",
+  "status": "FEATURE_TRAJECTORY_EQUIVALENCE_AUDIT_COMPLETE"
+}
