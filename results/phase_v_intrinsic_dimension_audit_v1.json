@@ -1,0 +1,35 @@
+{
+  "interpretation": "diagnostic_spectrum_no_single_intrinsic_dimension_declared",
+  "n_features": 55,
+  "numerical_rank_by_relative_tolerance": {
+    "1e-06": 6,
+    "1e-08": 6,
+    "1e-10": 8,
+    "1e-12": 8
+  },
+  "positive_singular_value_count": 8,
+  "relative_singular_values": [
+    1.0,
+    0.018013248736147746,
+    0.009761459284694397,
+    0.0037832923591236234,
+    0.0016984057311049035,
+    0.00018010853848713537,
+    2.5121363174744262e-09,
+    2.451750449853952e-09
+  ],
+  "singular_values": [
+    18.7523897029726,
+    0.3377914601168212,
+    0.18305068857628948,
+    0.07094577267856475,
+    0.03184916614344124,
+    0.0033774655025436014,
+    4.7108559212270933e-08,
+    4.5976179890099684e-08
+  ],
+  "source_path": "results/phase_v_stability_trajectory_compression_v1.json",
+  "source_sha256": "9b0744386b274db6d152e3cc8d60bf660095169e0e6c98b28633e29a2b2592bb",
+  "status": "INTRINSIC_DIMENSION_AUDIT_COMPLETE",
+  "trajectory_dimension": 8
+}
