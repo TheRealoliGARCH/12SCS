@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data'
 OUT = ROOT / 'results'
 MANIFEST = DATA / 'data_acquisition_provenance_manifest_v1.csv'
+DIMENSIONS = DATA / 'capability_dimensions.csv'
 AUTO = 'AUTO_SHA256_AT_FREEZE'
 
 
@@ -17,6 +18,13 @@ def sha256(path):
         for chunk in iter(lambda: f.read(1024 * 1024), b''):
             h.update(chunk)
     return h.hexdigest()
+
+
+def normalize_dimension(value, name_to_code, required_dimensions):
+    value = (value or '').strip()
+    if value in required_dimensions:
+        return value
+    return name_to_code.get(value.casefold(), value)
 
 
 def main():
@@ -45,6 +53,14 @@ def main():
         })
 
     required_dimensions = {'N','M','E','F','T','I','R','H','L','D','A','S'}
+    with DIMENSIONS.open(newline='', encoding='utf-8') as f:
+        dimension_schema = list(csv.DictReader(f))
+    name_to_code = {
+        (r.get('name') or '').strip().casefold(): (r.get('symbol') or '').strip()
+        for r in dimension_schema
+        if (r.get('name') or '').strip() and (r.get('symbol') or '').strip()
+    }
+
     dimension_files = [p for p in files if p.name not in {'capability_dimensions.csv','capability_recognition.csv','evidence_ledger.csv'}]
     present_dimensions = set()
     duplicate_rows = 0
@@ -55,13 +71,17 @@ def main():
         if rows:
             for key in ('dimension','primitive','capability'):
                 if key in rows[0]:
-                    present_dimensions.update(r.get(key,'') for r in rows)
+                    present_dimensions.update(
+                        normalize_dimension(r.get(key, ''), name_to_code, required_dimensions)
+                        for r in rows
+                    )
                     break
         if rows and 'state' in rows[0] and any(k in rows[0] for k in ('dimension','primitive','capability')):
             keyname = next(k for k in ('dimension','primitive','capability') if k in rows[0])
             seen = set()
             for r in rows:
-                key = (r.get('state'), r.get(keyname))
+                dimension = normalize_dimension(r.get(keyname, ''), name_to_code, required_dimensions)
+                key = (r.get('state'), dimension)
                 if key in seen:
                     duplicate_rows += 1
                 seen.add(key)
@@ -74,7 +94,11 @@ def main():
         'inventory': inventory,
         'manifest': {'total_rows': len(manifest), 'populated_rows': len(populated), 'unrepresented_files': [x['filename'] for x in inventory if x['filename'] not in manifest_by_file]},
         'checksum': {'declared_count': sum(x['declared'] for x in checksum_results), 'verified_count': sum(x['match'] for x in checksum_results), 'results': checksum_results},
-        'coverage': {'required_dimensions': sorted(required_dimensions), 'observed_dimension_codes': sorted(x for x in present_dimensions if x), 'dimension_schema_complete': required_dimensions.issubset(present_dimensions)},
+        'coverage': {
+            'required_dimensions': sorted(required_dimensions),
+            'observed_dimension_codes': sorted(x for x in present_dimensions if x),
+            'dimension_schema_complete': required_dimensions.issubset(present_dimensions)
+        },
         'duplicates': {'detected_state_dimension_duplicates': duplicate_rows},
     }
     report['freeze_decision'] = 'PASS' if report['manifest']['populated_rows'] > 0 and not report['manifest']['unrepresented_files'] and report['checksum']['declared_count'] == len(inventory) and report['checksum']['verified_count'] == len(inventory) and report['coverage']['dimension_schema_complete'] and duplicate_rows == 0 else 'BLOCKED'
