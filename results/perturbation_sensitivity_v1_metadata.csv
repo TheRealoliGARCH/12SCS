@@ -1,0 +1,6 @@
+parameter,value
+seed,12000
+scenarios,5000
+scale,0.1
+distribution,"Uniform[-scale*(1-confidence), +scale*(1-confidence)]"
+clipping,"[0,1]"
