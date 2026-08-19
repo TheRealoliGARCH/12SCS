@@ -1,0 +1,12 @@
+{
+  "max_persistence": 0.0,
+  "n_finite_h1_features": 55,
+  "n_h1_features": 55,
+  "n_infinite_h1_features": 0,
+  "n_points": 12,
+  "n_simplices": 4095,
+  "source_matrix_path": "results/phase_v_canonical_distance_matrix_v1.csv",
+  "source_matrix_sha256": "7baa8296ece584b78a562774ff94b2466ab8646a6051a5a3e7faccd4afcc48d6",
+  "status": "H1_PERSISTENCE_COMPUTATION_COMPLETE",
+  "total_h1_persistence": 0.0
+}
