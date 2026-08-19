@@ -1,0 +1,53 @@
+{
+  "eigenvalues": [
+    73.57391499502772,
+    0.11406341063438878,
+    0.033502335037857586,
+    0.005033302651246527,
+    0.0009887926095583006,
+    1.113383174322121e-05
+  ],
+  "frontier": [
+    {
+      "dimension": 5,
+      "max_abs_coordinate_distortion": 0.003272927751338197,
+      "residual_energy": 1.510132533125007e-07,
+      "residual_frobenius_norm": 0.003336739687662376,
+      "retained_energy": 0.9999998489867468
+    },
+    {
+      "dimension": 4,
+      "max_abs_coordinate_distortion": 0.030580127924200232,
+      "residual_energy": 1.3562459758391007e-05,
+      "residual_frobenius_norm": 0.031621613515150075,
+      "retained_energy": 0.9999864375402417
+    },
+    {
+      "dimension": 3,
+      "max_abs_coordinate_distortion": 0.030580127924200232,
+      "residual_energy": 8.183144619551354e-05,
+      "residual_frobenius_norm": 0.07767386363860143,
+      "retained_energy": 0.9999181685538047
+    },
+    {
+      "dimension": 2,
+      "max_abs_coordinate_distortion": 0.10968808364464043,
+      "residual_energy": 0.0005362389425826031,
+      "residual_frobenius_norm": 0.19883552029354723,
+      "retained_energy": 0.9994637610574174
+    },
+    {
+      "dimension": 1,
+      "max_abs_coordinate_distortion": 0.11642548236502188,
+      "residual_energy": 0.002083333161453493,
+      "residual_frobenius_norm": 0.3919170508727509,
+      "retained_energy": 0.9979166668385465
+    }
+  ],
+  "interpretation": "deterministic_pca_reconstruction_frontier_no_loss_threshold_or_canonical_dimension_selection",
+  "n_features": 55,
+  "source_dimension": 6,
+  "source_path": "results/phase_v_canonical_six_mode_coordinates_v1.json",
+  "source_sha256": "7c31cc440c875713ed077344a6ebada567fa5d3ae05ed66a5b63a8ac9676c38b",
+  "status": "RATE_DISTORTION_FRONTIER_COMPLETE"
+}
