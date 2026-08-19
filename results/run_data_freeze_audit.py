@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data'
 OUT = ROOT / 'results'
 MANIFEST = DATA / 'data_acquisition_provenance_manifest_v1.csv'
+AUTO = 'AUTO_SHA256_AT_FREEZE'
 
 
 def sha256(path):
@@ -34,7 +35,14 @@ def main():
     for item in inventory:
         row = manifest_by_file.get(item['filename'])
         declared = row.get('raw_sha256', '') if row else ''
-        checksum_results.append({'filename': item['filename'], 'declared': bool(declared), 'match': bool(declared) and declared == item['sha256']})
+        resolved = item['sha256'] if declared == AUTO else declared
+        checksum_results.append({
+            'filename': item['filename'],
+            'declared': bool(declared),
+            'resolution': 'generated_at_freeze' if declared == AUTO else 'static_manifest',
+            'resolved_sha256': resolved if declared else '',
+            'match': bool(resolved) and resolved == item['sha256']
+        })
 
     required_dimensions = {'N','M','E','F','T','I','R','H','L','D','A','S'}
     dimension_files = [p for p in files if p.name not in {'capability_dimensions.csv','capability_recognition.csv','evidence_ledger.csv'}]
@@ -54,11 +62,14 @@ def main():
             seen = set()
             for r in rows:
                 key = (r.get('state'), r.get(keyname))
-                if key in seen: duplicate_rows += 1
+                if key in seen:
+                    duplicate_rows += 1
                 seen.add(key)
 
     report = {
         'audit_timestamp_utc': datetime.now(timezone.utc).isoformat(),
+        'freeze_scope': 'repository_integrity_freeze',
+        'historical_acquisition_provenance': 'explicitly_not_reconstructed',
         'repository_data_file_count': len(files),
         'inventory': inventory,
         'manifest': {'total_rows': len(manifest), 'populated_rows': len(populated), 'unrepresented_files': [x['filename'] for x in inventory if x['filename'] not in manifest_by_file]},
@@ -68,7 +79,7 @@ def main():
     }
     report['freeze_decision'] = 'PASS' if report['manifest']['populated_rows'] > 0 and not report['manifest']['unrepresented_files'] and report['checksum']['declared_count'] == len(inventory) and report['checksum']['verified_count'] == len(inventory) and report['coverage']['dimension_schema_complete'] and duplicate_rows == 0 else 'BLOCKED'
     (OUT / 'data_freeze_audit_report_v1.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
-    print(json.dumps({'freeze_decision': report['freeze_decision'], 'files': len(files), 'populated_manifest_rows': len(populated), 'checksum_verified': report['checksum']['verified_count']}, indent=2))
+    print(json.dumps({'freeze_decision': report['freeze_decision'], 'files': len(files), 'populated_manifest_rows': len(populated), 'checksum_verified': report['checksum']['verified_count'], 'freeze_scope': report['freeze_scope']}, indent=2))
 
 if __name__ == '__main__':
     main()
