@@ -1,0 +1,346 @@
+{
+  "effective_feature_count_squared_residual": 8.43490488286888,
+  "gini_residual_norm": 0.37965374175959493,
+  "herfindahl_residual_norm": 0.03074281921159886,
+  "interpretation": "threshold_free_residual_concentration_and_ranked_tail_description_no_outlier_classification",
+  "max_residual_norm": 0.10973668654397457,
+  "min_residual_norm": 0.0013497691340930752,
+  "n_features": 55,
+  "normalized_herfindahl_residual_norm": 0.012793612159961804,
+  "ranked_residuals": [
+    {
+      "cumulative_residual_share": 0.09676754391293968,
+      "feature_index": 40,
+      "rank": 1,
+      "residual_norm": 0.10973668654397457
+    },
+    {
+      "cumulative_residual_share": 0.15569730933685963,
+      "feature_index": 39,
+      "rank": 2,
+      "residual_norm": 0.06682774962494348
+    },
+    {
+      "cumulative_residual_share": 0.19804166055492714,
+      "feature_index": 44,
+      "rank": 3,
+      "residual_norm": 0.04801949712297787
+    },
+    {
+      "cumulative_residual_share": 0.2333040041697523,
+      "feature_index": 11,
+      "rank": 4,
+      "residual_norm": 0.039988332777644846
+    },
+    {
+      "cumulative_residual_share": 0.26539364666336673,
+      "feature_index": 46,
+      "rank": 5,
+      "residual_norm": 0.03639041456707982
+    },
+    {
+      "cumulative_residual_share": 0.2947501882057329,
+      "feature_index": 34,
+      "rank": 6,
+      "residual_norm": 0.0332910133603073
+    },
+    {
+      "cumulative_residual_share": 0.32357014752651037,
+      "feature_index": 27,
+      "rank": 7,
+      "residual_norm": 0.032682516413143736
+    },
+    {
+      "cumulative_residual_share": 0.3523561787506177,
+      "feature_index": 30,
+      "rank": 8,
+      "residual_norm": 0.032644041148000284
+    },
+    {
+      "cumulative_residual_share": 0.38029227421491657,
+      "feature_index": 38,
+      "rank": 9,
+      "residual_norm": 0.031680193867340535
+    },
+    {
+      "cumulative_residual_share": 0.40725607736536257,
+      "feature_index": 9,
+      "rank": 10,
+      "residual_norm": 0.030577591356622826
+    },
+    {
+      "cumulative_residual_share": 0.4308165247883673,
+      "feature_index": 4,
+      "rank": 11,
+      "residual_norm": 0.026718105359997094
+    },
+    {
+      "cumulative_residual_share": 0.4525845017889102,
+      "feature_index": 1,
+      "rank": 12,
+      "residual_norm": 0.024685401449830554
+    },
+    {
+      "cumulative_residual_share": 0.4736851229559596,
+      "feature_index": 12,
+      "rank": 13,
+      "residual_norm": 0.02392860412965409
+    },
+    {
+      "cumulative_residual_share": 0.4946673616260667,
+      "feature_index": 21,
+      "rank": 14,
+      "residual_norm": 0.023794355574467716
+    },
+    {
+      "cumulative_residual_share": 0.5149771557921362,
+      "feature_index": 22,
+      "rank": 15,
+      "residual_norm": 0.023031787581379148
+    },
+    {
+      "cumulative_residual_share": 0.5349887665226344,
+      "feature_index": 20,
+      "rank": 16,
+      "residual_norm": 0.022693640503560163
+    },
+    {
+      "cumulative_residual_share": 0.5548546505407902,
+      "feature_index": 19,
+      "rank": 17,
+      "residual_norm": 0.022528382960516617
+    },
+    {
+      "cumulative_residual_share": 0.5747099153309057,
+      "feature_index": 15,
+      "rank": 18,
+      "residual_norm": 0.022516340504423672
+    },
+    {
+      "cumulative_residual_share": 0.5944939985497477,
+      "feature_index": 0,
+      "rank": 19,
+      "residual_norm": 0.02243561891680572
+    },
+    {
+      "cumulative_residual_share": 0.61371151269322,
+      "feature_index": 8,
+      "rank": 20,
+      "residual_norm": 0.021793116167275403
+    },
+    {
+      "cumulative_residual_share": 0.63265775924851,
+      "feature_index": 48,
+      "rank": 21,
+      "residual_norm": 0.021485492297843658
+    },
+    {
+      "cumulative_residual_share": 0.6514087645945922,
+      "feature_index": 16,
+      "rank": 22,
+      "residual_norm": 0.021264084142702495
+    },
+    {
+      "cumulative_residual_share": 0.6691551239167832,
+      "feature_index": 45,
+      "rank": 23,
+      "residual_norm": 0.02012479175856831
+    },
+    {
+      "cumulative_residual_share": 0.6860913291264478,
+      "feature_index": 31,
+      "rank": 24,
+      "residual_norm": 0.019206057808075275
+    },
+    {
+      "cumulative_residual_share": 0.7029355052210746,
+      "feature_index": 36,
+      "rank": 25,
+      "residual_norm": 0.019101694612096178
+    },
+    {
+      "cumulative_residual_share": 0.7196192308851832,
+      "feature_index": 13,
+      "rank": 26,
+      "residual_norm": 0.018919740023939254
+    },
+    {
+      "cumulative_residual_share": 0.7362975527530733,
+      "feature_index": 26,
+      "rank": 27,
+      "residual_norm": 0.018913611991049316
+    },
+    {
+      "cumulative_residual_share": 0.7529067152962801,
+      "feature_index": 52,
+      "rank": 28,
+      "residual_norm": 0.018835183678957527
+    },
+    {
+      "cumulative_residual_share": 0.7694757134491335,
+      "feature_index": 35,
+      "rank": 29,
+      "residual_norm": 0.01878963630908313
+    },
+    {
+      "cumulative_residual_share": 0.7857895111218347,
+      "feature_index": 53,
+      "rank": 30,
+      "residual_norm": 0.018500232920675007
+    },
+    {
+      "cumulative_residual_share": 0.8018986508575675,
+      "feature_index": 54,
+      "rank": 31,
+      "residual_norm": 0.018268145973236897
+    },
+    {
+      "cumulative_residual_share": 0.8175334480873074,
+      "feature_index": 2,
+      "rank": 32,
+      "residual_norm": 0.01773023033758274
+    },
+    {
+      "cumulative_residual_share": 0.8329451164414098,
+      "feature_index": 49,
+      "rank": 33,
+      "residual_norm": 0.017477196908246447
+    },
+    {
+      "cumulative_residual_share": 0.847996029276401,
+      "feature_index": 14,
+      "rank": 34,
+      "residual_norm": 0.01706809160579782
+    },
+    {
+      "cumulative_residual_share": 0.8627977048310469,
+      "feature_index": 3,
+      "rank": 35,
+      "residual_norm": 0.016785450627197177
+    },
+    {
+      "cumulative_residual_share": 0.8774178368243356,
+      "feature_index": 18,
+      "rank": 36,
+      "residual_norm": 0.016579575929120148
+    },
+    {
+      "cumulative_residual_share": 0.8908414709444433,
+      "feature_index": 6,
+      "rank": 37,
+      "residual_norm": 0.015222719004261944
+    },
+    {
+      "cumulative_residual_share": 0.9038726122701357,
+      "feature_index": 5,
+      "rank": 38,
+      "residual_norm": 0.014777622879984353
+    },
+    {
+      "cumulative_residual_share": 0.9163742418902643,
+      "feature_index": 29,
+      "rank": 39,
+      "residual_norm": 0.014177144065444
+    },
+    {
+      "cumulative_residual_share": 0.9287035344057029,
+      "feature_index": 7,
+      "rank": 40,
+      "residual_norm": 0.013981709707264138
+    },
+    {
+      "cumulative_residual_share": 0.9399486877598006,
+      "feature_index": 47,
+      "rank": 41,
+      "residual_norm": 0.012752270222624948
+    },
+    {
+      "cumulative_residual_share": 0.951084307888849,
+      "feature_index": 17,
+      "rank": 42,
+      "residual_norm": 0.01262805695134283
+    },
+    {
+      "cumulative_residual_share": 0.9590320507348743,
+      "feature_index": 10,
+      "rank": 43,
+      "residual_norm": 0.009012928613865151
+    },
+    {
+      "cumulative_residual_share": 0.9665928552525822,
+      "feature_index": 25,
+      "rank": 44,
+      "residual_norm": 0.008574131385689033
+    },
+    {
+      "cumulative_residual_share": 0.9722985639325128,
+      "feature_index": 50,
+      "rank": 45,
+      "residual_norm": 0.006470408771396404
+    },
+    {
+      "cumulative_residual_share": 0.9779528281788608,
+      "feature_index": 24,
+      "rank": 46,
+      "residual_norm": 0.006412069565354629
+    },
+    {
+      "cumulative_residual_share": 0.9833506736187648,
+      "feature_index": 33,
+      "rank": 47,
+      "residual_norm": 0.006121284566078407
+    },
+    {
+      "cumulative_residual_share": 0.9876081173936648,
+      "feature_index": 32,
+      "rank": 48,
+      "residual_norm": 0.004828042069819782
+    },
+    {
+      "cumulative_residual_share": 0.9904053694336854,
+      "feature_index": 51,
+      "rank": 49,
+      "residual_norm": 0.003172150060731182
+    },
+    {
+      "cumulative_residual_share": 0.9924969080085148,
+      "feature_index": 43,
+      "rank": 50,
+      "residual_norm": 0.002371854277785357
+    },
+    {
+      "cumulative_residual_share": 0.994143611881655,
+      "feature_index": 23,
+      "rank": 51,
+      "residual_norm": 0.001867401191045045
+    },
+    {
+      "cumulative_residual_share": 0.9957570184978252,
+      "feature_index": 42,
+      "rank": 52,
+      "residual_norm": 0.0018296413130618797
+    },
+    {
+      "cumulative_residual_share": 0.9973607608233277,
+      "feature_index": 41,
+      "rank": 53,
+      "residual_norm": 0.0018186817785652669
+    },
+    {
+      "cumulative_residual_share": 0.998809752252695,
+      "feature_index": 37,
+      "rank": 54,
+      "residual_norm": 0.0016431905973808484
+    },
+    {
+      "cumulative_residual_share": 1.0,
+      "feature_index": 28,
+      "rank": 55,
+      "residual_norm": 0.0013497691340930752
+    }
+  ],
+  "source_path": "results/phase_v_two_mode_reconstruction_audit_v1.json",
+  "source_sha256": "d413c8dc9fbe7b94a17a976fd1a7a24ce2cff07261bfdc3b5d2826c1e4597b76",
+  "status": "TWO_MODE_RESIDUAL_CONCENTRATION_AUDIT_COMPLETE",
+  "total_residual_norm": 1.134023683009905
+}
