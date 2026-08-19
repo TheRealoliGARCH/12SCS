@@ -1,0 +1,11 @@
+analysis,theorem_component,statement,certificate,classification,inference_level
+phase3_joint_shape_classification,domain,F>-1,"denominators positive on [0,1]",domain,joint_shape_classification
+phase3_joint_shape_classification,discriminant_identity,Delta_P=4ST,root geometry coupled to S and T,exact_identity,joint_shape_classification
+phase3_joint_shape_classification,curvature_identity,Pi_second=2T/(1+F*lambda)^3,curvature sign equals sign(T),exact_identity,joint_shape_classification
+phase3_joint_shape_classification,convex_decrease,"P<0 on [0,1] and T>0",strictly decreasing and strictly convex,necessary_and_sufficient_joint,joint_shape_classification
+phase3_joint_shape_classification,linear_decrease,"P<0 on [0,1] and T=0",strictly decreasing and affine,necessary_and_sufficient_joint,joint_shape_classification
+phase3_joint_shape_classification,concave_decrease,"P<0 on [0,1] and T<0",strictly decreasing and strictly concave,necessary_and_sufficient_joint,joint_shape_classification
+phase3_joint_shape_classification,concave_discriminant_exclusion,S<0 and T>0,"Delta_P<0, so P has no real roots",exact_structural_exclusion,joint_shape_classification
+phase3_joint_shape_classification,convex_discriminant_exclusion,S>0 and T<0,"Delta_P<0, so P has no real roots",exact_structural_exclusion,joint_shape_classification
+phase3_joint_shape_classification,double_root_boundary,S*T=0,Delta_P=0 boundary regime,exact_boundary,joint_shape_classification
+phase3_joint_shape_classification,shape_scope,joint classification requires exact P-sign condition for monotonicity,curvature alone does not imply decrease,scope_boundary,joint_shape_classification

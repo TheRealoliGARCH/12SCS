@@ -16,7 +16,7 @@ def recognition_intensity(Q, P, U, D):
     return np.prod(arrays, axis=0)
 
 
-def recognition_level(rho, thresholds=(0.2, 0.4, 0.7, 0.9)):
+def recognition_level(rho, thresholds=(0.2, 0.4, 0.7, 0.8)):
     """Map latent recognition intensity to Charter levels 0--4.
 
     Thresholds are explicit calibration parameters, not country observations.

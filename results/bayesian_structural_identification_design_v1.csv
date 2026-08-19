@@ -1,0 +1,8 @@
+component,present,description
+structural_map,True,Deterministic 12SCS counterfactual map is available.
+prior,True,Prior-induced uncertainty is specified for the intervention parameter.
+observed_outcome_data,False,No observational or experimental outcome dataset is currently supplied.
+likelihood,False,No likelihood linking observed outcomes to structural parameters is currently supplied.
+consistency,False,Potential-outcome consistency has not yet been encoded as an explicit identification assumption.
+exchangeability_or_design,False,"No randomized, ignorability, adjustment, IV, RD, DiD, or other identification design is currently supplied."
+positivity_or_support,False,No data-backed overlap/support condition is currently supplied.

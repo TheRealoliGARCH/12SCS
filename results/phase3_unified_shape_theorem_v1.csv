@@ -1,0 +1,13 @@
+analysis,theorem_component,condition,consequence,classification,inference_level
+phase3_unified_shape_theorem,domain,F>-1,"1+F lambda>0 on [0,1]",exact_domain,unified_shape_theorem
+phase3_unified_shape_theorem,first_derivative,Pi_prime=P/(1+F lambda)^2,critical points are roots of P,exact_identity,unified_shape_theorem
+phase3_unified_shape_theorem,curvature,Pi_second=2T/(1+F lambda)^3,sign(Pi_second)=sign(T),exact_identity,unified_shape_theorem
+phase3_unified_shape_theorem,discriminant,Delta_P=4ST,root geometry is coupled to S and T,exact_identity,unified_shape_theorem
+phase3_unified_shape_theorem,convex_decrease,"P<0 on [0,1] and T>0",strictly decreasing and strictly convex,necessary_and_sufficient_joint,unified_shape_theorem
+phase3_unified_shape_theorem,affine_decrease,"P<0 on [0,1] and T=0",strictly decreasing and affine,necessary_and_sufficient_joint,unified_shape_theorem
+phase3_unified_shape_theorem,concave_decrease,"P<0 on [0,1] and T<0",strictly decreasing and strictly concave,necessary_and_sufficient_joint,unified_shape_theorem
+phase3_unified_shape_theorem,global_root_exclusion,ST<0,P has no real roots and no critical points,exact_structural_exclusion,unified_shape_theorem
+phase3_unified_shape_theorem,zero_curvature_boundary,T=0,P=p0(1+F lambda)^2 and Pi_prime=p0,exact_structural_boundary,unified_shape_theorem
+phase3_unified_shape_theorem,primitive_pullback,T=E-FD+F^2C under the established primitive map,primitive curvature sign is the sign of the pullback,exact_primitive_pullback,unified_shape_theorem
+phase3_unified_shape_theorem,sharpness,realized primitive witnesses recorded where emitted,attainability is certified only for witnessed classes,constructive_sharpness,unified_shape_theorem
+phase3_unified_shape_theorem,scope,curvature or discriminant information alone does not imply decrease,P-sign condition remains required for monotonicity,scope_boundary,unified_shape_theorem

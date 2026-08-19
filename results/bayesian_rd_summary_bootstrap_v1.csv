@@ -1,0 +1,4 @@
+unit,reported_effect,reported_standard_error,bootstrap_replicates,q025,q500,q975,prob_negative,prob_positive,source_type
+Pakistan,-87.4,35.4,10000,-156.22743615442025,-87.21713086586338,-18.094268711201163,0.9922,0.0078,published_rd_effect_and_se
+Israel,28.9,9.2,10000,10.761112317475066,28.75002554434461,46.86279185484606,0.0007,0.9993,published_rd_effect_and_se
+North_Korea,43.1,8.9,10000,25.445143733472204,43.167613354965795,60.0374390033975,0.0,1.0,published_rd_effect_and_se_proxy_outcome

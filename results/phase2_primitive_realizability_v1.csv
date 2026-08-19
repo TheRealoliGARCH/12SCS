@@ -1,0 +1,8 @@
+analysis,witness_component,p0,p1,p2,implied_F,certificate,status,inference_level
+phase2_primitive_realizability,identity_filter,,,,,p2=F*p1/2,exact_structural_identity,structural_realizability_filter
+phase2_primitive_realizability,drop_global_discriminant_route,-1,-2,-1,1,F=2*p2/p1=1>-1,passes_structural_filter,structural_realizability_filter
+phase2_primitive_realizability,drop_S_negative,-1,0,0.5,,p1=0 implies p2 must equal 0,fails_structural_filter,structural_realizability_filter
+phase2_primitive_realizability,drop_T_positive,-1,-2,0,0,F=2*p2/p1=0>-1,passes_structural_filter,structural_realizability_filter
+phase2_primitive_realizability,drop_primitive_D_nonpositive,-1,0,0.5,,p1=0 implies p2 must equal 0,fails_structural_filter,structural_realizability_filter
+phase2_primitive_realizability,drop_primitive_cost_alignment,-1,-2,-1,1,F=2*p2/p1=1>-1,passes_structural_filter,structural_realizability_filter
+phase2_primitive_realizability,scope,,,,,"structural filter is necessary, not a full primitive construction",scope,structural_realizability_filter

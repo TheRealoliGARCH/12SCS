@@ -1,0 +1,11 @@
+analysis,theorem_component,statement,certificate,classification,inference_level
+phase3_exact_curvature_theorem,domain,F>-1,"1+F*lambda>0 on [0,1]",established_domain_condition,phase3_exact_curvature_theorem
+phase3_exact_curvature_theorem,curvature_reduction,Pi_double_prime=Q/(1+F*lambda)^3,curvature sign equals sign(Q),exact_identity,phase3_exact_curvature_theorem
+phase3_exact_curvature_theorem,curvature_numerator,Q=(p1-2F*p0)+(2p2-F*p1)*lambda,direct differentiation identity,exact_identity,phase3_exact_curvature_theorem
+phase3_exact_curvature_theorem,structural_cancellation,2p2-F*p1=0,p1=2S and p2=FS,exact_identity,phase3_exact_curvature_theorem
+phase3_exact_curvature_theorem,constant_curvature_numerator,Q(lambda)=2T,p1-2F*p0=2T,exact_identity,phase3_exact_curvature_theorem
+phase3_exact_curvature_theorem,convexity,"T>0 iff Pi_double_prime>0 on [0,1]",positive denominator cube,necessary_and_sufficient,phase3_exact_curvature_theorem
+phase3_exact_curvature_theorem,linearity,"T=0 iff Pi_double_prime=0 on [0,1]",zero constant numerator,necessary_and_sufficient,phase3_exact_curvature_theorem
+phase3_exact_curvature_theorem,concavity,"T<0 iff Pi_double_prime<0 on [0,1]",positive denominator cube,necessary_and_sufficient,phase3_exact_curvature_theorem
+phase3_exact_curvature_theorem,no_inflection,T has one global sign,"Pi_double_prime cannot change sign on [0,1]",structural_consequence,phase3_exact_curvature_theorem
+phase3_exact_curvature_theorem,scope,exact curvature classification under F>-1,coefficient/structural result; primitive necessity not claimed,scope_boundary,phase3_exact_curvature_theorem

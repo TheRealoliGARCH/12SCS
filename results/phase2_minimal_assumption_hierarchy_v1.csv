@@ -1,0 +1,12 @@
+analysis,theorem_component,assumptions,conclusion,classification,inference_level
+phase2_minimal_assumption_hierarchy,basic_domain,"g_i>=0; w_i>=0; a_i in [-1,0]; d_m>-1",B<=0 and F>-1,endogenous,minimal_assumption_hierarchy
+phase2_minimal_assumption_hierarchy,p0_aggregate,p0=B+D-F*C<0,P(0)<0,minimal_aggregate_sufficient,minimal_assumption_hierarchy
+phase2_minimal_assumption_hierarchy,S_nonnegative_aggregate,S=F*B+E>=0,p2=F*S>=0 when F>=0,minimal_aggregate_sufficient,minimal_assumption_hierarchy
+phase2_minimal_assumption_hierarchy,S_negative_aggregate,F>0 and S=F*B+E<0,p2<0,minimal_aggregate_sufficient,minimal_assumption_hierarchy
+phase2_minimal_assumption_hierarchy,T_positive_aggregate,T=E-F*D+F^2*C>0,q0=2*T>0,minimal_aggregate_sufficient,minimal_assumption_hierarchy
+phase2_minimal_assumption_hierarchy,concave_minimal_branch,F>0; S<0; T>0,"p2<0 and Delta_P=4*S*T<0, hence P(lambda)<0 for all real lambda",minimal_branch,minimal_assumption_hierarchy
+phase2_minimal_assumption_hierarchy,convex_minimal_branch,F>=0; S>=0; p0<0; p0+2*S+F*S<0,"p2>=0 and P(0)<0 and P(1)<0, hence P(lambda)<0 on [0,1]",minimal_branch,minimal_assumption_hierarchy
+phase2_minimal_assumption_hierarchy,primitive_p0_refinement,D<=0; F>=0; C>=0; and (B<0 or D<0 or (F>0 and C>0)),p0<0,stronger_transparent_sufficient,minimal_assumption_hierarchy
+phase2_minimal_assumption_hierarchy,primitive_S_negative_refinement,F>0 and E<-F*B,S<0,stronger_transparent_sufficient,minimal_assumption_hierarchy
+phase2_minimal_assumption_hierarchy,primitive_T_nonnegative_refinement,F>=0; C>=0; d_i>=-a_i and d_i>=0 for all i,T>=0,stronger_transparent_sufficient,minimal_assumption_hierarchy
+phase2_minimal_assumption_hierarchy,scope,aggregate inequalities are weakest at the coefficient-combination level; primitive refinements are stronger but interpretable,no primitive refinement is claimed necessary,scope,minimal_assumption_hierarchy

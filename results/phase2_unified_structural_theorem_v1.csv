@@ -1,0 +1,11 @@
+analysis,theorem_component,statement,certificate,classification,inference_level
+phase2_unified_structural_theorem,domain,F>-1,"1+F*lambda>0 on [0,1]",established_domain_condition,phase2_unified_structural_theorem
+phase2_unified_structural_theorem,derivative_reduction,Pi_prime=P/(1+F*lambda)^2,sign(Pi_prime)=sign(P),exact_identity,phase2_unified_structural_theorem
+phase2_unified_structural_theorem,structural_identity,p1=2S; p2=FS,first-order coefficient structure,exact_identity,phase2_unified_structural_theorem
+phase2_unified_structural_theorem,discriminant_curvature_identity,Delta_P=4ST=2S*q0,links monotonicity and curvature numerators,exact_identity,phase2_unified_structural_theorem
+phase2_unified_structural_theorem,exact_interval_theorem,"P<0 on [0,1] iff exact quadratic branch holds",necessary and sufficient coefficient classification,necessary_and_sufficient,phase2_unified_structural_theorem
+phase2_unified_structural_theorem,concave_global_route,F>0; S<0; T>0,p2<0 and Delta_P<0 imply P<0 globally,sufficient_not_necessary,phase2_unified_structural_theorem
+phase2_unified_structural_theorem,convex_endpoint_route,F>=0; S>=0; p0<0; p0+2S+FS<0,convex maximum occurs at endpoint,sufficient_not_necessary,phase2_unified_structural_theorem
+phase2_unified_structural_theorem,sharpness,stronger routes have certified non-necessity witnesses,coefficient and constructive levels distinguished,sharpness_certified,phase2_unified_structural_theorem
+phase2_unified_structural_theorem,realizability,p2=F*p1/2,necessary structural image constraint; selected witnesses explicitly lifted,structural_and_constructive,phase2_unified_structural_theorem
+phase2_unified_structural_theorem,scope,no full primitive inverse-image theorem claimed,Phase II is exact at coefficient level with certified primitive routes,scope_boundary,phase2_unified_structural_theorem
