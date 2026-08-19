@@ -1,0 +1,42 @@
+{
+  "baseline_bars_path": "results/phase_v_h1_persistence_bars_v2.csv",
+  "baseline_bars_sha256": "c6655d722b92af6492e844b7ce9be3b3e40c8a9f7ddcec43010d3c549dacf428",
+  "baseline_finite_h1_features": 55,
+  "n_capabilities": 12,
+  "n_states": 12,
+  "perturbation_levels": [
+    0.01,
+    0.02,
+    0.05
+  ],
+  "perturbation_rule": "checkerboard_signed_fraction_of_coordinate_range",
+  "results": [
+    {
+      "level": 0.01,
+      "max_persistence": 0.004810804847207972,
+      "mean_persistence": 8.746917904014495e-05,
+      "n_finite_h1_features": 55,
+      "top_k_compared": 10,
+      "top_k_l1_difference": 0.004810804847207972
+    },
+    {
+      "level": 0.02,
+      "max_persistence": 0.02172602067644336,
+      "mean_persistence": 0.0003950185577535156,
+      "n_finite_h1_features": 55,
+      "top_k_compared": 10,
+      "top_k_l1_difference": 0.02172602067644336
+    },
+    {
+      "level": 0.05,
+      "max_persistence": 0.04019319720158704,
+      "mean_persistence": 0.0007307854036652188,
+      "n_finite_h1_features": 55,
+      "top_k_compared": 10,
+      "top_k_l1_difference": 0.04019319720158704
+    }
+  ],
+  "source_latent_matrix_path": "results/capability_latent_matrix_v2.csv",
+  "source_latent_matrix_sha256": "65f069e925ea2b1c61c51b4cba237ecdb18637f1c6299ee5b0eda1a99af9852a",
+  "status": "LOCAL_PERTURBATION_STABILITY_AUDIT_COMPLETE"
+}

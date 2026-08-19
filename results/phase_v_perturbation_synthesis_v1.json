@@ -1,0 +1,47 @@
+{
+  "baseline_finite_h1_features": 55,
+  "classification": {
+    "classification_rule": "threshold_free_descriptive_synthesis",
+    "feature_count_preservation": "PRESERVED_ALL_LEVELS",
+    "robust_structural_claim": "NOT_ESTABLISHED_BY_THIS_SYNTHESIS_ALONE",
+    "top_k_change_order": [
+      0.01,
+      0.02,
+      0.05
+    ]
+  },
+  "perturbation_levels": [
+    0.01,
+    0.02,
+    0.05
+  ],
+  "results": [
+    {
+      "level": 0.01,
+      "max_persistence": 0.004810804847207972,
+      "mean_persistence": 8.746917904014495e-05,
+      "n_finite_h1_features": 55,
+      "top_k_compared": 10,
+      "top_k_l1_difference": 0.004810804847207972
+    },
+    {
+      "level": 0.02,
+      "max_persistence": 0.02172602067644336,
+      "mean_persistence": 0.0003950185577535156,
+      "n_finite_h1_features": 55,
+      "top_k_compared": 10,
+      "top_k_l1_difference": 0.02172602067644336
+    },
+    {
+      "level": 0.05,
+      "max_persistence": 0.04019319720158704,
+      "mean_persistence": 0.0007307854036652188,
+      "n_finite_h1_features": 55,
+      "top_k_compared": 10,
+      "top_k_l1_difference": 0.04019319720158704
+    }
+  ],
+  "source_path": "results/phase_v_local_perturbation_stability_v1.json",
+  "source_sha256": "79c6f1127836f9ee879e5770833a0efdf1a6e375a2f434f515ceed8766a5a872",
+  "status": "PERTURBATION_SYNTHESIS_COMPLETE"
+}
