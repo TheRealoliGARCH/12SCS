@@ -1,0 +1,49 @@
+{
+  "centered_eigenvalues": [
+    73.5739149950277,
+    0.11406341063439307,
+    0.03350233503786057,
+    0.005033302651246119,
+    0.0009887926095568265,
+    1.1133831744241487e-05,
+    0.0,
+    0.0
+  ],
+  "centered_positive_eigenvalue_count": 6,
+  "column_means": [
+    0.780597270793117,
+    0.780597270793117,
+    0.7865322183798894,
+    0.7866196875589295,
+    0.7930554562940715,
+    0.7934504748518251,
+    0.8185973965546327,
+    0.8193281819582979
+  ],
+  "cumulative_spectral_energy": [
+    0.9979166668385464,
+    0.9994637610574172,
+    0.9999181685538044,
+    0.9999864375402415,
+    0.9999998489867467,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "interpretation": "spectral_diagnostics_no_automatic_dimension_selection",
+  "largest_observed_gap_after_mode": 6,
+  "n_features": 55,
+  "source_path": "results/phase_v_stability_trajectory_compression_v1.json",
+  "source_sha256": "9b0744386b274db6d152e3cc8d60bf660095169e0e6c98b28633e29a2b2592bb",
+  "spectral_gaps": [
+    645.0264338566365,
+    3.4046406170044996,
+    6.656133628198622,
+    5.090352216024377,
+    88.80973166028295,
+    null,
+    null
+  ],
+  "status": "CENTERED_SPECTRAL_COMPRESSION_COMPLETE",
+  "trajectory_dimension": 8
+}
