@@ -1,0 +1,6 @@
+parameter,family,location,scale,proper
+alpha,Normal,0.0,10.0,True
+tau,Normal,0.0,10.0,True
+beta,Normal,0.0,10.0,True
+gamma,Normal,0.0,10.0,True
+sigma,HalfNormal,0.0,10.0,True

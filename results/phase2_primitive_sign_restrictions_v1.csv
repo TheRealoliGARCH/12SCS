@@ -1,0 +1,18 @@
+analysis,layer,quantity,primitive_expression_or_condition,classification,basis,inference_level
+phase2_primitive_sign_restrictions,primitive_map,B,sum_i w_i*g_i*a_i,identity,canonical recovered primitive map,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,primitive_map,C,B0-sum_i g_i,identity,canonical recovered primitive map,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,primitive_map,D,-sum_i g_i*(a_i+d_i),identity,canonical recovered primitive map,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,primitive_map,E,-sum_i g_i*a_i*d_i,identity,canonical recovered primitive map,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,primitive_map,F,d_m,identity,canonical recovered primitive map,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,substitution,p0,sum_i w_i*g_i*a_i-sum_i g_i*(a_i+d_i)-d_m*(B0-sum_i g_i),identity,p0=B+D-F*C,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,substitution,S,d_m*sum_i w_i*g_i*a_i-sum_i g_i*a_i*d_i,identity,S=B*F+E,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,substitution,T,-sum_i g_i*a_i*d_i+d_m*sum_i g_i*(a_i+d_i)+d_m^2*(B0-sum_i g_i),identity,T=E-F*D+F^2*C,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,structural_bridge,q0,2*T,identity,q0=2T,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,structural_bridge,Delta_P,4*S*T=2*S*q0,identity,discriminant factorization,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,basic_domain,F>-1,d_m>-1 implies F>-1,endogenous,denominator positivity follows from primitive domain,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,basic_domain,sign(p0),not fixed,not_derivable,basic domain does not determine sign,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,basic_domain,sign(S),not fixed,not_derivable,basic domain does not determine sign,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,basic_domain,sign(T),not fixed,not_derivable,basic domain does not determine sign,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,additional_condition,p0<0,primitive substituted inequality p0<0,additional_assumption,sufficient condition retained at primitive level,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,additional_condition,S>=0,d_m*sum_i w_i*g_i*a_i-sum_i g_i*a_i*d_i>=0,additional_assumption,convex branch condition,primitive_to_structural_sign_classification
+phase2_primitive_sign_restrictions,additional_condition,S<0 and T>0,primitive substituted inequalities S<0 and T>0,additional_assumption,equivalent to p2<0 and Delta_P<0 when F>0; otherwise coefficient condition should be checked directly,primitive_to_structural_sign_classification

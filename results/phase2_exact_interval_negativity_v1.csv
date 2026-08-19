@@ -1,0 +1,9 @@
+analysis,theorem_component,conditions,conclusion,classification,inference_level
+phase2_exact_interval_negativity,convex_or_linear,p2>=0; P(0)<0; P(1)<0,"P(lambda)<0 for every lambda in [0,1]",necessary_and_sufficient_branch,exact_interval_negativity
+phase2_exact_interval_negativity,concave_vertex_left,p2<0; vertex<=0; P(0)<0; P(1)<0,"P(lambda)<0 for every lambda in [0,1]",necessary_and_sufficient_branch,exact_interval_negativity
+phase2_exact_interval_negativity,concave_vertex_right,p2<0; vertex>=1; P(0)<0; P(1)<0,"P(lambda)<0 for every lambda in [0,1]",necessary_and_sufficient_branch,exact_interval_negativity
+phase2_exact_interval_negativity,concave_vertex_interior,p2<0; 0<p1<-2*p2; Delta_P<0,"P(lambda)<0 for every lambda in [0,1]",necessary_and_sufficient_branch,exact_interval_negativity
+phase2_exact_interval_negativity,vertex_location,p2<0 and vertex=-p1/(2*p2),0<vertex<1 iff 0<p1<-2*p2,exact_identity,exact_interval_negativity
+phase2_exact_interval_negativity,vertex_value,p2!=0 and vertex=-p1/(2*p2),P(vertex)=-Delta_P/(4*p2),exact_identity,exact_interval_negativity
+phase2_exact_interval_negativity,structural_substitution,p1=2S; p2=FS; Delta_P=4ST,"all branches translate exactly into (p0,S,T,F)",exact_translation,exact_interval_negativity
+phase2_exact_interval_negativity,scope,strict negativity is classified exactly at coefficient level,primitive conditions are sufficient translations unless separately proved equivalent,scope,exact_interval_negativity

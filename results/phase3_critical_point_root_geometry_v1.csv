@@ -1,0 +1,11 @@
+analysis,theorem_component,statement,certificate,classification,inference_level
+phase3_critical_point_root_geometry,domain,F>-1,critical points are roots of P because denominator is positive,established_domain_condition,critical_point_root_geometry
+phase3_critical_point_root_geometry,critical_point_equation,P(lambda)=p0+2S*lambda+FS*lambda^2=0,exact critical-point equation,exact_identity,critical_point_root_geometry
+phase3_critical_point_root_geometry,discriminant,Delta_P=4ST,real-root geometry determined by sign(ST),exact_identity,critical_point_root_geometry
+phase3_critical_point_root_geometry,global_root_exclusion,ST<0,"Delta_P<0, hence no real roots and no critical points",necessary_and_sufficient_discriminant_regime,critical_point_root_geometry
+phase3_critical_point_root_geometry,double_root_regime,ST=0,"Delta_P=0, with degenerate subcases requiring coefficient interpretation",exact_boundary,critical_point_root_geometry
+phase3_critical_point_root_geometry,two_real_root_regime,ST>0,"Delta_P>0, subject to quadratic nondegeneracy, two distinct real roots",necessary_and_sufficient_discriminant_regime,critical_point_root_geometry
+phase3_critical_point_root_geometry,root_formula,lambda=(-S plus_or_minus sqrt(S*T))/(F*S),valid when F*S!=0 and ST>=0,exact_identity,critical_point_root_geometry
+phase3_critical_point_root_geometry,interval_critical_point,"root lies in (0,1)",interior criticality requires exact interval membership,necessary_and_sufficient_interval_condition,critical_point_root_geometry
+phase3_critical_point_root_geometry,T_zero_shape_boundary,T=0,curvature vanishes identically and P=p0*(1+F*lambda)^2,exact_structural_boundary,critical_point_root_geometry
+phase3_critical_point_root_geometry,scope,discriminant classifies real roots; interval membership remains separate,no claim that ST>0 alone creates an interior critical point,scope_boundary,critical_point_root_geometry

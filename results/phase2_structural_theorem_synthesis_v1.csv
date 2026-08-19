@@ -1,0 +1,11 @@
+analysis,theorem_component,conditions_or_definition,conclusion,status
+phase2_structural_theorem_synthesis,pole_exclusion,F > -1,"1+F*lambda > 0 on [0,1]",strict positivity of denominator
+phase2_structural_theorem_synthesis,first_derivative,P(lambda)=p0+p1*lambda+p2*lambda^2,Pi'(lambda)=P(lambda)/(1+F*lambda)^2,exact
+phase2_structural_theorem_synthesis,coefficients,p0=B+D-F*C; p1=2*S; p2=F*S; S=B*F+E,coefficient reduction,exact
+phase2_structural_theorem_synthesis,curvature_bridge,q0=2*T; T=E-F*D+F^2*C,Delta_P=4*S*T=2*S*q0,exact
+phase2_structural_theorem_synthesis,convex_endpoint_certificate,F>-1; p2>=0; p0<0; p0+p1+p2<0,"P(lambda)<0 on [0,1]",sufficient
+phase2_structural_theorem_synthesis,concave_discriminant_certificate,F>-1; p2<0; Delta_P<0,P(lambda)<0 on R,sufficient
+phase2_structural_theorem_synthesis,linear_certificate,F>-1; p2=0; p0<0; p0+p1<0,"P(lambda)<0 on [0,1]",sufficient
+phase2_structural_theorem_synthesis,curvature_to_discriminant,S*(q0)<0,Delta_P<0,exact sign implication
+phase2_structural_theorem_synthesis,degenerate_branch,S=0,p1=p2=0 and Delta_P=0,exact
+phase2_structural_theorem_synthesis,curvature_neutral_branch,q0=0,Delta_P=0,exact

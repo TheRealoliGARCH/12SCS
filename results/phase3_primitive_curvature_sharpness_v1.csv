@@ -1,0 +1,4 @@
+analysis,witness_type,regime,C,D,E,F,T,curvature_class,attainability,certificate,inference_level
+phase3_primitive_curvature_sharpness,strictly_convex,0,0.624467323323124,0.07839606242018624,0.06370304656589412,0.625,0.25863805572637305,strictly_convex,realized_by_primitive_map,realized primitive regime; T=E-FD+F^2C,constructive_primitive_witness
+phase3_primitive_curvature_sharpness,affine,,,,,,,affine,not_witnessed_in_current_map,no realized witness emitted by current primitive pullback,constructive_primitive_witness
+phase3_primitive_curvature_sharpness,strictly_concave,2,0.10047900653381392,0.4363606869929328,0.012236088696735816,0.625,-0.2212397287465761,strictly_concave,realized_by_primitive_map,realized primitive regime; T=E-FD+F^2C,constructive_primitive_witness

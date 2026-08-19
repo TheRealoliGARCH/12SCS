@@ -1,0 +1,2 @@
+input_present,canonical_fields,observation_count,cutoff_consistent,sharp_assignment_verified,status
+False,unit_id|running_variable|outcome|treatment|cutoff,0,False,False,RD_DATA_NOT_SUPPLIED

@@ -1,0 +1,7 @@
+component,value
+validated_rd_data,False
+likelihood_specified,True
+proper_priors_specified,True
+bandwidth_supplied,False
+estimation_ready,False
+status,RD_ESTIMATION_NOT_READY

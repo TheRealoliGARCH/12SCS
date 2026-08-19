@@ -1,0 +1,4 @@
+country,estimate,standard_error,bootstrap_reps,q025,median,q975,prob_negative,prob_positive,source_type
+Pakistan,-87.4,35.4,10000,-156.22743615442025,-87.21713086586338,-18.094268711201163,0.9922,0.0078,reported_estimate_and_standard_error
+Israel,28.9,9.2,10000,10.646213732262167,29.0586703259134,47.100593605843905,0.0008,0.9992,reported_estimate_and_standard_error
+North Korea,43.1,8.9,10000,25.339944832290815,43.052694316375266,60.72307406472623,0.0,1.0,reported_estimate_and_standard_error

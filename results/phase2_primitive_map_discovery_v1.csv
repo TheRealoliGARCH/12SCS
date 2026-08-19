@@ -1,0 +1,11 @@
+analysis,required_object,description,discovery_status,boundary_statement,inference_level
+phase2_primitive_map_discovery,canonical_source_artifact,"canonical primitive-to-(A,B,C,D,E,F) source",recovered,results/run_primitive_coefficient_map.py at historical commit ab52d05e47302bbe8b24da44b52f8e76951ef39f,primitive_map_recovered_from_repository_history
+phase2_primitive_map_discovery,primitive_variable_list,primitive variables,recovered,"Binding cells use g_i, w_i, a_i=kappa_i^0-1, d_i=c_i^0-1; marginal cell m supplies F=d_m",primitive_map_recovered_from_repository_history
+phase2_primitive_map_discovery,coefficient_A,formula for A,recovered,A=sum_i w_i*g_i,primitive_map_recovered_from_repository_history
+phase2_primitive_map_discovery,coefficient_B,formula for B,recovered,B=sum_i w_i*g_i*a_i,primitive_map_recovered_from_repository_history
+phase2_primitive_map_discovery,coefficient_C,formula for C,recovered,C=r0=B0-sum_i g_i,primitive_map_recovered_from_repository_history
+phase2_primitive_map_discovery,coefficient_D,formula for D,recovered,D=r1=-sum_i g_i*(a_i+d_i),primitive_map_recovered_from_repository_history
+phase2_primitive_map_discovery,coefficient_E,formula for E,recovered,E=r2=-sum_i g_i*a_i*d_i,primitive_map_recovered_from_repository_history
+phase2_primitive_map_discovery,coefficient_F,formula for F,recovered,F=d_m for the marginal cell; F=0 when no marginal cell is present,primitive_map_recovered_from_repository_history
+phase2_primitive_map_discovery,primitive_domain,primitive-domain restrictions,recovered,"g_i>=0, w_i>=0, kappa_i^0 in [0,1], c_i^0>0 imply a_i in [-1,0], d_i>-1, and F>-1",primitive_map_recovered_from_repository_history
+phase2_primitive_map_discovery,endogenous_signs,endogenous sign consequences,partially_derivable,"F>-1 is endogenous; q2=2*F^2*E=-2*F^2*sum_i g_i*a_i*d_i, so uniform d_i>=0 implies q2>=0 and uniform d_i<=0 implies q2<=0; signs of p0, S, and T require additional primitive inequalities",primitive_map_recovered_from_repository_history

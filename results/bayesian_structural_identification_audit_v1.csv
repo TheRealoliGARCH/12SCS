@@ -1,0 +1,2 @@
+structural_map_present,prior_specification_present,observed_outcome_data_present,likelihood_present,intervention_identification_strategy_present,data_identified,status
+True,True,False,False,False,False,NOT_IDENTIFIED_FROM_DATA

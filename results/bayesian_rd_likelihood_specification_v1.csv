@@ -1,0 +1,14 @@
+component,formalization,specified
+model_family,Normal local regression,True
+outcome,Y_i,True
+running_variable,R_i,True
+cutoff,c,True
+treatment,D_i=1[R_i>=c],True
+local_window,|R_i-c|<=h,True
+conditional_mean,alpha+tau*D_i+beta*(R_i-c)+gamma*D_i*(R_i-c),True
+noise,"Normal(0,sigma^2)",True
+causal_estimand,tau,True
+posterior,"p(alpha,tau,beta,gamma,sigma|Y,R,D)",True
+observed_data_required,bayesian_rd_input_v1.csv,False
+prior_hyperparameters_supplied,required before estimation,False
+bandwidth_supplied,h required before estimation,False
