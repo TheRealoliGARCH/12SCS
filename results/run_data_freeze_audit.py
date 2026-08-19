@@ -11,6 +11,13 @@ MANIFEST = DATA / 'data_acquisition_provenance_manifest_v1.csv'
 DIMENSIONS = DATA / 'capability_dimensions.csv'
 AUTO = 'AUTO_SHA256_AT_FREEZE'
 
+# Explicit aliases preserve canonical schema semantics while accepting
+# repository files that use punctuation-free display labels.
+DIMENSION_ALIASES = {
+    'food water and humanitarian resilience': 'H',
+    'information, cyber and artificial intelligence capacity': 'A',
+}
+
 
 def sha256(path):
     h = hashlib.sha256()
@@ -24,7 +31,10 @@ def normalize_dimension(value, name_to_code, required_dimensions):
     value = (value or '').strip()
     if value in required_dimensions:
         return value
-    return name_to_code.get(value.casefold(), value)
+    key = value.casefold()
+    if key in DIMENSION_ALIASES:
+        return DIMENSION_ALIASES[key]
+    return name_to_code.get(key, value)
 
 
 def main():
