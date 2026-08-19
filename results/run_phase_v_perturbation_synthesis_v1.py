@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
-"""Synthesize pre-existing Phase V local perturbation diagnostics.
-Classification is descriptive and threshold-free: it reports whether feature
-counts are preserved and ranks perturbation levels by observed top-k change.
+"""Synthesize Phase V local perturbation diagnostics deterministically.
+The upstream audit is regenerated when its derived artifact is absent, so a
+fresh checkout does not depend on untracked prior execution state.
 """
-import hashlib, json
+import hashlib, json, subprocess, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / 'results' / 'phase_v_local_perturbation_stability_v1.json'
+UPSTREAM = ROOT / 'results' / 'run_phase_v_local_perturbation_stability_audit_v1.py'
+if not SRC.exists():
+    subprocess.run([sys.executable, str(UPSTREAM)], cwd=ROOT, check=True)
+if not SRC.exists():
+    raise FileNotFoundError(f'upstream perturbation artifact was not generated: {SRC}')
 raw = SRC.read_bytes()
 d = json.loads(raw)
 assert d['status'] == 'LOCAL_PERTURBATION_STABILITY_AUDIT_COMPLETE'
