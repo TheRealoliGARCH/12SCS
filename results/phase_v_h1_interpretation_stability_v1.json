@@ -1,0 +1,98 @@
+{
+  "scale_stability": [
+    {
+      "max_persistence": 0.0,
+      "normalized_max_ratio": 1.0,
+      "scale": 0.95
+    },
+    {
+      "max_persistence": 0.0,
+      "normalized_max_ratio": 1.0,
+      "scale": 1.0
+    },
+    {
+      "max_persistence": 0.0,
+      "normalized_max_ratio": 1.0,
+      "scale": 1.05
+    }
+  ],
+  "summary": {
+    "max_persistence": 0.0,
+    "mean_persistence": 0.0,
+    "median_persistence": 0.0,
+    "n_h1_features": 55,
+    "robustness_rule": "relative_top_persistence_under_deterministic_scale_perturbation",
+    "source_bars_path": "results/phase_v_h1_persistence_bars_v2.csv",
+    "source_bars_sha256": "c6655d722b92af6492e844b7ce9be3b3e40c8a9f7ddcec43010d3c549dacf428",
+    "stability_pass": true,
+    "stability_scales": [
+      0.95,
+      1.0,
+      1.05
+    ],
+    "top_k": 10,
+    "total_persistence": 0.0
+  },
+  "top_features": [
+    {
+      "birth": 1.900825076816997,
+      "death": 1.900825076816997,
+      "persistence": 0.0,
+      "rank": 1
+    },
+    {
+      "birth": 1.7909132198898057,
+      "death": 1.7909132198898057,
+      "persistence": 0.0,
+      "rank": 2
+    },
+    {
+      "birth": 1.5837636448502925,
+      "death": 1.5837636448502925,
+      "persistence": 0.0,
+      "rank": 3
+    },
+    {
+      "birth": 1.5061491516264949,
+      "death": 1.5061491516264949,
+      "persistence": 0.0,
+      "rank": 4
+    },
+    {
+      "birth": 1.4860117006540352,
+      "death": 1.4860117006540352,
+      "persistence": 0.0,
+      "rank": 5
+    },
+    {
+      "birth": 1.4431585007970558,
+      "death": 1.4431585007970558,
+      "persistence": 0.0,
+      "rank": 6
+    },
+    {
+      "birth": 1.3767163631237744,
+      "death": 1.3767163631237744,
+      "persistence": 0.0,
+      "rank": 7
+    },
+    {
+      "birth": 1.3560047435471456,
+      "death": 1.3560047435471456,
+      "persistence": 0.0,
+      "rank": 8
+    },
+    {
+      "birth": 1.3034306311852895,
+      "death": 1.3034306311852895,
+      "persistence": 0.0,
+      "rank": 9
+    },
+    {
+      "birth": 1.284332216675291,
+      "death": 1.284332216675291,
+      "persistence": 0.0,
+      "rank": 10
+    }
+  ]
+}
