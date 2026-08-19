@@ -1,7 +1,7 @@
 {
-  "matrix_sha256": "",
+  "matrix_sha256": "7baa8296ece584b78a562774ff94b2466ab8646a6051a5a3e7faccd4afcc48d6",
   "n_capabilities": 12,
-  "n_states": 0,
-  "source_sha256": "",
-  "status": "CANONICAL_SOURCE_UNRESOLVED"
+  "n_states": 12,
+  "source_sha256": "65f069e925ea2b1c61c51b4cba237ecdb18637f1c6299ee5b0eda1a99af9852a",
+  "status": "CANONICAL_DISTANCE_RECONSTRUCTION_COMPLETE"
 }

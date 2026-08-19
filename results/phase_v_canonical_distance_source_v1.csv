@@ -1,2 +1,2 @@
 source_path,expected_n_states,expected_n_capabilities,state_ordering,status
-UNRESOLVED,12,12,DECLARED_CANONICAL_ORDER,CANONICAL_SOURCE_UNRESOLVED
+results/capability_latent_matrix_v2.csv,12,12,CSV_ROW_ORDER,CANONICAL_SOURCE_VALIDATED
