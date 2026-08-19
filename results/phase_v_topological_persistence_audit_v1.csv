@@ -1,0 +1,8 @@
+metric,value
+source_artifact,capability_distance_matrix_v1.csv
+n_points,12
+h0_finite_bars,11
+h0_birth,0.0
+h0_max_death,0.75
+h0_total_persistence,5.744368
+source_sha256,b279a9dc755f4806092587193352f347581256490d905365461742c82e526fbf
