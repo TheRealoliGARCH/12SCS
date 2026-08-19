@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
-import hashlib, json
+import hashlib, json, subprocess, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / 'results' / 'phase_v_local_perturbation_stability_v1.json'
 OUT = ROOT / 'results' / 'phase_v_perturbation_synthesis_v1.json'
+if not SRC.exists():
+    subprocess.run([sys.executable, str(ROOT / 'results' / 'run_phase_v_local_perturbation_stability_audit_v1.py')], cwd=ROOT, check=True)
+if not OUT.exists():
+    subprocess.run([sys.executable, str(ROOT / 'results' / 'run_phase_v_perturbation_synthesis_v1.py')], cwd=ROOT, check=True)
 s = json.loads(SRC.read_text())
 d = json.loads(OUT.read_text())
 assert d['status'] == 'PERTURBATION_SYNTHESIS_COMPLETE'
