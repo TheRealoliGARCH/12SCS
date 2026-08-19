@@ -1,0 +1,2 @@
+source_path,expected_n_states,expected_n_capabilities,state_ordering,status
+UNRESOLVED,12,12,DECLARED_CANONICAL_ORDER,CANONICAL_SOURCE_UNRESOLVED
