@@ -1,0 +1,12 @@
+component,value
+validated_rd_data,False
+running_variable,False
+cutoff,False
+treatment_rule,False
+outcome,False
+bandwidth_or_local_model,False
+continuity,False
+no_precise_manipulation,False
+local_support,False
+estimation_ready,False
+status,RD_ESTIMATION_NOT_READY
