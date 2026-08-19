@@ -21,7 +21,15 @@ def fail(message):
 
 summary_rows = read_rows(SUMMARY)
 metadata_rows = read_rows(METADATA)
-metadata = {r['key']: r['value'] for r in metadata_rows}
+
+if not metadata_rows:
+    fail('metadata file is empty')
+
+metadata_key = next((k for k in ('parameter', 'key', 'metric') if k in metadata_rows[0]), None)
+if metadata_key is None or 'value' not in metadata_rows[0]:
+    fail(f"unexpected metadata schema: {list(metadata_rows[0])}")
+
+metadata = {r[metadata_key]: r['value'] for r in metadata_rows}
 
 if metadata.get('seed') != EXPECTED_SEED:
     fail(f"seed mismatch: {metadata.get('seed')}")
