@@ -1,0 +1,19 @@
+{
+  "schema_version": "v1",
+  "scope": "public_pre_existing_evidence_only",
+  "current_operational_member_count": 8,
+  "target_member_count": 9,
+  "recognition_rule": {
+    "minimum_independent_sources": 2,
+    "required_evidence_classes": [
+      "capability_assessment",
+      "independent_corroboration"
+    ],
+    "forbidden_inferences": [
+      "no_new_test_required",
+      "no_new_demonstration_required",
+      "no_capability_imputation_from_single_marker"
+    ]
+  },
+  "candidates": []
+}
