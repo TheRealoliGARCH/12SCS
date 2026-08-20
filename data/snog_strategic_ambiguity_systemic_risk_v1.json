@@ -1,0 +1,18 @@
+{
+  "audit":"SNoG Strategic Ambiguity and Systemic Risk Audit v1",
+  "scope":"Recognition-status ambiguity and systemic risk pathways",
+  "recognition_layers":["EXPLICITLY_RECOGNIZED","OFFICIALLY_ACKNOWLEDGED","ATTRIBUTED_CAPABILITY","DISPUTED_OR_OPAQUE"],
+  "risk_pathways":[
+    {"id":"R1","name":"MISCALCULATION","mechanism":"Actors may act on incompatible assessments of capability or threshold."},
+    {"id":"R2","name":"ESCALATION_SIGNAL_AMBIGUITY","mechanism":"Ambiguous capability can complicate interpretation of signalling and response."},
+    {"id":"R3","name":"CRISIS_COMMUNICATION_GAP","mechanism":"Recognition gaps can impede common reference points during a crisis."},
+    {"id":"R4","name":"DETERRENCE_STABILITY_UNCERTAINTY","mechanism":"Uncertain capability status can alter assumptions underlying deterrence relationships."}
+  ],
+  "guardrails":{
+    "no_state_specific_blame":true,
+    "no_secret_arsenal_inference":true,
+    "no_capability_upgrade_from_attribution":true,
+    "no_nuclear_activity_prescription":true,
+    "risk_pathway_is_not_event_prediction":true
+  }
+}
