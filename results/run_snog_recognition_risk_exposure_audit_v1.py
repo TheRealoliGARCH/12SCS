@@ -1,6 +1,14 @@
 from pathlib import Path
 import json,hashlib
-ROOT=Path(__file__).resolve().parents[1]
+
+def find_root():
+    for start in (Path.cwd().resolve(), Path(__file__).resolve().parent):
+        for p in (start,*start.parents):
+            if (p/'data'/'snog_strategic_ambiguity_systemic_risk_v1.json').exists() and (p/'results').is_dir() and (p/'reproducibility').is_dir():
+                return p
+    raise FileNotFoundError('Could not locate 12SCS repository root containing the strategic ambiguity manifest')
+
+ROOT=find_root()
 SRC=ROOT/'data'/'snog_strategic_ambiguity_systemic_risk_v1.json'
 OUT=ROOT/'results'/'snog_recognition_risk_exposure_audit_v1.json'
 raw=SRC.read_bytes(); d=json.loads(raw)
