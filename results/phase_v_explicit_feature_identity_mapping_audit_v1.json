@@ -1,0 +1,40 @@
+{
+  "candidate_reports": [
+    {
+      "explicit_pairs": 0,
+      "path": "results/run_bayesian_structural_counterfactual_analysis.py",
+      "sha256": "11a04eeec866ff52e7e59c911044ff1f1afdf898bf32cb77a52f3cd7ceb6266a"
+    },
+    {
+      "explicit_pairs": 0,
+      "path": "results/run_bayesian_structural_counterfactual_input.py",
+      "sha256": "5b8059d5fa24c1b04941a199a6a23cdff9451323876e85d216c3a00040caf1d1"
+    },
+    {
+      "explicit_pairs": 0,
+      "path": "results/run_bayesian_v6_causal_audit.py",
+      "sha256": "34af04d69e236a0ca60fd0120c33e3c4e8ca241f4cbd410b7eb97acf6e99610a"
+    },
+    {
+      "explicit_pairs": 0,
+      "path": "results/run_phase_v_feature_construction_backtrace_audit_v1.py",
+      "sha256": "aa0de9530c8ee7afdd19b1803e7b34bb1131117f524d173485617d3d65c42cd8"
+    },
+    {
+      "explicit_pairs": 0,
+      "path": "reproducibility/VERIFY_PHASE_V_FEATURE_CONSTRUCTION_BACKTRACE_AUDIT_V1.py",
+      "sha256": "fcdd3d8370ffc4a32716e0435fbe8228d12379ec0d27e240240f6d00400b8586"
+    }
+  ],
+  "conflicting_feature_indices": [],
+  "identity_candidate_count": 5,
+  "interpretation": "mapping status is determined solely by explicit candidate-artifact pairs and does not impute identities for unmapped features",
+  "mapped_feature_count": 0,
+  "mapped_feature_indices": [],
+  "mapping_rows": [],
+  "n_features": 55,
+  "scope": "accepts_only_explicit_numeric_feature_index_to_named_variable_pairs_in_candidate_artifacts; marker_words_and_free_text_are_not_mappings",
+  "source_path": "results/phase_v_feature_construction_backtrace_audit_v1.json",
+  "source_sha256": "a9b7f55d0f5737931b700a1e43c667fbb0e91990a2bc19dc21993d8fece1f427",
+  "status": "FEATURE_IDENTITY_MAPPING_NOT_FOUND"
+}
