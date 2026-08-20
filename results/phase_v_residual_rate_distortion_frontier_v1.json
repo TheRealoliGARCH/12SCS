@@ -1,0 +1,36 @@
+{
+  "candidate_dimensions": [
+    3,
+    2,
+    1
+  ],
+  "frontier": [
+    {
+      "cumulative_total_energy_retained": 0.9999998489867467,
+      "discarded_residual_energy": 0.00028161560327044644,
+      "relative_frobenius_distortion": 0.016781406474740024,
+      "residual_dimension": 3,
+      "retained_residual_energy": 0.9997183843967296
+    },
+    {
+      "cumulative_total_energy_retained": 0.9999864375402416,
+      "discarded_residual_energy": 0.025291821763395728,
+      "relative_frobenius_distortion": 0.15903402706149314,
+      "residual_dimension": 2,
+      "retained_residual_energy": 0.9747081782366043
+    },
+    {
+      "cumulative_total_energy_retained": 0.9999181685538046,
+      "discarded_residual_energy": 0.1526025801136367,
+      "relative_frobenius_distortion": 0.390643802092951,
+      "residual_dimension": 1,
+      "retained_residual_energy": 0.8473974198863633
+    }
+  ],
+  "interpretation": "conditional_residual_rate_distortion_frontier_relative_to_two_mode_baseline_no_automatic_dimension_selection",
+  "residual_source_rank": 4,
+  "source_path": "results/phase_v_residual_spectral_compression_audit_v1.json",
+  "source_sha256": "4c861a6e777bd8add112734ee0ee15b96e96235c33ef07dff0bc37caf971595a",
+  "status": "RESIDUAL_RATE_DISTORTION_FRONTIER_COMPLETE",
+  "two_mode_source_sha256": "d413c8dc9fbe7b94a17a976fd1a7a24ce2cff07261bfdc3b5d2826c1e4597b76"
+}

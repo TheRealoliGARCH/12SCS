@@ -1,0 +1,34 @@
+{
+  "ambient_dimension": 6,
+  "dominant_projection_dimension": 2,
+  "interpretation": "orthogonal_two_mode_residual_spectrum_descriptive_only_no_automatic_secondary_dimension_selection",
+  "n_features": 55,
+  "positive_residual_eigenvalues": 4,
+  "residual_cumulative_energy_shares": [
+    0.8473974198863633,
+    0.9747081782366043,
+    0.9997183843967296,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "residual_eigenvalues": [
+    0.033502335037857586,
+    0.005033302651246527,
+    0.0009887926095583006,
+    1.113383174322121e-05,
+    6.018531076210112e-35,
+    0
+  ],
+  "residual_spectral_energy_shares": [
+    0.8473974198863633,
+    0.127310758350241,
+    0.02501020616012532,
+    0.00028161560327043646,
+    1.5223081315744873e-33,
+    0.0
+  ],
+  "source_path": "results/phase_v_canonical_six_mode_coordinates_v1.json",
+  "source_sha256": "7c31cc440c875713ed077344a6ebada567fa5d3ae05ed66a5b63a8ac9676c38b",
+  "status": "RESIDUAL_SPECTRAL_COMPRESSION_AUDIT_COMPLETE"
+}
