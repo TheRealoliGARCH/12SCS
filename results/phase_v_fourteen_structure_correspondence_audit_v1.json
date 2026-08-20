@@ -1,0 +1,20 @@
+{
+  "absolute_deviation_from_14": 0.3341278374430967,
+  "fourteen_is_unique_nearest_integer": true,
+  "interpretation": "numerical_correspondence_only_between_post_ablation_effective_feature_count_and_externally_specified_fourteen_structure_count_no_feature_to_type_mapping_or_causal_claim",
+  "local_integer_deviations": {
+    "12": 2.3341278374430967,
+    "13": 1.3341278374430967,
+    "14": 0.3341278374430967,
+    "15": 0.6658721625569033,
+    "16": 1.6658721625569033
+  },
+  "n_features_after_ablation": 54,
+  "nearest_integer_effective_count": 14,
+  "observed_effective_feature_count": 14.334127837443097,
+  "relative_deviation_from_14": 0.023866274103078337,
+  "source_path": "results/phase_v_post_ablation_residual_concentration_audit_v1.json",
+  "source_sha256": "37016d6e2ab6ae2cf08eed575df8c6f03380a10d69f1822e417914063279e6e6",
+  "status": "FOURTEEN_STRUCTURE_CORRESPONDENCE_AUDIT_COMPLETE",
+  "structural_target_count": 14
+}
