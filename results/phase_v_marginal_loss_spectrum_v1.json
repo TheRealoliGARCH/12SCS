@@ -1,0 +1,59 @@
+{
+  "adjacent_marginal_loss_gaps": [
+    1.3260433251766006e-05,
+    5.485753993204402e-05,
+    0.00038613850994996703,
+    0.0010926867224838005
+  ],
+  "candidate_dimension_after_gap": 2,
+  "interpretation": "structural_gap_candidate_only_no_automatic_canonical_dimension_selection",
+  "largest_gap": 0.0010926867224838005,
+  "largest_gap_after_transition": "3->2",
+  "marginal_loss_spectrum": [
+    {
+      "frontier_identity_error": 7.686839878200537e-17,
+      "marginal_retained_energy_loss": 1.510132533125007e-07,
+      "removed_mode": 6,
+      "retained_energy_after": 0.9999998489867468,
+      "retained_energy_before": 1.0,
+      "transition": "6->5"
+    },
+    {
+      "frontier_identity_error": 6.015289178221139e-17,
+      "marginal_retained_energy_loss": 1.3411446505078507e-05,
+      "removed_mode": 5,
+      "retained_energy_after": 0.9999864375402417,
+      "retained_energy_before": 0.9999998489867468,
+      "transition": "5->4"
+    },
+    {
+      "frontier_identity_error": 4.14029704617902e-17,
+      "marginal_retained_energy_loss": 6.826898643712253e-05,
+      "removed_mode": 4,
+      "retained_energy_after": 0.9999181685538047,
+      "retained_energy_before": 0.9999864375402417,
+      "transition": "4->3"
+    },
+    {
+      "frontier_identity_error": 1.6506978076091805e-16,
+      "marginal_retained_energy_loss": 0.00045440749638708957,
+      "removed_mode": 3,
+      "retained_energy_after": 0.9994637610574174,
+      "retained_energy_before": 0.9999181685538047,
+      "transition": "3->2"
+    },
+    {
+      "frontier_identity_error": 2.3852447794681098e-18,
+      "marginal_retained_energy_loss": 0.00154709421887089,
+      "removed_mode": 2,
+      "retained_energy_after": 0.9979166668385465,
+      "retained_energy_before": 0.9994637610574174,
+      "transition": "2->1"
+    }
+  ],
+  "selection_rule": "largest_adjacent_marginal_loss_gap_with_lowest_index_tie_break",
+  "source_dimension": 6,
+  "source_path": "results/phase_v_rate_distortion_frontier_v1.json",
+  "source_sha256": "4fbdfef7abff756c6f4e2dd7b910bbb05ecc666d85bf07ed06c5f6b5224726e3",
+  "status": "MARGINAL_LOSS_SPECTRUM_COMPLETE"
+}
