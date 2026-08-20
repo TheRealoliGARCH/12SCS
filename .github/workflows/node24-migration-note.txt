@@ -1,1 +1,0 @@
-Node 24 migration is tracked by the workflow action version update in gap-priority.yml.
