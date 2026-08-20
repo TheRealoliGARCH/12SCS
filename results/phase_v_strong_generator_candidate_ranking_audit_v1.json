@@ -1,0 +1,416 @@
+{
+  "input_strong_candidate_count": 22,
+  "next_action": "inspect_highest_ranked_candidates_for_executable_or_explicit_feature_construction_rules",
+  "ranked_candidate_count": 22,
+  "ranking": [
+    {
+      "construction_evidence_count": 9,
+      "evidence_score": 24,
+      "path": "results/run_phase_v_feature_generator_reconstruction_audit_v1.py",
+      "sha256": "7a06809066be8ef4fdd085f35c1ca2d34c344e721619359894c1c393dfe4c985",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "55",
+          "basis",
+          "columns",
+          "concat",
+          "n_features",
+          "shape",
+          "stack"
+        ],
+        "path": "results/run_phase_v_feature_generator_reconstruction_audit_v1.py",
+        "sha256": "7a06809066be8ef4fdd085f35c1ca2d34c344e721619359894c1c393dfe4c985"
+      },
+      "width_evidence_count": 5
+    },
+    {
+      "construction_evidence_count": 2,
+      "evidence_score": 11,
+      "path": "results/run_phase_v_feature_trajectory_equivalence_audit_v1.py",
+      "sha256": "13c60ab27646cac5b75bc2f7ce903e4c0ca1dbbb6fcf405d5b1c0cdfe9c3b361",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "55",
+          "feature_index",
+          "n_features"
+        ],
+        "path": "results/run_phase_v_feature_trajectory_equivalence_audit_v1.py",
+        "sha256": "13c60ab27646cac5b75bc2f7ce903e4c0ca1dbbb6fcf405d5b1c0cdfe9c3b361"
+      },
+      "width_evidence_count": 3
+    },
+    {
+      "construction_evidence_count": 2,
+      "evidence_score": 11,
+      "path": "results/run_phase_v_projective_feature_quotient_audit_v1.py",
+      "sha256": "03d8ce7c72e3010664a96316d9ed20d8b9c5f38ad0c7e0921161c2a0317a0a77",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "55",
+          "feature_index",
+          "n_features"
+        ],
+        "path": "results/run_phase_v_projective_feature_quotient_audit_v1.py",
+        "sha256": "03d8ce7c72e3010664a96316d9ed20d8b9c5f38ad0c7e0921161c2a0317a0a77"
+      },
+      "width_evidence_count": 3
+    },
+    {
+      "construction_evidence_count": 2,
+      "evidence_score": 11,
+      "path": "results/run_phase_v_residual_winsorization_sensitivity_audit_v1.py",
+      "sha256": "320af9f20b27246e99c60a4ec325366463d5a8e0cc4a88071105a2fc7bfba668",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "55",
+          "n_features"
+        ],
+        "path": "results/run_phase_v_residual_winsorization_sensitivity_audit_v1.py",
+        "sha256": "320af9f20b27246e99c60a4ec325366463d5a8e0cc4a88071105a2fc7bfba668"
+      },
+      "width_evidence_count": 3
+    },
+    {
+      "construction_evidence_count": 3,
+      "evidence_score": 9,
+      "path": "results/run_phase_v_explicit_feature_identity_mapping_audit_v1.py",
+      "sha256": "c45ae459841cfb0c0e51c9671fd42ab5fa668680b182810c83be4eef812cf464",
+      "upstream_record": {
+        "construction_calls": [
+          "append",
+          "extend"
+        ],
+        "markers": [
+          "55",
+          "columns",
+          "feature_index",
+          "feature_names",
+          "n_features"
+        ],
+        "path": "results/run_phase_v_explicit_feature_identity_mapping_audit_v1.py",
+        "sha256": "c45ae459841cfb0c0e51c9671fd42ab5fa668680b182810c83be4eef812cf464"
+      },
+      "width_evidence_count": 2
+    },
+    {
+      "construction_evidence_count": 3,
+      "evidence_score": 9,
+      "path": "results/run_phase_v_stability_trajectory_compression_v1.py",
+      "sha256": "a9a8f25ea461c02cd2ddca003b08df7ea2e353664e4e8f0d760e3514c69e71d0",
+      "upstream_record": {
+        "construction_calls": [
+          "append",
+          "extend"
+        ],
+        "markers": [
+          "55"
+        ],
+        "path": "results/run_phase_v_stability_trajectory_compression_v1.py",
+        "sha256": "a9a8f25ea461c02cd2ddca003b08df7ea2e353664e4e8f0d760e3514c69e71d0"
+      },
+      "width_evidence_count": 2
+    },
+    {
+      "construction_evidence_count": 2,
+      "evidence_score": 8,
+      "path": "results/run_phase_v_canonical_six_mode_coordinates_v1.py",
+      "sha256": "cf6d526afd0cd6e5f90c57f87266f83741b55274aa49ddb032b39983e461b474",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "basis",
+          "feature_index",
+          "n_features"
+        ],
+        "path": "results/run_phase_v_canonical_six_mode_coordinates_v1.py",
+        "sha256": "cf6d526afd0cd6e5f90c57f87266f83741b55274aa49ddb032b39983e461b474"
+      },
+      "width_evidence_count": 2
+    },
+    {
+      "construction_evidence_count": 2,
+      "evidence_score": 8,
+      "path": "results/run_phase_v_rate_distortion_frontier_v1.py",
+      "sha256": "c5fcf5f864887bef67b6fa62102c1241b0f341ec001aed5277f6b850882742be",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "n_features"
+        ],
+        "path": "results/run_phase_v_rate_distortion_frontier_v1.py",
+        "sha256": "c5fcf5f864887bef67b6fa62102c1241b0f341ec001aed5277f6b850882742be"
+      },
+      "width_evidence_count": 2
+    },
+    {
+      "construction_evidence_count": 2,
+      "evidence_score": 8,
+      "path": "results/run_phase_v_residual_tail_concentration_audit_v1.py",
+      "sha256": "bf3cecdb8e215176ed0c4f0badec3199c27924465c5a843d3bbb3c97d64155f2",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "55",
+          "feature_index",
+          "n_features"
+        ],
+        "path": "results/run_phase_v_residual_tail_concentration_audit_v1.py",
+        "sha256": "bf3cecdb8e215176ed0c4f0badec3199c27924465c5a843d3bbb3c97d64155f2"
+      },
+      "width_evidence_count": 2
+    },
+    {
+      "construction_evidence_count": 2,
+      "evidence_score": 8,
+      "path": "results/run_phase_v_six_mode_reconstruction_v1.py",
+      "sha256": "d9b562b7ac70a8c9a5d30659a7c17a664b22c5dbc4760ef0fbfaa72b00404bbb",
+      "upstream_record": {
+        "construction_calls": [
+          "extend"
+        ],
+        "markers": [
+          "n_features"
+        ],
+        "path": "results/run_phase_v_six_mode_reconstruction_v1.py",
+        "sha256": "d9b562b7ac70a8c9a5d30659a7c17a664b22c5dbc4760ef0fbfaa72b00404bbb"
+      },
+      "width_evidence_count": 2
+    },
+    {
+      "construction_evidence_count": 2,
+      "evidence_score": 8,
+      "path": "results/run_phase_v_two_mode_reconstruction_audit_v1.py",
+      "sha256": "fe2ede02c10a014f44ead0f93c9725d3e6e77f8732c303b5d110ddd27dd49099",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "n_features"
+        ],
+        "path": "results/run_phase_v_two_mode_reconstruction_audit_v1.py",
+        "sha256": "fe2ede02c10a014f44ead0f93c9725d3e6e77f8732c303b5d110ddd27dd49099"
+      },
+      "width_evidence_count": 2
+    },
+    {
+      "construction_evidence_count": 2,
+      "evidence_score": 8,
+      "path": "results/run_phase_v_two_mode_residual_concentration_audit_v1.py",
+      "sha256": "822e8464f6f03f063f2bd78746cadd135d31878f5490f64bb6dc9ff31bb23178",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "55",
+          "feature_index",
+          "n_features"
+        ],
+        "path": "results/run_phase_v_two_mode_residual_concentration_audit_v1.py",
+        "sha256": "822e8464f6f03f063f2bd78746cadd135d31878f5490f64bb6dc9ff31bb23178"
+      },
+      "width_evidence_count": 2
+    },
+    {
+      "construction_evidence_count": 4,
+      "evidence_score": 7,
+      "path": "results/run_phase_v_structural_signature_recovery_identification_audit_v1.py",
+      "sha256": "0d43cc1e3785c37a266117bbaf75c2fa4283bdf80f4d5d778dfcc47ac3ba24b7",
+      "upstream_record": {
+        "construction_calls": [
+          "append",
+          "extend"
+        ],
+        "markers": [
+          "55",
+          "feature_index",
+          "stack"
+        ],
+        "path": "results/run_phase_v_structural_signature_recovery_identification_audit_v1.py",
+        "sha256": "0d43cc1e3785c37a266117bbaf75c2fa4283bdf80f4d5d778dfcc47ac3ba24b7"
+      },
+      "width_evidence_count": 1
+    },
+    {
+      "construction_evidence_count": 2,
+      "evidence_score": 5,
+      "path": "results/run_phase_v_deep_provenance_backtrace_audit_v1.py",
+      "sha256": "4cea3c9cc48e4c7481d6cae99cc89ea692d5bbecd99a9f9da2d738e9257bba2f",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "feature_index",
+          "n_features"
+        ],
+        "path": "results/run_phase_v_deep_provenance_backtrace_audit_v1.py",
+        "sha256": "4cea3c9cc48e4c7481d6cae99cc89ea692d5bbecd99a9f9da2d738e9257bba2f"
+      },
+      "width_evidence_count": 1
+    },
+    {
+      "construction_evidence_count": 2,
+      "evidence_score": 5,
+      "path": "results/run_phase_v_feature_construction_backtrace_audit_v1.py",
+      "sha256": "aa0de9530c8ee7afdd19b1803e7b34bb1131117f524d173485617d3d65c42cd8",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "columns",
+          "feature_index",
+          "feature_names",
+          "n_features"
+        ],
+        "path": "results/run_phase_v_feature_construction_backtrace_audit_v1.py",
+        "sha256": "aa0de9530c8ee7afdd19b1803e7b34bb1131117f524d173485617d3d65c42cd8"
+      },
+      "width_evidence_count": 1
+    },
+    {
+      "construction_evidence_count": 2,
+      "evidence_score": 5,
+      "path": "results/run_phase_v_persistence_correspondence_v1.py",
+      "sha256": "e38cd2ba9f1c56f71cb0a293ec62c2fd88e248adb4c1bbf1990c600f7e0c9d0d",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "55"
+        ],
+        "path": "results/run_phase_v_persistence_correspondence_v1.py",
+        "sha256": "e38cd2ba9f1c56f71cb0a293ec62c2fd88e248adb4c1bbf1990c600f7e0c9d0d"
+      },
+      "width_evidence_count": 1
+    },
+    {
+      "construction_evidence_count": 2,
+      "evidence_score": 5,
+      "path": "results/run_phase_v_semantic_provenance_loss_audit_v1.py",
+      "sha256": "e1d9478e64cb95607e6b3ad3f706b81c3f1dfbe14edfa0759bf36b3a8dd63434",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "n_features"
+        ],
+        "path": "results/run_phase_v_semantic_provenance_loss_audit_v1.py",
+        "sha256": "e1d9478e64cb95607e6b3ad3f706b81c3f1dfbe14edfa0759bf36b3a8dd63434"
+      },
+      "width_evidence_count": 1
+    },
+    {
+      "construction_evidence_count": 1,
+      "evidence_score": 4,
+      "path": "model/capability_gap_priority.py",
+      "sha256": "d397036feedda0123bfe783e17dba6d66efe801cbf00a5104d9c1e17f6fde179",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "shape"
+        ],
+        "path": "model/capability_gap_priority.py",
+        "sha256": "d397036feedda0123bfe783e17dba6d66efe801cbf00a5104d9c1e17f6fde179"
+      },
+      "width_evidence_count": 1
+    },
+    {
+      "construction_evidence_count": 1,
+      "evidence_score": 4,
+      "path": "model/convergence_optimization.py",
+      "sha256": "2b0eabee7f249a47339359a7ee11ea976e49587a79423eef5758737c7fb12b2e",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "shape"
+        ],
+        "path": "model/convergence_optimization.py",
+        "sha256": "2b0eabee7f249a47339359a7ee11ea976e49587a79423eef5758737c7fb12b2e"
+      },
+      "width_evidence_count": 1
+    },
+    {
+      "construction_evidence_count": 1,
+      "evidence_score": 4,
+      "path": "results/run_phase3_closure_consistency_audit.py",
+      "sha256": "3f6dce2fa2eadb78564f361445528dd5f0f23a3c72026a3e984af5e367becce7",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "shape"
+        ],
+        "path": "results/run_phase3_closure_consistency_audit.py",
+        "sha256": "3f6dce2fa2eadb78564f361445528dd5f0f23a3c72026a3e984af5e367becce7"
+      },
+      "width_evidence_count": 1
+    },
+    {
+      "construction_evidence_count": 1,
+      "evidence_score": 1,
+      "path": "results/run_bayesian_structural_counterfactual_analysis.py",
+      "sha256": "11a04eeec866ff52e7e59c911044ff1f1afdf898bf32cb77a52f3cd7ceb6266a",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "columns"
+        ],
+        "path": "results/run_bayesian_structural_counterfactual_analysis.py",
+        "sha256": "11a04eeec866ff52e7e59c911044ff1f1afdf898bf32cb77a52f3cd7ceb6266a"
+      },
+      "width_evidence_count": 0
+    },
+    {
+      "construction_evidence_count": 1,
+      "evidence_score": 1,
+      "path": "results/run_bayesian_v6_causal_audit.py",
+      "sha256": "34af04d69e236a0ca60fd0120c33e3c4e8ca241f4cbd410b7eb97acf6e99610a",
+      "upstream_record": {
+        "construction_calls": [
+          "append"
+        ],
+        "markers": [
+          "columns"
+        ],
+        "path": "results/run_bayesian_v6_causal_audit.py",
+        "sha256": "34af04d69e236a0ca60fd0120c33e3c4e8ca241f4cbd410b7eb97acf6e99610a"
+      },
+      "width_evidence_count": 0
+    }
+  ],
+  "scope": "ranks_only_verified_upstream_strong_candidates_and_does_not_claim_that_rank_implies_actual_generator_identity",
+  "selection_rule": "score=3*width_evidence_count+construction_evidence_count; ties sorted lexicographically by path",
+  "source_path": "results/phase_v_feature_generator_reconstruction_audit_v1.json",
+  "source_sha256": "9bf104e409a2d100d2655e75a648133a9467c9132bdbb81bbd6b200bf05957a5",
+  "status": "RANKED_STRONG_GENERATOR_CANDIDATES"
+}
