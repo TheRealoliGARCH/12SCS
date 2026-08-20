@@ -1,0 +1,23 @@
+{
+  "candidate_count": 0,
+  "candidates": [],
+  "current_operational_member_count": 8,
+  "interpretation": "recognition_is_based_only_on_public_pre_existing_evidence_records_present_in_the_manifest; absence_of_recognition_is_not_evidence_of_absence_of_capability",
+  "recognition_rule": {
+    "forbidden_inferences": [
+      "no_new_test_required",
+      "no_new_demonstration_required",
+      "no_capability_imputation_from_single_marker"
+    ],
+    "minimum_independent_sources": 2,
+    "required_evidence_classes": [
+      "capability_assessment",
+      "independent_corroboration"
+    ]
+  },
+  "recognized_candidate_count": 0,
+  "source_path": "data/snog_ninth_capability_evidence_manifest_v1.json",
+  "source_sha256": "94b8eda5e6a2647a3547b34ea5971139413b7a83ded318195432348ab6210712",
+  "status": "NO_NINTH_CAPABILITY_RECOGNIZED_FROM_MANIFEST",
+  "target_member_count": 9
+}
