@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+import hashlib,json,math,subprocess,sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1]; CAN=ROOT/'results'/'phase_v_canonical_six_mode_coordinates_v1.json'; TWO=ROOT/'results'/'phase_v_two_mode_reconstruction_audit_v1.json'; RES=ROOT/'results'/'phase_v_residual_rate_distortion_frontier_v1.json'; OUT=ROOT/'results'/'phase_v_hierarchical_four_mode_reconstruction_audit_v1.json'
+if not OUT.exists(): subprocess.run([sys.executable,str(ROOT/'results'/'run_phase_v_hierarchical_four_mode_reconstruction_audit_v1.py')],cwd=ROOT,check=True)
+d=json.loads(OUT.read_text()); assert d['status']=='HIERARCHICAL_FOUR_MODE_RECONSTRUCTION_AUDIT_COMPLETE'; assert d['canonical_source_sha256']==hashlib.sha256(CAN.read_bytes()).hexdigest(); assert d['two_mode_source_sha256']==hashlib.sha256(TWO.read_bytes()).hexdigest(); assert d['residual_frontier_source_sha256']==hashlib.sha256(RES.read_bytes()).hexdigest(); assert d['n_features']==55 and d['source_dimension']==6 and d['dominant_dimension']==2 and d['residual_correction_dimension']==2 and d['combined_dimension']==4
+for k in ['retained_energy','residual_energy','residual_frobenius_norm','max_abs_coordinate_distortion','max_feature_residual_norm','frontier_cumulative_total_energy_retained','frontier_consistency_error','dominant_two_mode_retained_energy','residual_correction_retained_energy']: assert math.isfinite(d[k]) and d[k]>=0
+assert abs(d['retained_energy']+d['residual_energy']-1)<1e-9; assert len(d['per_feature_residual_norms'])==55; assert all(math.isfinite(x) and x>=0 for x in d['per_feature_residual_norms']); assert abs(max(d['per_feature_residual_norms'])-d['max_feature_residual_norm'])<1e-12
+rd=json.loads(RES.read_text()); f2=next(x for x in rd['frontier'] if x['residual_dimension']==2); assert abs(d['frontier_cumulative_total_energy_retained']-f2['cumulative_total_energy_retained'])<1e-12; assert d['frontier_consistency_error']<1e-8
+assert d['retained_energy']>=d['dominant_two_mode_retained_energy']-1e-9; assert d['interpretation']=='hierarchical_two_plus_two_mode_approximation_audit_no_automatic_canonical_dimension_redefinition'
+print('PASS: Phase V hierarchical four-mode reconstruction audit v1 provenance, hierarchical consistency, residual, and per-feature invariants verified.')
