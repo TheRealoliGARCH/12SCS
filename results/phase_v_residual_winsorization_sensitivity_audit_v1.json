@@ -1,0 +1,40 @@
+{
+  "baseline_squared_residual_energy": 0.0009999264413015217,
+  "baseline_total_residual_energy": 1.356245975839101e-05,
+  "interpretation": "explicit_upper_tail_clipping_sensitivity_descriptive_only_no_rank_or_dimension_redefinition",
+  "levels": [
+    {
+      "changed_feature_count": 6,
+      "post_winsor_energy_ratio_to_baseline": 0.05654031101742629,
+      "post_winsor_max_residual_norm": 0.0018731518787123472,
+      "post_winsor_squared_residual_energy": 5.6536151985736295e-05,
+      "post_winsor_total_residual_norm": 0.04609617878581731,
+      "quantile": 0.9,
+      "upper_cap": 0.0018731518787123472
+    },
+    {
+      "changed_feature_count": 3,
+      "post_winsor_energy_ratio_to_baseline": 0.059619572866636425,
+      "post_winsor_max_residual_norm": 0.002083143510486454,
+      "post_winsor_squared_residual_energy": 5.9615187328452525e-05,
+      "post_winsor_total_residual_norm": 0.04687987172330945,
+      "quantile": 0.95,
+      "upper_cap": 0.002083143510486454
+    },
+    {
+      "changed_feature_count": 1,
+      "post_winsor_energy_ratio_to_baseline": 0.32021799711114984,
+      "post_winsor_max_residual_norm": 0.0159816215508412,
+      "post_winsor_squared_residual_energy": 0.000320194442292053,
+      "post_winsor_total_residual_norm": 0.06252696739266808,
+      "quantile": 0.99,
+      "upper_cap": 0.0159816215508412
+    }
+  ],
+  "n_features": 55,
+  "quantile_method": "linear_order_statistic_interpolation",
+  "source_path": "results/phase_v_hierarchical_four_mode_reconstruction_audit_v1.json",
+  "source_sha256": "e4a147ef2189adbfa2ca8a7587284eb4aeee7a4b775132dde05e327d5feb9533",
+  "status": "RESIDUAL_WINSORIZATION_SENSITIVITY_AUDIT_COMPLETE",
+  "winsorization_scope": "per_feature_residual_norm_upper_tail_sensitivity_not_coordinatewise_dimension_reduction"
+}
