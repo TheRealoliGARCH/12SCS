@@ -1,0 +1,24 @@
+{
+  "audit": "SNoG Israeli Minimum Evidence-Family Cut Audit v1",
+  "claimant_count": 5,
+  "evidence_family_count": 4,
+  "input_audit": "SNoG Israeli Capability Evidence Dependence Audit v1",
+  "invariants": {
+    "cuts_enumerated_in_increasing_cardinality": true,
+    "minimum_cut_exhaustively_enumerated": true,
+    "no_public_test_imputed": true,
+    "support_derived_only_from_manifest": true,
+    "vela_not_promoted_to_confirmed_attribution": true
+  },
+  "minimum_cut_size": 4,
+  "minimum_cuts": [
+    [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  ],
+  "source_sha256": "6e1b9663e32c105c0c86fed5ca36473a4af56dc0a819ade84ad6b051b2fd8bd6",
+  "verdict": "MINIMUM_CUT_REQUIRED_TO_REMOVE_ALL_RECORDED_CLAIMANT_SUPPORT"
+}
