@@ -1,0 +1,41 @@
+{
+  "adjacent_marginal_loss_gaps": [
+    0.024728590556854835,
+    0.10230055219011569
+  ],
+  "candidate_residual_dimension_after_gap": 2,
+  "interpretation": "structural_gap_candidate_only_no_automatic_secondary_dimension_selection",
+  "largest_gap": 0.10230055219011569,
+  "largest_gap_after_transition": "3->2",
+  "marginal_loss_spectrum": [
+    {
+      "frontier_identity_error": 0.0,
+      "marginal_retained_residual_energy_loss": 0.00028161560327044644,
+      "removed_residual_mode": 4,
+      "retained_residual_energy_after": 0.9997183843967296,
+      "retained_residual_energy_before": 1.0,
+      "transition": "4->3"
+    },
+    {
+      "frontier_identity_error": 0.0,
+      "marginal_retained_residual_energy_loss": 0.02501020616012528,
+      "removed_residual_mode": 3,
+      "retained_residual_energy_after": 0.9747081782366043,
+      "retained_residual_energy_before": 0.9997183843967296,
+      "transition": "3->2"
+    },
+    {
+      "frontier_identity_error": 0.0,
+      "marginal_retained_residual_energy_loss": 0.12731075835024097,
+      "removed_residual_mode": 2,
+      "retained_residual_energy_after": 0.8473974198863633,
+      "retained_residual_energy_before": 0.9747081782366043,
+      "transition": "2->1"
+    }
+  ],
+  "residual_source_rank": 4,
+  "selection_rule": "largest_adjacent_marginal_loss_gap_with_lowest_index_tie_break",
+  "source_path": "results/phase_v_residual_rate_distortion_frontier_v1.json",
+  "source_sha256": "713cac2489fcabb6cbeddfd2fe0a791863f1a7a433abfe2ba896777be0fe1d3f",
+  "status": "RESIDUAL_MARGINAL_LOSS_SPECTRUM_COMPLETE"
+}
