@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 SRC=ROOT/'results'/'phase_v_residual_rate_distortion_frontier_v1.json'
 if not SRC.exists(): subprocess.run([sys.executable,str(ROOT/'results'/'run_phase_v_residual_rate_distortion_frontier_v1.py')],cwd=ROOT,check=True)
-raw=SRC.read_bytes(); d=json.loads(raw); F={x['dimension']:x for x in d['frontier']}; assert d['residual_source_rank']==4 and sorted(F)==[1,2,3]
+raw=SRC.read_bytes(); d=json.loads(raw); F={x['residual_dimension']:x for x in d['frontier']}; assert d['residual_source_rank']==4 and sorted(F)==[1,2,3]
 # Marginal loss when reducing the residual representation by one dimension.
 spectrum=[]
 for hi,lo in [(4,3),(3,2),(2,1)]:
