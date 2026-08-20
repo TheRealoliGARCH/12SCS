@@ -1,0 +1,883 @@
+{
+  "backtrace_records": [
+    {
+      "feature_index": 0,
+      "stages": [
+        {
+          "identity": 0,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 1,
+      "stages": [
+        {
+          "identity": 1,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 2,
+      "stages": [
+        {
+          "identity": 2,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 3,
+      "stages": [
+        {
+          "identity": 3,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 4,
+      "stages": [
+        {
+          "identity": 4,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 5,
+      "stages": [
+        {
+          "identity": 5,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 6,
+      "stages": [
+        {
+          "identity": 6,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 7,
+      "stages": [
+        {
+          "identity": 7,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 8,
+      "stages": [
+        {
+          "identity": 8,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 9,
+      "stages": [
+        {
+          "identity": 9,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 10,
+      "stages": [
+        {
+          "identity": 10,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 12,
+      "stages": [
+        {
+          "identity": 12,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 13,
+      "stages": [
+        {
+          "identity": 13,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 14,
+      "stages": [
+        {
+          "identity": 14,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 15,
+      "stages": [
+        {
+          "identity": 15,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 16,
+      "stages": [
+        {
+          "identity": 16,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 17,
+      "stages": [
+        {
+          "identity": 17,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 18,
+      "stages": [
+        {
+          "identity": 18,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 19,
+      "stages": [
+        {
+          "identity": 19,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 20,
+      "stages": [
+        {
+          "identity": 20,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 21,
+      "stages": [
+        {
+          "identity": 21,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 22,
+      "stages": [
+        {
+          "identity": 22,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 23,
+      "stages": [
+        {
+          "identity": 23,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 24,
+      "stages": [
+        {
+          "identity": 24,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 25,
+      "stages": [
+        {
+          "identity": 25,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 26,
+      "stages": [
+        {
+          "identity": 26,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 27,
+      "stages": [
+        {
+          "identity": 27,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 28,
+      "stages": [
+        {
+          "identity": 28,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 29,
+      "stages": [
+        {
+          "identity": 29,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 30,
+      "stages": [
+        {
+          "identity": 30,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 31,
+      "stages": [
+        {
+          "identity": 31,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 32,
+      "stages": [
+        {
+          "identity": 32,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 33,
+      "stages": [
+        {
+          "identity": 33,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 34,
+      "stages": [
+        {
+          "identity": 34,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 35,
+      "stages": [
+        {
+          "identity": 35,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 36,
+      "stages": [
+        {
+          "identity": 36,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 37,
+      "stages": [
+        {
+          "identity": 37,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 38,
+      "stages": [
+        {
+          "identity": 38,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 39,
+      "stages": [
+        {
+          "identity": 39,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 40,
+      "stages": [
+        {
+          "identity": 40,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 41,
+      "stages": [
+        {
+          "identity": 41,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 42,
+      "stages": [
+        {
+          "identity": 42,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 43,
+      "stages": [
+        {
+          "identity": 43,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 44,
+      "stages": [
+        {
+          "identity": 44,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 45,
+      "stages": [
+        {
+          "identity": 45,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 46,
+      "stages": [
+        {
+          "identity": 46,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 47,
+      "stages": [
+        {
+          "identity": 47,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 48,
+      "stages": [
+        {
+          "identity": 48,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 49,
+      "stages": [
+        {
+          "identity": 49,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 50,
+      "stages": [
+        {
+          "identity": 50,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 51,
+      "stages": [
+        {
+          "identity": 51,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 52,
+      "stages": [
+        {
+          "identity": 52,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 53,
+      "stages": [
+        {
+          "identity": 53,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    },
+    {
+      "feature_index": 54,
+      "stages": [
+        {
+          "identity": 54,
+          "stage": "residual_feature",
+          "state": "PRESERVED"
+        },
+        {
+          "identity": null,
+          "reason": "no_provenance_bound_p_q_r_signature_recovered",
+          "stage": "structural_signature_boundary",
+          "state": "LOST"
+        }
+      ]
+    }
+  ],
+  "first_unrecoverable_boundary": "structural_signature_boundary",
+  "interpretation": "residual_feature_identity_is_preserved_but_structural_signature_identity_is_lost_at_the_first_observed_boundary; deeper_upstream_nonexistence_is_not_inferred",
+  "n_features": 54,
+  "scope": "traces_only_provenance_bound_stages_available_from_the_examined_artifact_chain",
+  "source_path": "results/phase_v_semantic_provenance_loss_audit_v2.json",
+  "source_sha256": "4c046a0170ce9f526a802061059b33bc8ef28ebd02837067f4c05f564664c6ea",
+  "state_counts": {
+    "AGGREGATED": 0,
+    "ANONYMOUS": 0,
+    "LOST": 54,
+    "PRESERVED": 54,
+    "RECOVERABLE_TRANSFORMATION": 0,
+    "UNAVAILABLE_LINEAGE": 0
+  },
+  "status": "DEEP_PROVENANCE_BACKTRACE_AUDIT_COMPLETE"
+}

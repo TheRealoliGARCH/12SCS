@@ -8,8 +8,8 @@ assert d['status']=='DEEP_PROVENANCE_BACKTRACE_AUDIT_COMPLETE'; assert d['source
 assert d['first_unrecoverable_boundary']=='structural_signature_boundary'
 assert d['state_counts']['PRESERVED']==d['n_features'] and d['state_counts']['LOST']==d['n_features']
 for r,x in zip(d['backtrace_records'],s['feature_lineage']):
- assert r['feature']==x['feature'] and len(r['stages'])==2
- a,b=r['stages']; assert a['stage']=='residual_feature' and a['state']=='PRESERVED' and a['identity']==r['feature']; assert b['stage']=='structural_signature_boundary' and b['state']=='LOST' and b['identity'] is None
+ assert r['feature_index']==x['feature_index'] and len(r['stages'])==2
+ a,b=r['stages']; assert a['stage']=='residual_feature' and a['state']=='PRESERVED' and a['identity']==r['feature_index']; assert b['stage']=='structural_signature_boundary' and b['state']=='LOST' and b['identity'] is None
 assert d['scope']=='traces_only_provenance_bound_stages_available_from_the_examined_artifact_chain'
 assert d['interpretation']=='residual_feature_identity_is_preserved_but_structural_signature_identity_is_lost_at_the_first_observed_boundary; deeper_upstream_nonexistence_is_not_inferred'
 print('PASS: Phase V deep provenance backtrace audit v1 provenance, stage-order, first-boundary, and non-nonexistence invariants verified.')
