@@ -1,0 +1,14 @@
+{
+  "feature_lineage": [],
+  "identified_count": 0,
+  "interpretation": "semantic_identity_unrecoverable_at_the_examined_feature_to_structural_signature_boundary_without_claiming_nonexistence_of_upstream_p_q_r_structure",
+  "link_state_counts": {
+    "PRESERVED": 0
+  },
+  "n_features": 0,
+  "scope": "diagnoses_the_observed_recovery_boundary_only_and_does_not_infer_absence_of_upstream_structure",
+  "source_path": "results/phase_v_structural_signature_recovery_identification_audit_v1.json",
+  "source_sha256": "444ad55c45a66532e5097b303d7fa22c88dedaba86c022ae06fff0e2bdcd659f",
+  "status": "SEMANTIC_PROVENANCE_LOSS_AUDIT_COMPLETE",
+  "terminal_semantic_state": "PRESERVED"
+}
