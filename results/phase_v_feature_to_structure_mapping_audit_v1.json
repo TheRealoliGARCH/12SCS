@@ -1,0 +1,24 @@
+{
+  "available_feature_fields": [
+    "cumulative_squared_residual_share",
+    "feature_index",
+    "rank",
+    "residual_norm",
+    "squared_residual_energy"
+  ],
+  "interpretation": "identifiability_test_only_no_imputation_of_missing_structural_signatures_no_forced_14_class_partition",
+  "mapping": null,
+  "mapping_class_count": null,
+  "n_residual_features": 54,
+  "reason": "source_residual_artifact_does_not_supply_provenance_bound_p_q_r_structural_signatures_for_feature_level_assignment",
+  "required_structural_fields": [
+    "p",
+    "q",
+    "r"
+  ],
+  "source_path": "results/phase_v_post_ablation_residual_concentration_audit_v1.json",
+  "source_sha256": "37016d6e2ab6ae2cf08eed575df8c6f03380a10d69f1822e417914063279e6e6",
+  "status": "FEATURE_TO_STRUCTURE_MAPPING_NOT_IDENTIFIABLE",
+  "structural_signature_available": false,
+  "target_structure_count": 14
+}
