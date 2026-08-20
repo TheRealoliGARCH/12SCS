@@ -1,0 +1,1424 @@
+{
+  "candidate_count": 129,
+  "candidate_files": [
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "data/advanced_industrial_capacity_2025.csv",
+      "sha256": "2dc6f30ff3a83193a3c3bdb2a5c1df3148fa0ac003634b8134973b9c187f098e"
+    },
+    {
+      "markers": [
+        "shape"
+      ],
+      "path": "data/capability_dimensions.csv",
+      "sha256": "61387b7ef429919bf7331b20d3421e92b7827787efb7a911b494c4b501cb218e"
+    },
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "data/civilizational_social_resilience_2026.csv",
+      "sha256": "530872b827f00be6a0a10c71598d2b20280f23b61194a98f19ca0960fe276eaf"
+    },
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "data/energy_resource_security_2026.csv",
+      "sha256": "ac35c2a4b7f63f19565ec0312ac77460851d922eaa46489fb1e6e0357d3b3ed3"
+    },
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "data/evidence_ledger_industrial.csv",
+      "sha256": "c0e21230c9c64df09bc4b91733983128f388be6c352614412e7e6f21867bfd18"
+    },
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "data/evidence_ledger_science_technology.csv",
+      "sha256": "8bc801665c69ada9ab33a24122bb509deec9031467ee5b17f19fe4e010ab7890"
+    },
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "data/infrastructure_logistics_2026.csv",
+      "sha256": "c44ff538e81c15313b99e072a14b0d33cf2763892b9b8b9e4ae6bac5f121ba96"
+    },
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "data/nuclear_strategic_deterrence_2026.csv",
+      "sha256": "ad6609ab3590084ca2482aeb1bb5c3ffbe37986fc6d232d91a305ba63aa64014"
+    },
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "data/science_technology_2025.csv",
+      "sha256": "92681247a0a159b48b9c1c169bc8369a78c77d44d769df7e54d141bd037ddcf9"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "shape"
+      ],
+      "path": "model/capability_gap_priority.py",
+      "sha256": "d397036feedda0123bfe783e17dba6d66efe801cbf00a5104d9c1e17f6fde179"
+    },
+    {
+      "construction_calls": [
+        "asarray"
+      ],
+      "markers": [
+        "shape"
+      ],
+      "path": "model/convergence.py",
+      "sha256": "c16b4d112750c57f62fb485d8f49822fa9b8b2dec137cb1892fec21affd45bf5"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "shape"
+      ],
+      "path": "model/convergence_mechanism.py",
+      "sha256": "ba96faee83393cab66ac679e16dd094a9878f4526adc5b97a8ff9e5b3140ab58"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "shape"
+      ],
+      "path": "model/convergence_optimization.py",
+      "sha256": "2b0eabee7f249a47339359a7ee11ea976e49587a79423eef5758737c7fb12b2e"
+    },
+    {
+      "construction_calls": [
+        "asarray"
+      ],
+      "markers": [
+        "shape"
+      ],
+      "path": "model/empirical_matrix.py",
+      "sha256": "a7ea4232b2ae5480bca22683ba7ebd4cadac2f00d39576978bab1ce8b63f30ae"
+    },
+    {
+      "construction_calls": [
+        "asarray"
+      ],
+      "markers": [
+        "shape"
+      ],
+      "path": "model/network.py",
+      "sha256": "c5c44e36d05b95e767d1883502f7f79e3fa781396a56b857f964c5535d841eba"
+    },
+    {
+      "construction_calls": [
+        "asarray",
+        "ones"
+      ],
+      "markers": [
+        "shape"
+      ],
+      "path": "model/nuclear.py",
+      "sha256": "22f6cf71e6d255656b98248992435c2d61e4777d8aa9916119b90ab3d56d36a3"
+    },
+    {
+      "construction_calls": [
+        "asarray"
+      ],
+      "markers": [
+        "shape"
+      ],
+      "path": "model/recognition.py",
+      "sha256": "05ddb28a3d652d2721957687e797e5c4fb065aeaf6cb53c6ed427f4b230add00"
+    },
+    {
+      "construction_calls": [
+        "asarray",
+        "ones"
+      ],
+      "markers": [
+        "shape"
+      ],
+      "path": "model/stability.py",
+      "sha256": "a9c52fa84aecc4ef704be927415feff44b981d17f2509a64780f10a9f7da9783"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "basis",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_CANONICAL_SIX_MODE_COORDINATES_V1.py",
+      "sha256": "d0001259ca06e65a61f0868cf92e87ad0bc72e733ccbd639f1109b48c8ae142a"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_CENTERED_SPECTRAL_COMPRESSION_V1.py",
+      "sha256": "1e94138cedb664620bd1787181c858ee1d2410fffd612dec07ab4edea2cad003"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "feature_index",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_DEEP_PROVENANCE_BACKTRACE_AUDIT_V1.py",
+      "sha256": "7a11ace463529b9d45c50c81af30eef97824f63ced631a2cf6dc50aabc2ee70c"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features",
+        "shape"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_DOMINANT_RESIDUAL_CONCENTRATION_INTERPRETATION_AUDIT_V1.py",
+      "sha256": "97bf6525f96d1cb45c9e80af38a3b13dd286738f48311cfe1f592cad06104310"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_DOMINANT_RESIDUAL_FEATURE_ABLATION_AUDIT_V1.py",
+      "sha256": "2613fc9a41210f0c562cb1219b1672a439e8d01dfa0b5775db54f7a458350ed4"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_DOMINANT_RESIDUAL_FEATURE_ISOLATION_AUDIT_V1.py",
+      "sha256": "6f7149ba3d225a30fe2b34a6206c72cadb577c8ddc5481bd61b2ccbd0bff5cce"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_EXPLICIT_FEATURE_IDENTITY_MAPPING_AUDIT_V1.py",
+      "sha256": "e1301fb32e9c3d35732896e02ebb1eb8b9078d8559bb1afae14194cfe7ee0d0f"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "columns",
+        "feature_names",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_FEATURE_CONSTRUCTION_BACKTRACE_AUDIT_V1.py",
+      "sha256": "fcdd3d8370ffc4a32716e0435fbe8228d12379ec0d27e240240f6d00400b8586"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_FEATURE_GENERATOR_RECONSTRUCTION_AUDIT_V1.py",
+      "sha256": "b3a190e6a22136589dac36683b57824ccf89924722f5dfa1bc8c0a8c7e2ad4bd"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_FEATURE_TRAJECTORY_EQUIVALENCE_AUDIT_V1.py",
+      "sha256": "8e6eed9bb4ea6c8e4a260babb16c9985c4f6e772988b8d5872d04f89b58903fb"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_FOURTEEN_STRUCTURE_CORRESPONDENCE_AUDIT_V1.py",
+      "sha256": "fd765bd295f898e1e883b064e6573751d22b9209f0ab3fd4a6615a2021188464"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_HIERARCHICAL_FOUR_MODE_RECONSTRUCTION_AUDIT_V1.py",
+      "sha256": "88c8d84f35a4fe6607c5758d750f710dbef752ac70fa282f58ba1efb778bfdcf"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_INTRINSIC_DIMENSION_AUDIT_V1.py",
+      "sha256": "f79bdf56b0008fa9c0f76ba6e349355404b883169c7e062d9e3b689c57352ae6"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_PERRON_ONE_FACTOR_AUDIT_V1.py",
+      "sha256": "24e56f1aeaba53bff7a4ba5ec1ec4590032a84154549770b34a00aca4e0fd308"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_PERSISTENCE_CORRESPONDENCE_V1.py",
+      "sha256": "62e3b701f57f647d8ac6ab23b2031ad9d78a467d8287b6720fef75d2ba6c7831"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_POST_ABLATION_RESIDUAL_CONCENTRATION_AUDIT_V1.py",
+      "sha256": "0d5aa73b0e7e063f5df0e9ef51eb23cb28b51138f9e215073cf70246604e51d3"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_PROJECTIVE_FEATURE_QUOTIENT_AUDIT_V1.py",
+      "sha256": "4c0578ab55cf0e9b53cf2268f991aac84d226eff69bd3c2f332d9c21de7b2797"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_RATE_DISTORTION_FRONTIER_V1.py",
+      "sha256": "2b90585c03d5ddbc276f2589a913ae3b4f5aa679d6bc4a3f5f581d836267eafb"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_RESIDUAL_SPECTRAL_COMPRESSION_AUDIT_V1.py",
+      "sha256": "fc417cc5bf234634cb51c185fafc2bbb39dfb70d1c627da9269ce8fc30e114b8"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_RESIDUAL_TAIL_CONCENTRATION_AUDIT_V1.py",
+      "sha256": "1f54cc7a50b6470f5834910fdf3ac3ff8ccbc64605909b672cb6b4835a770ad5"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_RESIDUAL_WINSORIZATION_SENSITIVITY_AUDIT_V1.py",
+      "sha256": "66f2d8badb062dd3f68e101beef17449246daaa435df80fb948500df59879c0d"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_SEMANTIC_PROVENANCE_LOSS_AUDIT_V1.py",
+      "sha256": "e875cd93465cfc66a17cc782b00c92f0efc1e532f76e8786750f7ecfb45e37f1"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "feature_index",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_SEMANTIC_PROVENANCE_LOSS_AUDIT_V2.py",
+      "sha256": "fa6c7b62ccc68fae14b0fcf1f7c72652ca72e18b5cea7f0c86df12ab282a5176"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_SIX_MODE_CONDITIONAL_REDUNDANCY_AUDIT_V1.py",
+      "sha256": "69bba1f7b2e32d291ec6169d8088b460fad740f71f369c11bb7960fe7567c327"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_SIX_MODE_RECONSTRUCTION_V1.py",
+      "sha256": "fbbab0c7ffe352cb8fcfb4091dbc5b0a79be080c1fabac795b32c4c35fb84935"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_STABILITY_TRAJECTORY_COMPRESSION_V1.py",
+      "sha256": "d2b550864fef40c592b302c3aea113221bdb8ab7736fe50d21c2af19ef644b17"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "feature_index"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_STRUCTURAL_SIGNATURE_RECOVERY_IDENTIFICATION_AUDIT_V1.py",
+      "sha256": "0b06f7325ecb968d1d9e8a5aa75346789cb5c5a5aea7bcc3dc918f3043165f4b"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_TWO_MODE_RECONSTRUCTION_AUDIT_V1.py",
+      "sha256": "dd93832c0ea085ffe6d3e503dea4813eebcbd407670bcc1ad4b7334f1aee1fa4"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_TWO_MODE_RESIDUAL_CONCENTRATION_AUDIT_V1.py",
+      "sha256": "ec0c72ce4cfb5565071f720662102df6620fe6fa33f9a908cf96e874f77b50e9"
+    },
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "results/bayesian_rd_summary_prior_sensitivity_v1.csv",
+      "sha256": "95f7d6584f82cbaa9489b1a7d5dfe232f85e9869823a28f96fded29c702eaaeb"
+    },
+    {
+      "markers": [
+        "basis"
+      ],
+      "path": "results/phase2_primitive_sign_restrictions_v1.csv",
+      "sha256": "40974a4bc2b2f4cab4fd719b9b07630a13b7164dd108ab99dfeb786f2861e663"
+    },
+    {
+      "markers": [
+        "shape"
+      ],
+      "path": "results/phase3_closure_consistency_audit_v1.csv",
+      "sha256": "8c1058c3082dbc388e675d78b507102338054336efa1bcce4da80b6543943e3e"
+    },
+    {
+      "markers": [
+        "shape"
+      ],
+      "path": "results/phase3_critical_point_root_geometry_v1.csv",
+      "sha256": "de4f942ef2e6f6f065b95d9646deffa91f1fce86de9eef292088aa983a35898c"
+    },
+    {
+      "markers": [
+        "shape"
+      ],
+      "path": "results/phase3_joint_shape_classification_v1.csv",
+      "sha256": "fb52e489681bd78fe65e075765f04345b279668a0cd16cad8980224c651f718c"
+    },
+    {
+      "markers": [
+        "shape"
+      ],
+      "path": "results/phase3_unified_shape_theorem_v1.csv",
+      "sha256": "b1221d96e7f67270f965d53234e72745023d5fe5a2a3352acd60d21226a158b0"
+    },
+    {
+      "markers": [
+        "55",
+        "basis",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/phase_v_canonical_six_mode_coordinates_v1.json",
+      "sha256": "7c31cc440c875713ed077344a6ebada567fa5d3ae05ed66a5b63a8ac9676c38b"
+    },
+    {
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/phase_v_centered_spectral_compression_v1.json",
+      "sha256": "cb4d387ce67fa418292bce35226e134905b8affe1c643b5d7cfb338df35173c3"
+    },
+    {
+      "markers": [
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/phase_v_deep_provenance_backtrace_audit_v1.json",
+      "sha256": "fa11da9b7745134eb912615dec3c644bb5a37be5c9819e4baecc26abcdd97090"
+    },
+    {
+      "markers": [
+        "55",
+        "n_features",
+        "shape"
+      ],
+      "path": "results/phase_v_dominant_residual_concentration_interpretation_audit_v1.json",
+      "sha256": "c231674900a42d42db7c0d6eec867c156635e32140bba5310d1d700541a9f635"
+    },
+    {
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/phase_v_dominant_residual_feature_ablation_audit_v1.json",
+      "sha256": "a8ffb73a9d530434d83b0e26afa6e76efad0640174c9ad2dbfc5b92d7112eb9f"
+    },
+    {
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/phase_v_dominant_residual_feature_isolation_audit_v1.json",
+      "sha256": "e149e813bd79cefef01209aa1ebcbe9dc6475ab59960993215ea720b2799ac32"
+    },
+    {
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/phase_v_explicit_feature_identity_mapping_audit_v1.json",
+      "sha256": "ced5f490d0d558ea9983d3bc5e08c47a6c9618555acfb942743f9b3d02197f75"
+    },
+    {
+      "markers": [
+        "columns",
+        "feature_index",
+        "feature_names",
+        "n_features"
+      ],
+      "path": "results/phase_v_feature_construction_backtrace_audit_v1.json",
+      "sha256": "a9b7f55d0f5737931b700a1e43c667fbb0e91990a2bc19dc21993d8fece1f427"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/phase_v_feature_to_structure_mapping_audit_v1.json",
+      "sha256": "c4af29b2385e6bed795ff18c66a698c60b134d78aa737748901ad2edca536f0d"
+    },
+    {
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/phase_v_feature_trajectory_equivalence_audit_v1.json",
+      "sha256": "b46f2c5ab07e5cc5d3522f410eaa8f11f71b6a48f3b8637bc3d65c86ca279898"
+    },
+    {
+      "markers": [
+        "n_features"
+      ],
+      "path": "results/phase_v_fourteen_structure_correspondence_audit_v1.json",
+      "sha256": "f52b35ecd1a1eb950a53275f260d7e0276c7e9f2f85b7aa1bfa9c0d28ea4a9c4"
+    },
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "results/phase_v_h1_interpretation_stability_v1.json",
+      "sha256": "8fd5a16b8b37d2229376cbaa3ab10157330f2433b48b6f60c6d5114ffc468403"
+    },
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "results/phase_v_h1_persistence_audit_v2.json",
+      "sha256": "19bd978e796b4bcf6a3df8331e1afa6879e4141c34bc3aaa5b3b676fa22283c7"
+    },
+    {
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/phase_v_hierarchical_four_mode_reconstruction_audit_v1.json",
+      "sha256": "e4a147ef2189adbfa2ca8a7587284eb4aeee7a4b775132dde05e327d5feb9533"
+    },
+    {
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/phase_v_intrinsic_dimension_audit_v1.json",
+      "sha256": "0070d418c1dce33b5340393bffb0e5777ab83e0c4f308126bbada5e6599dcf74"
+    },
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "results/phase_v_local_perturbation_stability_v1.json",
+      "sha256": "79c6f1127836f9ee879e5770833a0efdf1a6e375a2f434f515ceed8766a5a872"
+    },
+    {
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/phase_v_perron_one_factor_audit_v1.json",
+      "sha256": "e81da9dc30c0c84e8aa7b766d3ceb6defb0c4b53a476cbebd3c3e05899c89773"
+    },
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "results/phase_v_persistence_correspondence_v1.json",
+      "sha256": "8898f6fbdac828ae7dd901f8b9b1a1ad94ee9cfeee1aa070ec00846a616bfc7e"
+    },
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "results/phase_v_perturbation_synthesis_v1.json",
+      "sha256": "faa1bfbcc630ef1366134c5ce79125c92267decbb7e0d729b4598f8b75bc81c5"
+    },
+    {
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/phase_v_post_ablation_residual_concentration_audit_v1.json",
+      "sha256": "37016d6e2ab6ae2cf08eed575df8c6f03380a10d69f1822e417914063279e6e6"
+    },
+    {
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/phase_v_projective_feature_quotient_audit_v1.json",
+      "sha256": "efb1800da0b66fd42c05a7f92aaead35157cba1067b9df543787d1bbe5851459"
+    },
+    {
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/phase_v_rate_distortion_frontier_v1.json",
+      "sha256": "4fbdfef7abff756c6f4e2dd7b910bbb05ecc666d85bf07ed06c5f6b5224726e3"
+    },
+    {
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/phase_v_residual_spectral_compression_audit_v1.json",
+      "sha256": "4c861a6e777bd8add112734ee0ee15b96e96235c33ef07dff0bc37caf971595a"
+    },
+    {
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/phase_v_residual_tail_concentration_audit_v1.json",
+      "sha256": "7a56c42a66aa48277c5c9a4093ab4ae3cda2c9ce1a24f8f0a01f6630a072ea82"
+    },
+    {
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/phase_v_residual_winsorization_sensitivity_audit_v1.json",
+      "sha256": "86cfca29ec40addb8d6afa0ba604af80f7ec7bd663019a4d37dd47d6eaeb42fe"
+    },
+    {
+      "markers": [
+        "n_features"
+      ],
+      "path": "results/phase_v_semantic_provenance_loss_audit_v1.json",
+      "sha256": "bb8a45495f399f596182d74b5497774ae7a6205da24c245b11f4b77c2e94ad98"
+    },
+    {
+      "markers": [
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/phase_v_semantic_provenance_loss_audit_v2.json",
+      "sha256": "4c046a0170ce9f526a802061059b33bc8ef28ebd02837067f4c05f564664c6ea"
+    },
+    {
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/phase_v_six_mode_conditional_redundancy_audit_v1.json",
+      "sha256": "bba9101a0429da7481bff33dbdc4709d76396168ee3ebc9e1edf17e25ef0ee4b"
+    },
+    {
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/phase_v_six_mode_reconstruction_v1.json",
+      "sha256": "52ac79dfa63442b09ae7cc98a718d53d6ba8fd950300792d943d419b37e0ad10"
+    },
+    {
+      "markers": [
+        "55"
+      ],
+      "path": "results/phase_v_stability_trajectory_compression_v1.json",
+      "sha256": "9b0744386b274db6d152e3cc8d60bf660095169e0e6c98b28633e29a2b2592bb"
+    },
+    {
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/phase_v_two_mode_reconstruction_audit_v1.json",
+      "sha256": "d413c8dc9fbe7b94a17a976fd1a7a24ce2cff07261bfdc3b5d2826c1e4597b76"
+    },
+    {
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/phase_v_two_mode_residual_concentration_audit_v1.json",
+      "sha256": "bd27d4e7887d8d80dd04ac6a48b50aee2335ce689321d6a90e8639ea556e52f1"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "stack"
+      ],
+      "path": "results/run_bayesian_rd_estimation_readiness_audit.py",
+      "sha256": "b789c60135fd665aaf19fa17aa2494cf7af282ff7202b315119acd62e27ba6c8"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "columns"
+      ],
+      "path": "results/run_bayesian_structural_counterfactual_analysis.py",
+      "sha256": "11a04eeec866ff52e7e59c911044ff1f1afdf898bf32cb77a52f3cd7ceb6266a"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "columns"
+      ],
+      "path": "results/run_bayesian_structural_counterfactual_input.py",
+      "sha256": "5b8059d5fa24c1b04941a199a6a23cdff9451323876e85d216c3a00040caf1d1"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "columns"
+      ],
+      "path": "results/run_bayesian_v6_causal_audit.py",
+      "sha256": "34af04d69e236a0ca60fd0120c33e3c4e8ca241f4cbd410b7eb97acf6e99610a"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "basis"
+      ],
+      "path": "results/run_phase2_primitive_sign_restrictions.py",
+      "sha256": "8c25b6b41ead70e79089114df55fec400471963113728b3fc2a4778e6a77e07a"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "shape"
+      ],
+      "path": "results/run_phase3_closure_consistency_audit.py",
+      "sha256": "3f6dce2fa2eadb78564f361445528dd5f0f23a3c72026a3e984af5e367becce7"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "shape"
+      ],
+      "path": "results/run_phase3_critical_point_root_geometry.py",
+      "sha256": "0130eff030e569b799d011c0c4c74e9c5d5306df55d068c3f52ae9fe09105c19"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "shape",
+        "SHAPE"
+      ],
+      "path": "results/run_phase3_joint_shape_classification.py",
+      "sha256": "d1abe4900b97b0b83412afea2087cc6ddd9f86f558d6dc80cd254c11fe81a948"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "shape",
+        "SHAPE"
+      ],
+      "path": "results/run_phase3_unified_shape_theorem.py",
+      "sha256": "d77fd0dbf688a5817640f6b5ee822f4961000e454f85a92dcf6c9be9eaac2f26"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "basis",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_canonical_six_mode_coordinates_v1.py",
+      "sha256": "cf6d526afd0cd6e5f90c57f87266f83741b55274aa49ddb032b39983e461b474"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_centered_spectral_compression_v1.py",
+      "sha256": "e29aa8616ff4649a1e570698dee0a95749c46fbd425169f1a599037b02818e42"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_deep_provenance_backtrace_audit_v1.py",
+      "sha256": "4cea3c9cc48e4c7481d6cae99cc89ea692d5bbecd99a9f9da2d738e9257bba2f"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "n_features",
+        "shape"
+      ],
+      "path": "results/run_phase_v_dominant_residual_concentration_interpretation_audit_v1.py",
+      "sha256": "5c1ad0c9d6deeec9559a1f248b1203a9b86bf5a9d6b194753aa1002e57e68ad5"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_dominant_residual_feature_ablation_audit_v1.py",
+      "sha256": "2800861ffef321e3685650130b573ab4663f4a07f9352d3206a67061bfbb5b5d"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_dominant_residual_feature_isolation_audit_v1.py",
+      "sha256": "f4b5910f2a9f65fa2c500fdb310a8d2024817ba58b99760ad24e0f8c03951dfb"
+    },
+    {
+      "construction_calls": [
+        "append",
+        "extend"
+      ],
+      "markers": [
+        "55",
+        "columns",
+        "feature_index",
+        "feature_names",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_explicit_feature_identity_mapping_audit_v1.py",
+      "sha256": "c45ae459841cfb0c0e51c9671fd42ab5fa668680b182810c83be4eef812cf464"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "columns",
+        "feature_index",
+        "feature_names",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_feature_construction_backtrace_audit_v1.py",
+      "sha256": "aa0de9530c8ee7afdd19b1803e7b34bb1131117f524d173485617d3d65c42cd8"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "55",
+        "basis",
+        "columns",
+        "concat",
+        "n_features",
+        "shape",
+        "stack"
+      ],
+      "path": "results/run_phase_v_feature_generator_reconstruction_audit_v1.py",
+      "sha256": "7a06809066be8ef4fdd085f35c1ca2d34c344e721619359894c1c393dfe4c985"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_feature_trajectory_equivalence_audit_v1.py",
+      "sha256": "13c60ab27646cac5b75bc2f7ce903e4c0ca1dbbb6fcf405d5b1c0cdfe9c3b361"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_fourteen_structure_correspondence_audit_v1.py",
+      "sha256": "dc5e03bbc37ffa5961bf8852c1b3121ec8dc248f4e63a4419d26a22e924b592f"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_hierarchical_four_mode_reconstruction_audit_v1.py",
+      "sha256": "75eff8e69bcee2610f532a59fa63031189eb649ecdd50843ad65149a42a0c7be"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_intrinsic_dimension_audit_v1.py",
+      "sha256": "0769c5fc0ecb0f8e5ff086432852944f6dddabecf79e871348f9c38ee6ceb4f0"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "n_features"
+      ],
+      "path": "results/run_phase_v_perron_one_factor_audit_v1.py",
+      "sha256": "50f7c736453e12eeb7a2d64fab1733921e767e28801e582ad2d7a22159c8e7fa"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "55"
+      ],
+      "path": "results/run_phase_v_persistence_correspondence_v1.py",
+      "sha256": "e38cd2ba9f1c56f71cb0a293ec62c2fd88e248adb4c1bbf1990c600f7e0c9d0d"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_post_ablation_residual_concentration_audit_v1.py",
+      "sha256": "7d4c0f01c02193e42270e9eca204becdefeca90d41fb7861d3e501f21d9b74a3"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_projective_feature_quotient_audit_v1.py",
+      "sha256": "03d8ce7c72e3010664a96316d9ed20d8b9c5f38ad0c7e0921161c2a0317a0a77"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "n_features"
+      ],
+      "path": "results/run_phase_v_rate_distortion_frontier_v1.py",
+      "sha256": "c5fcf5f864887bef67b6fa62102c1241b0f341ec001aed5277f6b850882742be"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "n_features"
+      ],
+      "path": "results/run_phase_v_residual_spectral_compression_audit_v1.py",
+      "sha256": "c8d26caa1c8e50361954881f2a9bbfcaca031d823ff1cb85b783f5646053ee04"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_residual_tail_concentration_audit_v1.py",
+      "sha256": "bf3cecdb8e215176ed0c4f0badec3199c27924465c5a843d3bbb3c97d64155f2"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_residual_winsorization_sensitivity_audit_v1.py",
+      "sha256": "320af9f20b27246e99c60a4ec325366463d5a8e0cc4a88071105a2fc7bfba668"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "n_features"
+      ],
+      "path": "results/run_phase_v_semantic_provenance_loss_audit_v1.py",
+      "sha256": "e1d9478e64cb95607e6b3ad3f706b81c3f1dfbe14edfa0759bf36b3a8dd63434"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_semantic_provenance_loss_audit_v2.py",
+      "sha256": "5a37814e165b9b0621c47414fdaf0129c61d8fcf38360d444c1b838981fc7495"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_six_mode_conditional_redundancy_audit_v1.py",
+      "sha256": "ad2da0649819351e39434dd6ba31844ba4d5f680e23e3f01ab49f95b959f50ea"
+    },
+    {
+      "construction_calls": [
+        "extend"
+      ],
+      "markers": [
+        "n_features"
+      ],
+      "path": "results/run_phase_v_six_mode_reconstruction_v1.py",
+      "sha256": "d9b562b7ac70a8c9a5d30659a7c17a664b22c5dbc4760ef0fbfaa72b00404bbb"
+    },
+    {
+      "construction_calls": [
+        "append",
+        "extend"
+      ],
+      "markers": [
+        "55"
+      ],
+      "path": "results/run_phase_v_stability_trajectory_compression_v1.py",
+      "sha256": "a9a8f25ea461c02cd2ddca003b08df7ea2e353664e4e8f0d760e3514c69e71d0"
+    },
+    {
+      "construction_calls": [
+        "append",
+        "extend"
+      ],
+      "markers": [
+        "55",
+        "feature_index",
+        "stack"
+      ],
+      "path": "results/run_phase_v_structural_signature_recovery_identification_audit_v1.py",
+      "sha256": "0d43cc1e3785c37a266117bbaf75c2fa4283bdf80f4d5d778dfcc47ac3ba24b7"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "n_features"
+      ],
+      "path": "results/run_phase_v_two_mode_reconstruction_audit_v1.py",
+      "sha256": "fe2ede02c10a014f44ead0f93c9725d3e6e77f8732c303b5d110ddd27dd49099"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_two_mode_residual_concentration_audit_v1.py",
+      "sha256": "822e8464f6f03f063f2bd78746cadd135d31878f5490f64bb6dc9ff31bb23178"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "stack"
+      ],
+      "path": "tests/test_bayesian_rd_estimation_readiness_audit.py",
+      "sha256": "e25d64096fce57bdc1336a53f12eeab77d5f85eee550a4c0f5d9530f2fee1854"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "shape"
+      ],
+      "path": "tests/test_convergence_mechanism.py",
+      "sha256": "2bd83095a6587adc1e3c9a80bf8426803da8429c5a5f96bc2c8d195c8034bc95"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "shape"
+      ],
+      "path": "tests/test_heterogeneous_scenario.py",
+      "sha256": "547df23a5d126e16ba95c575e1173f5535a4048aa3c86318b3db65d251f264c5"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "shape"
+      ],
+      "path": "tests/test_phase3_closure_consistency_audit.py",
+      "sha256": "0884228db90ee689346be86f9a042c838b30899c9a927120221e8287a4f94024"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "shape",
+        "Shape"
+      ],
+      "path": "tests/test_phase3_joint_shape_classification.py",
+      "sha256": "6606da5c9ab17e472f5816f0f64e169260aa41b28fb7a87363bdc08856bade88"
+    },
+    {
+      "construction_calls": [],
+      "markers": [
+        "shape"
+      ],
+      "path": "tests/test_phase3_unified_shape_theorem.py",
+      "sha256": "182b6e9c9108722416ccbc2f6b1b6a8cdf5532d1b681370502b75d997990ea91"
+    }
+  ],
+  "classification": "GENERATOR_CANDIDATES_REQUIRE_EXPLICIT_RECONSTRUCTION",
+  "interpretation": "the_audit_identifies_repository_evidence_that_may_construct_or_establish_feature_width_and_refuses_to_impute_a_generator_or_semantic_feature_mapping",
+  "scope": "inventory_and_classification_only; textual_or_ast_hits_do_not_by_themselves_establish_the_55_dimensional_generator",
+  "search_roots": [
+    "results",
+    "reproducibility",
+    "src",
+    "model",
+    "tests",
+    "data"
+  ],
+  "status": "FEATURE_GENERATOR_CANDIDATES_FOUND",
+  "strong_candidate_count": 22,
+  "strong_generator_candidates": [
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "shape"
+      ],
+      "path": "model/capability_gap_priority.py",
+      "sha256": "d397036feedda0123bfe783e17dba6d66efe801cbf00a5104d9c1e17f6fde179"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "shape"
+      ],
+      "path": "model/convergence_optimization.py",
+      "sha256": "2b0eabee7f249a47339359a7ee11ea976e49587a79423eef5758737c7fb12b2e"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "columns"
+      ],
+      "path": "results/run_bayesian_structural_counterfactual_analysis.py",
+      "sha256": "11a04eeec866ff52e7e59c911044ff1f1afdf898bf32cb77a52f3cd7ceb6266a"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "columns"
+      ],
+      "path": "results/run_bayesian_v6_causal_audit.py",
+      "sha256": "34af04d69e236a0ca60fd0120c33e3c4e8ca241f4cbd410b7eb97acf6e99610a"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "shape"
+      ],
+      "path": "results/run_phase3_closure_consistency_audit.py",
+      "sha256": "3f6dce2fa2eadb78564f361445528dd5f0f23a3c72026a3e984af5e367becce7"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "basis",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_canonical_six_mode_coordinates_v1.py",
+      "sha256": "cf6d526afd0cd6e5f90c57f87266f83741b55274aa49ddb032b39983e461b474"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_deep_provenance_backtrace_audit_v1.py",
+      "sha256": "4cea3c9cc48e4c7481d6cae99cc89ea692d5bbecd99a9f9da2d738e9257bba2f"
+    },
+    {
+      "construction_calls": [
+        "append",
+        "extend"
+      ],
+      "markers": [
+        "55",
+        "columns",
+        "feature_index",
+        "feature_names",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_explicit_feature_identity_mapping_audit_v1.py",
+      "sha256": "c45ae459841cfb0c0e51c9671fd42ab5fa668680b182810c83be4eef812cf464"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "columns",
+        "feature_index",
+        "feature_names",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_feature_construction_backtrace_audit_v1.py",
+      "sha256": "aa0de9530c8ee7afdd19b1803e7b34bb1131117f524d173485617d3d65c42cd8"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "55",
+        "basis",
+        "columns",
+        "concat",
+        "n_features",
+        "shape",
+        "stack"
+      ],
+      "path": "results/run_phase_v_feature_generator_reconstruction_audit_v1.py",
+      "sha256": "7a06809066be8ef4fdd085f35c1ca2d34c344e721619359894c1c393dfe4c985"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_feature_trajectory_equivalence_audit_v1.py",
+      "sha256": "13c60ab27646cac5b75bc2f7ce903e4c0ca1dbbb6fcf405d5b1c0cdfe9c3b361"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "55"
+      ],
+      "path": "results/run_phase_v_persistence_correspondence_v1.py",
+      "sha256": "e38cd2ba9f1c56f71cb0a293ec62c2fd88e248adb4c1bbf1990c600f7e0c9d0d"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_projective_feature_quotient_audit_v1.py",
+      "sha256": "03d8ce7c72e3010664a96316d9ed20d8b9c5f38ad0c7e0921161c2a0317a0a77"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "n_features"
+      ],
+      "path": "results/run_phase_v_rate_distortion_frontier_v1.py",
+      "sha256": "c5fcf5f864887bef67b6fa62102c1241b0f341ec001aed5277f6b850882742be"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_residual_tail_concentration_audit_v1.py",
+      "sha256": "bf3cecdb8e215176ed0c4f0badec3199c27924465c5a843d3bbb3c97d64155f2"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "55",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_residual_winsorization_sensitivity_audit_v1.py",
+      "sha256": "320af9f20b27246e99c60a4ec325366463d5a8e0cc4a88071105a2fc7bfba668"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "n_features"
+      ],
+      "path": "results/run_phase_v_semantic_provenance_loss_audit_v1.py",
+      "sha256": "e1d9478e64cb95607e6b3ad3f706b81c3f1dfbe14edfa0759bf36b3a8dd63434"
+    },
+    {
+      "construction_calls": [
+        "extend"
+      ],
+      "markers": [
+        "n_features"
+      ],
+      "path": "results/run_phase_v_six_mode_reconstruction_v1.py",
+      "sha256": "d9b562b7ac70a8c9a5d30659a7c17a664b22c5dbc4760ef0fbfaa72b00404bbb"
+    },
+    {
+      "construction_calls": [
+        "append",
+        "extend"
+      ],
+      "markers": [
+        "55"
+      ],
+      "path": "results/run_phase_v_stability_trajectory_compression_v1.py",
+      "sha256": "a9a8f25ea461c02cd2ddca003b08df7ea2e353664e4e8f0d760e3514c69e71d0"
+    },
+    {
+      "construction_calls": [
+        "append",
+        "extend"
+      ],
+      "markers": [
+        "55",
+        "feature_index",
+        "stack"
+      ],
+      "path": "results/run_phase_v_structural_signature_recovery_identification_audit_v1.py",
+      "sha256": "0d43cc1e3785c37a266117bbaf75c2fa4283bdf80f4d5d778dfcc47ac3ba24b7"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "n_features"
+      ],
+      "path": "results/run_phase_v_two_mode_reconstruction_audit_v1.py",
+      "sha256": "fe2ede02c10a014f44ead0f93c9725d3e6e77f8732c303b5d110ddd27dd49099"
+    },
+    {
+      "construction_calls": [
+        "append"
+      ],
+      "markers": [
+        "55",
+        "feature_index",
+        "n_features"
+      ],
+      "path": "results/run_phase_v_two_mode_residual_concentration_audit_v1.py",
+      "sha256": "822e8464f6f03f063f2bd78746cadd135d31878f5490f64bb6dc9ff31bb23178"
+    }
+  ],
+  "target_width": 55
+}
