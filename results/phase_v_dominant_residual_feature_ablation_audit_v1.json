@@ -1,0 +1,20 @@
+{
+  "ablated_feature": {
+    "cumulative_squared_residual_share": 0.9352130194562918,
+    "feature_index": 11,
+    "rank": 1,
+    "residual_norm": 0.030580127965784916,
+    "squared_residual_energy": 0.0009351442264037807
+  },
+  "dominant_energy_share_before": 0.9352130194562918,
+  "interpretation": "leave_one_feature_out_stability_description_on_residual_energy_distribution_no_canonical_feature_removal_or_dimension_redefinition",
+  "largest_remaining_energy_share_after_ablation": 0.19408259901935604,
+  "n_features_after": 54,
+  "n_features_before": 55,
+  "remaining_energy_share_after_ablation": 0.06478698054370828,
+  "renormalized_effective_feature_count_after_ablation": 14.334127837443097,
+  "residual_energy_rank_order_preserved": true,
+  "source_path": "results/phase_v_residual_tail_concentration_audit_v1.json",
+  "source_sha256": "7a56c42a66aa48277c5c9a4093ab4ae3cda2c9ce1a24f8f0a01f6630a072ea82",
+  "status": "DOMINANT_RESIDUAL_FEATURE_ABLATION_AUDIT_COMPLETE"
+}
