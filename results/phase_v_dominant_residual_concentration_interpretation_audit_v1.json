@@ -1,0 +1,13 @@
+{
+  "concentration_shape": "SINGLE_FEATURE_DOMINANT",
+  "decision_rule": "top_1_share_at_least_half_else_top_5_share_at_least_half_else_broad",
+  "dominant_feature_rank": 1,
+  "interpretation": "descriptive_concentration_shape_only_no_outlier_classification_feature_removal_or_dimension_redefinition",
+  "n_features": 55,
+  "source_path": "results/phase_v_dominant_residual_feature_isolation_audit_v1.json",
+  "source_sha256": "e149e813bd79cefef01209aa1ebcbe9dc6475ab59960993215ea720b2799ac32",
+  "status": "DOMINANT_RESIDUAL_CONCENTRATION_INTERPRETATION_COMPLETE",
+  "top_10_energy_share": 0.9764145398745699,
+  "top_1_energy_share": 0.9352130194562918,
+  "top_5_energy_share": 0.9609618620080331
+}
