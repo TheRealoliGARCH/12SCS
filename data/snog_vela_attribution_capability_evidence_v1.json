@@ -1,0 +1,18 @@
+{
+  "event": "VELA_INCIDENT_1979",
+  "event_date": "1979-09-22",
+  "source_records": [
+    {
+      "source_type": "public_reference_lead",
+      "source_url": "https://en.wikipedia.org/wiki/Vela_incident",
+      "claim": "UNVERIFIED_IN_AUDIT: source discusses a detected event and competing interpretations of nuclear origin and attribution",
+      "source_group": "wikipedia",
+      "counts_as_nuclear_origin_proof": false,
+      "counts_as_attribution_proof": false
+    }
+  ],
+  "nuclear_origin_evidence": [],
+  "attribution_evidence": [],
+  "candidate_entities": [],
+  "interpretation_rule": "Evidence supporting nuclear origin and evidence supporting attribution are evaluated separately; neither category is inferred from the other."
+}
