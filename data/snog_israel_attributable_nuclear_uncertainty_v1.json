@@ -1,0 +1,12 @@
+{
+  "audit":"SNoG Israel-Attributable Nuclear Uncertainty Audit v1",
+  "scope":"Uncertainty attributable to unresolved public recognition and signalling status in the current SNoG evidence record",
+  "components":[
+    {"id":"U1","name":"RECOGNITION","present":true,"basis":"strict recognition remains NOT_CONFIRMED while attributed capability is recorded"},
+    {"id":"U2","name":"EVIDENCE_DEPENDENCE","present":true,"basis":"claimant support spans four recorded evidence families with dependence explicitly audited"},
+    {"id":"U3","name":"SIGNALLING","present":true,"basis":"leader binary survey was incomplete and produced no YES/NO confirmations"},
+    {"id":"U4","name":"CRISIS_INTERFACE","present":true,"basis":"strategic ambiguity audit identified miscalculation, signalling, communication, and deterrence uncertainty pathways"}
+  ],
+  "scoring_rule":{"type":"equal_weight_presence_index","formula":"sum(present_i)/n_components","interpretation":"structural uncertainty-component coverage, not probability, severity, causation magnitude, or event forecast"},
+  "guardrails":{"no_claim_of_total_global_uncertainty":true,"no_sole_causation_claim":true,"no_secret_arsenal_inference":true,"no_capability_upgrade":true,"no_probability_imputed":true,"no_event_prediction":true}
+}
