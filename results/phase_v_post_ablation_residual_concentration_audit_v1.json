@@ -1,0 +1,403 @@
+{
+  "ablated_feature": {
+    "cumulative_squared_residual_share": 0.9352130194562918,
+    "feature_index": 11,
+    "rank": 1,
+    "residual_norm": 0.030580127965784916,
+    "squared_residual_energy": 0.0009351442264037807
+  },
+  "concentration_herfindahl_after_ablation": 0.0697635748292851,
+  "effective_feature_count_after_ablation": 14.334127837443097,
+  "interpretation": "renormalized_post_ablation_concentration_description_no_recursive_feature_deletion_or_dimension_redefinition",
+  "largest_remaining_energy_share": 0.19408259901935604,
+  "n_features_after": 54,
+  "n_features_before": 55,
+  "rank_order_preserved": true,
+  "ranked_remaining_residuals": [
+    {
+      "cumulative_squared_residual_share": 0.9477870450228312,
+      "feature_index": 14,
+      "rank": 2,
+      "residual_norm": 0.0035458568270002174,
+      "squared_residual_energy": 1.257310063758405e-05
+    },
+    {
+      "cumulative_squared_residual_share": 0.9533998454806777,
+      "feature_index": 40,
+      "rank": 3,
+      "residual_norm": 0.0023690478229765784,
+      "squared_residual_energy": 5.6123875875500655e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9572441319533911,
+      "feature_index": 4,
+      "rank": 4,
+      "residual_norm": 0.001960613090847831,
+      "squared_residual_energy": 3.844003692003885e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9609618620080331,
+      "feature_index": 34,
+      "rank": 5,
+      "residual_norm": 0.0019280706893830188,
+      "squared_residual_energy": 3.7174565832579094e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9645134254323667,
+      "feature_index": 1,
+      "rank": 6,
+      "residual_norm": 0.0018844898980760092,
+      "squared_residual_energy": 3.551302175950528e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9679589525838044,
+      "feature_index": 12,
+      "rank": 7,
+      "residual_norm": 0.0018561448496668541,
+      "squared_residual_energy": 3.4452737029447886e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9711361189671844,
+      "feature_index": 15,
+      "rank": 8,
+      "residual_norm": 0.0017823952073420754,
+      "squared_residual_energy": 3.176932675156e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9739276228824564,
+      "feature_index": 22,
+      "rank": 9,
+      "residual_norm": 0.0016707179821493527,
+      "squared_residual_energy": 2.7912985758772046e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9764145398745699,
+      "feature_index": 16,
+      "rank": 10,
+      "residual_norm": 0.0015769381908420962,
+      "squared_residual_energy": 2.4867340577363436e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9787552836691203,
+      "feature_index": 26,
+      "rank": 11,
+      "residual_norm": 0.0015298926800541926,
+      "squared_residual_energy": 2.3405716124834e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9804255801006967,
+      "feature_index": 5,
+      "rank": 12,
+      "residual_norm": 0.0012923519515770068,
+      "squared_residual_energy": 1.670173566744898e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9820618610016373,
+      "feature_index": 31,
+      "rank": 13,
+      "residual_norm": 0.0012791249111197816,
+      "squared_residual_energy": 1.636160538247189e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.983613596313846,
+      "feature_index": 0,
+      "rank": 14,
+      "residual_norm": 0.0012456408666139513,
+      "squared_residual_energy": 1.5516211685787556e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9851410712236455,
+      "feature_index": 44,
+      "rank": 15,
+      "residual_norm": 0.0012358651021583827,
+      "squared_residual_energy": 1.5273625507329498e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9863501388614837,
+      "feature_index": 25,
+      "rank": 16,
+      "residual_norm": 0.0010995356749085425,
+      "squared_residual_energy": 1.208978700396584e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9875427897983333,
+      "feature_index": 13,
+      "rank": 17,
+      "residual_norm": 0.0010920454235053756,
+      "squared_residual_energy": 1.192563206999035e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9886822071964287,
+      "feature_index": 35,
+      "rank": 18,
+      "residual_norm": 0.001067395701712604,
+      "squared_residual_energy": 1.1393335840345425e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9897584959356032,
+      "feature_index": 27,
+      "rank": 19,
+      "residual_norm": 0.0010374052095374674,
+      "squared_residual_energy": 1.0762095687754766e-06
+    },
+    {
+      "cumulative_squared_residual_share": 0.9906885691008314,
+      "feature_index": 9,
+      "rank": 20,
+      "residual_norm": 0.0009643675389895484,
+      "squared_residual_energy": 9.300047502567581e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9915519723956215,
+      "feature_index": 8,
+      "rank": 21,
+      "residual_norm": 0.0009291607955394565,
+      "squared_residual_energy": 8.633397839675157e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9922715517668131,
+      "feature_index": 10,
+      "rank": 22,
+      "residual_norm": 0.0008482490435418571,
+      "squared_residual_energy": 7.195264398696754e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.992927483608071,
+      "feature_index": 39,
+      "rank": 23,
+      "residual_norm": 0.0008098664036526811,
+      "squared_residual_energy": 6.558835917653273e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9935364353700735,
+      "feature_index": 33,
+      "rank": 24,
+      "residual_norm": 0.0007803249120099874,
+      "squared_residual_energy": 6.089069683033946e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9941228372993579,
+      "feature_index": 28,
+      "rank": 25,
+      "residual_norm": 0.0007657406834703523,
+      "squared_residual_energy": 5.863587943216422e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9946706711859667,
+      "feature_index": 23,
+      "rank": 26,
+      "residual_norm": 0.0007401307915910976,
+      "squared_residual_energy": 5.477935886612646e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9950560957090606,
+      "feature_index": 48,
+      "rank": 27,
+      "residual_norm": 0.0006208028445228274,
+      "squared_residual_energy": 3.8539617176763375e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9954139620182493,
+      "feature_index": 32,
+      "rank": 28,
+      "residual_norm": 0.0005981972793390316,
+      "squared_residual_energy": 3.578399850086194e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9957644464461534,
+      "feature_index": 54,
+      "rank": 29,
+      "residual_norm": 0.0005919954786362706,
+      "squared_residual_energy": 3.504586467257871e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9961144967998583,
+      "feature_index": 37,
+      "rank": 30,
+      "residual_norm": 0.0005916287725056148,
+      "squared_residual_energy": 3.500246044565005e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9964340653608814,
+      "feature_index": 2,
+      "rank": 31,
+      "residual_norm": 0.0005652831626500963,
+      "squared_residual_energy": 3.195450539756952e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9967453226451473,
+      "feature_index": 49,
+      "rank": 32,
+      "residual_norm": 0.0005578838486505582,
+      "squared_residual_energy": 3.112343885851589e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9970382774247714,
+      "feature_index": 7,
+      "rank": 33,
+      "residual_norm": 0.0005412330646327561,
+      "squared_residual_energy": 2.929332302517651e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9973305292418586,
+      "feature_index": 24,
+      "rank": 34,
+      "residual_norm": 0.0005405833140450385,
+      "squared_residual_energy": 2.9223031942391676e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9975987338213338,
+      "feature_index": 47,
+      "rank": 35,
+      "residual_norm": 0.0005178656685814567,
+      "squared_residual_energy": 2.681848506953192e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9978551341442776,
+      "feature_index": 6,
+      "rank": 36,
+      "residual_norm": 0.0005063412510055529,
+      "squared_residual_energy": 2.5638146246986837e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9981081347461368,
+      "feature_index": 41,
+      "rank": 37,
+      "residual_norm": 0.000502973151832279,
+      "squared_residual_energy": 2.529819914640968e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9983593093857983,
+      "feature_index": 36,
+      "rank": 38,
+      "residual_norm": 0.0005011548299497931,
+      "squared_residual_energy": 2.5115616358200606e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9986069751507723,
+      "feature_index": 42,
+      "rank": 39,
+      "residual_norm": 0.0004976419867762409,
+      "squared_residual_energy": 2.476475470026043e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9988520533818162,
+      "feature_index": 3,
+      "rank": 40,
+      "residual_norm": 0.0004950355577209793,
+      "squared_residual_energy": 2.4506020340812106e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9990793423077831,
+      "feature_index": 53,
+      "rank": 41,
+      "residual_norm": 0.00047673074883976626,
+      "squared_residual_energy": 2.272722068893243e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.99928870178859,
+      "feature_index": 45,
+      "rank": 42,
+      "residual_norm": 0.0004575413430455275,
+      "squared_residual_energy": 2.0934408059590507e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9994729934755,
+      "feature_index": 29,
+      "rank": 43,
+      "residual_norm": 0.00042927628708492845,
+      "squared_residual_energy": 1.8427813065342191e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9996444092896684,
+      "feature_index": 46,
+      "rank": 44,
+      "residual_norm": 0.00041400870165287523,
+      "squared_residual_energy": 1.7140320504429944e-07
+    },
+    {
+      "cumulative_squared_residual_share": 0.9997121543205434,
+      "feature_index": 52,
+      "rank": 45,
+      "residual_norm": 0.00026026918303670524,
+      "squared_residual_energy": 6.774004763859398e-08
+    },
+    {
+      "cumulative_squared_residual_share": 0.9997751953494195,
+      "feature_index": 43,
+      "rank": 46,
+      "residual_norm": 0.0002510704914164729,
+      "squared_residual_energy": 6.303639166010919e-08
+    },
+    {
+      "cumulative_squared_residual_share": 0.999827898858457,
+      "feature_index": 18,
+      "rank": 47,
+      "residual_norm": 0.0002295640046609626,
+      "squared_residual_energy": 5.269963223597845e-08
+    },
+    {
+      "cumulative_squared_residual_share": 0.9998787558142356,
+      "feature_index": 17,
+      "rank": 48,
+      "residual_norm": 0.00022550657375602063,
+      "squared_residual_energy": 5.085321480717957e-08
+    },
+    {
+      "cumulative_squared_residual_share": 0.9999143112473512,
+      "feature_index": 50,
+      "rank": 49,
+      "residual_norm": 0.00018855454835189933,
+      "squared_residual_energy": 3.555281770418874e-08
+    },
+    {
+      "cumulative_squared_residual_share": 0.9999421208179253,
+      "feature_index": 30,
+      "rank": 50,
+      "residual_norm": 0.00016675588426901195,
+      "squared_residual_energy": 2.7807524938340105e-08
+    },
+    {
+      "cumulative_squared_residual_share": 0.9999624380533456,
+      "feature_index": 21,
+      "rank": 51,
+      "residual_norm": 0.0001425332975517431,
+      "squared_residual_energy": 2.0315740910973732e-08
+    },
+    {
+      "cumulative_squared_residual_share": 0.9999755108981341,
+      "feature_index": 20,
+      "rank": 52,
+      "residual_norm": 0.0001143323364890281,
+      "squared_residual_energy": 1.3071883167040347e-08
+    },
+    {
+      "cumulative_squared_residual_share": 0.9999863247381301,
+      "feature_index": 38,
+      "rank": 53,
+      "residual_norm": 0.00010398579010624607,
+      "squared_residual_energy": 1.0813044544020262e-08
+    },
+    {
+      "cumulative_squared_residual_share": 0.9999937435108411,
+      "feature_index": 51,
+      "rank": 54,
+      "residual_norm": 8.612912977542234e-05,
+      "squared_residual_energy": 7.4182269958715434e-09
+    },
+    {
+      "cumulative_squared_residual_share": 1.0,
+      "feature_index": 19,
+      "rank": 55,
+      "residual_norm": 7.909506267546034e-05,
+      "squared_residual_energy": 6.2560289396349985e-09
+    }
+  ],
+  "source_path": "results/phase_v_residual_tail_concentration_audit_v1.json",
+  "source_sha256": "7a56c42a66aa48277c5c9a4093ab4ae3cda2c9ce1a24f8f0a01f6630a072ea82",
+  "status": "POST_ABLATION_RESIDUAL_CONCENTRATION_AUDIT_COMPLETE",
+  "top_10_energy_share_after_ablation": 0.672083555174374,
+  "top_1_energy_share_after_ablation": 0.19408259901935604,
+  "top_5_energy_share_after_ablation": 0.45225762537748637,
+  "top_to_second_energy_ratio_after_ablation": 2.2402409743537497
+}
