@@ -1,0 +1,242 @@
+{
+  "candidate_files": [
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/phase_v_canonical_six_mode_coordinates_v1.json",
+      "sha256": "7c31cc440c875713ed077344a6ebada567fa5d3ae05ed66a5b63a8ac9676c38b"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/phase_v_deep_provenance_backtrace_audit_v1.json",
+      "sha256": "fa11da9b7745134eb912615dec3c644bb5a37be5c9819e4baecc26abcdd97090"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/phase_v_dominant_residual_feature_ablation_audit_v1.json",
+      "sha256": "a8ffb73a9d530434d83b0e26afa6e76efad0640174c9ad2dbfc5b92d7112eb9f"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/phase_v_dominant_residual_feature_isolation_audit_v1.json",
+      "sha256": "e149e813bd79cefef01209aa1ebcbe9dc6475ab59960993215ea720b2799ac32"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/phase_v_feature_to_structure_mapping_audit_v1.json",
+      "sha256": "c4af29b2385e6bed795ff18c66a698c60b134d78aa737748901ad2edca536f0d"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/phase_v_feature_trajectory_equivalence_audit_v1.json",
+      "sha256": "b46f2c5ab07e5cc5d3522f410eaa8f11f71b6a48f3b8637bc3d65c86ca279898"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/phase_v_post_ablation_residual_concentration_audit_v1.json",
+      "sha256": "37016d6e2ab6ae2cf08eed575df8c6f03380a10d69f1822e417914063279e6e6"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/phase_v_projective_feature_quotient_audit_v1.json",
+      "sha256": "efb1800da0b66fd42c05a7f92aaead35157cba1067b9df543787d1bbe5851459"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/phase_v_residual_tail_concentration_audit_v1.json",
+      "sha256": "7a56c42a66aa48277c5c9a4093ab4ae3cda2c9ce1a24f8f0a01f6630a072ea82"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/phase_v_semantic_provenance_loss_audit_v2.json",
+      "sha256": "4c046a0170ce9f526a802061059b33bc8ef28ebd02837067f4c05f564664c6ea"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/phase_v_two_mode_residual_concentration_audit_v1.json",
+      "sha256": "bd27d4e7887d8d80dd04ac6a48b50aee2335ce689321d6a90e8639ea556e52f1"
+    },
+    {
+      "markers": [
+        "columns"
+      ],
+      "path": "results/run_bayesian_structural_counterfactual_analysis.py",
+      "sha256": "11a04eeec866ff52e7e59c911044ff1f1afdf898bf32cb77a52f3cd7ceb6266a"
+    },
+    {
+      "markers": [
+        "columns"
+      ],
+      "path": "results/run_bayesian_structural_counterfactual_input.py",
+      "sha256": "5b8059d5fa24c1b04941a199a6a23cdff9451323876e85d216c3a00040caf1d1"
+    },
+    {
+      "markers": [
+        "columns"
+      ],
+      "path": "results/run_bayesian_v6_causal_audit.py",
+      "sha256": "34af04d69e236a0ca60fd0120c33e3c4e8ca241f4cbd410b7eb97acf6e99610a"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/run_phase_v_canonical_six_mode_coordinates_v1.py",
+      "sha256": "cf6d526afd0cd6e5f90c57f87266f83741b55274aa49ddb032b39983e461b474"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/run_phase_v_deep_provenance_backtrace_audit_v1.py",
+      "sha256": "4cea3c9cc48e4c7481d6cae99cc89ea692d5bbecd99a9f9da2d738e9257bba2f"
+    },
+    {
+      "markers": [
+        "feature_index",
+        "feature_names",
+        "columns",
+        "canonical_state"
+      ],
+      "path": "results/run_phase_v_feature_construction_backtrace_audit_v1.py",
+      "sha256": "aa0de9530c8ee7afdd19b1803e7b34bb1131117f524d173485617d3d65c42cd8"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/run_phase_v_feature_trajectory_equivalence_audit_v1.py",
+      "sha256": "13c60ab27646cac5b75bc2f7ce903e4c0ca1dbbb6fcf405d5b1c0cdfe9c3b361"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/run_phase_v_projective_feature_quotient_audit_v1.py",
+      "sha256": "03d8ce7c72e3010664a96316d9ed20d8b9c5f38ad0c7e0921161c2a0317a0a77"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/run_phase_v_residual_tail_concentration_audit_v1.py",
+      "sha256": "bf3cecdb8e215176ed0c4f0badec3199c27924465c5a843d3bbb3c97d64155f2"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/run_phase_v_semantic_provenance_loss_audit_v2.py",
+      "sha256": "5a37814e165b9b0621c47414fdaf0129c61d8fcf38360d444c1b838981fc7495"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/run_phase_v_structural_signature_recovery_identification_audit_v1.py",
+      "sha256": "0d43cc1e3785c37a266117bbaf75c2fa4283bdf80f4d5d778dfcc47ac3ba24b7"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "results/run_phase_v_two_mode_residual_concentration_audit_v1.py",
+      "sha256": "822e8464f6f03f063f2bd78746cadd135d31878f5490f64bb6dc9ff31bb23178"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_DEEP_PROVENANCE_BACKTRACE_AUDIT_V1.py",
+      "sha256": "7a11ace463529b9d45c50c81af30eef97824f63ced631a2cf6dc50aabc2ee70c"
+    },
+    {
+      "markers": [
+        "feature_names",
+        "columns"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_FEATURE_CONSTRUCTION_BACKTRACE_AUDIT_V1.py",
+      "sha256": "fcdd3d8370ffc4a32716e0435fbe8228d12379ec0d27e240240f6d00400b8586"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_FEATURE_TRAJECTORY_EQUIVALENCE_AUDIT_V1.py",
+      "sha256": "8e6eed9bb4ea6c8e4a260babb16c9985c4f6e772988b8d5872d04f89b58903fb"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_PROJECTIVE_FEATURE_QUOTIENT_AUDIT_V1.py",
+      "sha256": "4c0578ab55cf0e9b53cf2268f991aac84d226eff69bd3c2f332d9c21de7b2797"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_RESIDUAL_TAIL_CONCENTRATION_AUDIT_V1.py",
+      "sha256": "1f54cc7a50b6470f5834910fdf3ac3ff8ccbc64605909b672cb6b4835a770ad5"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_SEMANTIC_PROVENANCE_LOSS_AUDIT_V2.py",
+      "sha256": "fa6c7b62ccc68fae14b0fcf1f7c72652ca72e18b5cea7f0c86df12ab282a5176"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_STRUCTURAL_SIGNATURE_RECOVERY_IDENTIFICATION_AUDIT_V1.py",
+      "sha256": "0b06f7325ecb968d1d9e8a5aa75346789cb5c5a5aea7bcc3dc918f3043165f4b"
+    },
+    {
+      "markers": [
+        "feature_index"
+      ],
+      "path": "reproducibility/VERIFY_PHASE_V_TWO_MODE_RESIDUAL_CONCENTRATION_AUDIT_V1.py",
+      "sha256": "ec0c72ce4cfb5565071f720662102df6620fe6fa33f9a908cf96e874f77b50e9"
+    }
+  ],
+  "excluded_paths": [
+    "results/phase_v_feature_construction_backtrace_audit_v1.json"
+  ],
+  "identity_candidate_count": 5,
+  "interpretation": "repository-level textual provenance candidates are inventoried only; semantic identity is not asserted unless an explicit feature-index-to-source-variable mapping is present",
+  "n_features": 54,
+  "search_scope": [
+    "results",
+    "reproducibility",
+    "data",
+    "src",
+    "model",
+    "tests"
+  ],
+  "source_path": "results/phase_v_deep_provenance_backtrace_audit_v1.json",
+  "source_sha256": "fa11da9b7745134eb912615dec3c644bb5a37be5c9819e4baecc26abcdd97090",
+  "status": "FEATURE_CONSTRUCTION_PROVENANCE_CANDIDATES_FOUND"
+}
