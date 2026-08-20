@@ -1,0 +1,19 @@
+{
+  "audit": "SNoG Israeli Capability Evidence Dependence Audit v1",
+  "proposition": "Israel possesses nuclear weapons",
+  "evidence_families": [
+    {"id":"E1","name":"FISSILE_MATERIAL_PRODUCTION","description":"Estimates derived from reactor operations, plutonium production, and material-balance analysis."},
+    {"id":"E2","name":"NUCLEAR_CAPABLE_DELIVERY_SYSTEMS","description":"Analysis of aircraft, missiles, submarines, and associated capability claims."},
+    {"id":"E3","name":"DECLASSIFIED_OR_LEAKED_INTELLIGENCE","description":"Historical intelligence assessments or leaked records cited by analysts."},
+    {"id":"E4","name":"HISTORICAL_AND_OPEN_SOURCE_RECONSTRUCTION","description":"Historical documentation and specialist reconstruction."},
+    {"id":"E5","name":"VELA_1979","description":"Contested evidence concerning the 1979 Vela event; not treated as confirmed attribution."}
+  ],
+  "claimants": [
+    {"name":"SIPRI","affirmative_strength":"EXPLICIT_ESTIMATE","families":["E1","E2","E3","E4"],"dependence":"PARTIALLY_OVERLAPPING"},
+    {"name":"Federation of American Scientists","affirmative_strength":"EXPLICIT_ESTIMATE","families":["E1","E2","E3","E4"],"dependence":"PARTIALLY_OVERLAPPING"},
+    {"name":"Congressional Research Service","affirmative_strength":"QUALIFIED_PRESUMPTION","families":["E1","E2","E3","E4"],"dependence":"PARTIALLY_OVERLAPPING"},
+    {"name":"Nuclear Threat Initiative","affirmative_strength":"EXPLICIT_ATTRIBUTION","families":["E1","E2","E3","E4"],"dependence":"PARTIALLY_OVERLAPPING"},
+    {"name":"Arms Control Association","affirmative_strength":"EXPLICIT_ATTRIBUTION","families":["E1","E2","E4"],"dependence":"PARTIALLY_OVERLAPPING"}
+  ],
+  "invariants": {"claimant_count_is_not_evidence_family_count": true,"no_public_test_imputed": true,"vela_not_confirmed_as_attribution": true,"institutional_repetition_not_counted_as_independent_confirmation": true}
+}
